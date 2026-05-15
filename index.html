@@ -1548,7 +1548,7 @@
       const usage = d.usage || {};
       const pct = ((usage.candidates_found / usage.limit) * 100).toFixed(1);
       const color = pct >= 90 ? '#f87171' : pct >= 75 ? '#fbbf24' : 'var(--accent)';
-      const dashUrl = product === 'croupier' ? `https://primary-production-e5d2.up.railway.app/webhook/recruitment-form` : '#';
+      const dashUrl = product === 'croupier' ? `https://croupier-site.vercel.app/` : '#';
       const modal = document.createElement('div');
       modal.style.cssText = 'position:fixed;inset:0;background:rgba(11,4,22,0.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;';
       modal.innerHTML = `
