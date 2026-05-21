@@ -1436,7 +1436,7 @@
   }
 
   // ─── DEMO DATA ───────────────────────────────────
-  const profiles =[
+  const profiles = [
     { name: 'Sarah Chen', title: 'Senior Software Engineer', company: 'Upstart', location: 'San Francisco Bay Area', years: 8, skills:['Python', 'React', 'AWS', 'Kubernetes', 'Docker', 'TypeScript'] },
     { name: 'Michael Rodriguez', title: 'Lead Backend Engineer', company: 'Stripe', location: 'San Francisco Bay Area', years: 6, skills:['Node.js', 'Python', 'PostgreSQL', 'Redis', 'AWS', 'Go'] },
     { name: 'Emily Thompson', title: 'Full Stack Developer', company: 'Notion', location: 'San Francisco Bay Area', years: 5, skills:['React', 'TypeScript', 'Node.js', 'MongoDB', 'AWS'] },
@@ -1536,6 +1536,7 @@
     } catch(e) { closeLoading(); alert('Error validating. Please try again.'); }
   }
 
+  // ─── DASHBOARD ───────────────────────────────────
   async function showDashboard(product, token) {
     showLoading('Loading The Croupier...');
     try {
@@ -1545,16 +1546,45 @@
       });
       const d = await r.json();
       closeLoading();
+
       const usage = d.usage || {};
-      const pct = ((usage.candidates_found / usage.limit) * 100).toFixed(1);
+      const pct = Math.min(100, ((usage.candidates_found / usage.limit) * 100)).toFixed(1);
       const color = pct >= 90 ? '#f87171' : pct >= 75 ? '#fbbf24' : 'var(--accent)';
-      const dashUrl = product === 'croupier' ? `https://croupier-site.vercel.app/` : '#';
+      const dashUrl = product === 'croupier' ? 'https://croupier-site.vercel.app/' : '#';
+      const isCancelling = d.cancelling || d.status === 'cancelling';
+      const cancelsAt = d.cancels_at
+        ? new Date(d.cancels_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+        : null;
+
+      const statusBadge = isCancelling
+        ? `<div style="background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.3);padding:12px 16px;margin-bottom:28px;display:flex;align-items:center;gap:10px;">
+             <span style="color:#fbbf24;font-size:12px;">⏳</span>
+             <span class="mono" style="font-size:10px;color:#fbbf24;letter-spacing:0.1em;">Cancels ${cancelsAt} — full access until then</span>
+           </div>`
+        : d.status === 'past_due'
+        ? `<div style="background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.3);padding:12px 16px;margin-bottom:28px;">
+             <span class="mono" style="font-size:10px;color:#f87171;letter-spacing:0.1em;">⚠ Payment past due — update billing to avoid losing access</span>
+           </div>`
+        : '';
+
+      const cancelButton = isCancelling
+        ? `<div class="mono" style="font-size:9px;color:rgba(245,243,255,0.25);text-align:center;padding:14px;letter-spacing:0.1em;">CANCELLATION ALREADY SCHEDULED</div>`
+        : `<button
+             onclick="cancelSubscription('${token}', this)"
+             style="width:100%;padding:14px;background:transparent;border:1px solid rgba(248,113,113,0.3);color:rgba(248,113,113,0.6);font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.15em;cursor:pointer;transition:all 0.2s;"
+             onmouseover="this.style.borderColor='#f87171';this.style.color='#f87171'"
+             onmouseout="this.style.borderColor='rgba(248,113,113,0.3)';this.style.color='rgba(248,113,113,0.6)'">
+             Cancel Subscription
+           </button>`;
+
       const modal = document.createElement('div');
+      modal.id = 'dashboard-modal';
       modal.style.cssText = 'position:fixed;inset:0;background:rgba(11,4,22,0.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;';
       modal.innerHTML = `
         <div style="background:var(--ink);border:1px solid var(--accent-border);max-width:540px;width:100%;padding:60px 48px;">
           <div class="mono" style="font-size:9px;color:var(--accent);letter-spacing:0.3em;margin-bottom:16px;">ACCESS GRANTED</div>
           <h2 style="font-size:2.5rem;font-weight:800;letter-spacing:-0.04em;margin-bottom:40px;">${product === 'croupier' ? 'The Croupier' : 'The Stack'}</h2>
+          ${statusBadge}
           <div style="margin-bottom:32px;">
             <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
               <span class="mono" style="font-size:10px;color:rgba(245,243,255,0.4);letter-spacing:0.1em;">MONTHLY USAGE</span>
@@ -1569,12 +1599,52 @@
             </div>
           </div>
           <a href="${dashUrl}" target="_blank" style="display:block;width:100%;padding:18px;background:var(--accent);color:var(--ink);font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.2em;text-align:center;text-decoration:none;font-weight:500;margin-bottom:12px;">Open The Croupier →</a>
-          <button onclick="this.parentElement.parentElement.remove()" style="width:100%;padding:14px;background:transparent;border:1px solid var(--white-border);color:rgba(245,243,255,0.4);font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.15em;cursor:pointer;">Close</button>
+          <button onclick="document.getElementById('dashboard-modal').remove()" style="width:100%;padding:14px;background:transparent;border:1px solid var(--white-border);color:rgba(245,243,255,0.4);font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.15em;cursor:pointer;margin-bottom:12px;">Close</button>
+          <div id="cancel-area">${cancelButton}</div>
         </div>`;
       document.body.appendChild(modal);
     } catch(e) { closeLoading(); alert('Error loading dashboard.'); }
   }
 
+  // ─── CANCEL SUBSCRIPTION ─────────────────────────
+  async function cancelSubscription(token, btn) {
+    const confirmed = confirm(
+      'Are you sure you want to cancel?\n\nYou keep full access until the end of your current billing period. No refunds are issued for partial months.'
+    );
+    if (!confirmed) return;
+
+    btn.disabled = true;
+    btn.textContent = 'Cancelling...';
+
+    try {
+      const r = await fetch(`${WORKER_URL}/api/cancel-subscription`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token })
+      });
+      const d = await r.json();
+
+      if (d.success) {
+        const cancelsAt = d.cancels_at
+          ? new Date(d.cancels_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+          : 'end of billing period';
+        document.getElementById('cancel-area').innerHTML = `
+          <div style="background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.3);padding:12px 16px;text-align:center;">
+            <span class="mono" style="font-size:10px;color:#fbbf24;letter-spacing:0.1em;">⏳ Cancels ${cancelsAt} — full access until then</span>
+          </div>`;
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Cancel Subscription';
+        alert(d.error || 'Cancellation failed. Please contact bernardliatme@outlook.com');
+      }
+    } catch(e) {
+      btn.disabled = false;
+      btn.textContent = 'Cancel Subscription';
+      alert('Error. Please try again or contact bernardliatme@outlook.com');
+    }
+  }
+
+  // ─── LOADING ──────────────────────────────────────
   function showLoading(msg) {
     const m = document.createElement('div');
     m.id = 'loading-modal';
@@ -1582,6 +1652,7 @@
     m.innerHTML = `<div class="mono" style="font-size:10px;color:var(--accent);letter-spacing:0.3em;text-transform:uppercase;">${msg}</div>`;
     document.body.appendChild(m);
   }
+
   function closeLoading() { document.getElementById('loading-modal')?.remove(); }
 </script>
 </body>
