@@ -31,7 +31,6 @@
     .mono { font-family: 'DM Mono', monospace; }
     .serif { font-family: 'Instrument Serif', serif; }
 
-    /* animated grain overlay */
     body::before {
       content: '';
       position: fixed;
@@ -214,7 +213,7 @@
       100% { transform: translateX(-50%); }
     }
 
-    /* FEATURES SECTION */
+    /* FEATURES GRID */
     .features-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -793,6 +792,27 @@
     }
     .fade-up { animation: fadeUp 0.5s ease-out forwards; }
 
+    /* Llama badge */
+    .llama-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(168,85,247,0.08);
+      border: 1px solid var(--accent-border);
+      padding: 8px 16px;
+      margin-top: 28px;
+    }
+    .llama-badge-dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
     @media (max-width: 768px) {
       .features-grid, .ai-section, .product-row { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
@@ -806,9 +826,7 @@
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════
-  HOME PAGE
-════════════════════════════════════════════ -->
+<!-- HOME PAGE -->
 <main id="home" class="page active">
 
   <!-- NAV -->
@@ -849,7 +867,7 @@
             <div class="hero-stat-label">Profiles Indexed</div>
           </div>
           <div>
-            <div class="hero-stat-val">3-Day</div>
+            <div class="hero-stat-val">7-Day</div>
             <div class="hero-stat-label">Free Trial</div>
           </div>
         </div>
@@ -866,14 +884,16 @@
       <span class="marquee-item"><span class="marquee-dot"></span>Competitor Intelligence</span>
       <span class="marquee-item"><span class="marquee-dot"></span>AI Candidate Ranking</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Zero Data Sharing</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>3-Day Free Trial</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>7-Day Free Trial</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Llama 4 Instruct</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Private AI Model</span>
       <span class="marquee-item"><span class="marquee-dot"></span>LinkedIn Sourcing</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Automated Outreach</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Competitor Intelligence</span>
       <span class="marquee-item"><span class="marquee-dot"></span>AI Candidate Ranking</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Zero Data Sharing</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>3-Day Free Trial</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>7-Day Free Trial</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Llama 4 Instruct</span>
     </div>
   </div>
 
@@ -884,16 +904,25 @@
         <p class="section-label">The Engine</p>
         <h2 class="section-title">Your Own<br>Private AI.</h2>
         <p class="section-body">
-          Unlike generic tools that send your hiring data to third-party models, Dealers Choice runs a dedicated AI model — isolated per account, trained on recruitment intelligence, and visible to no one but you.
+          Unlike generic tools that send your hiring data to third-party models, Dealers Choice runs a dedicated AI model — isolated per account, fine-tuned on recruitment intelligence, and visible to no one but you.
         </p>
         <p class="section-body" style="margin-top:16px;">
           Candidate scores, search parameters, job descriptions, and results never leave our secure pipeline. Your sourcing strategy stays yours.
         </p>
 
+        <div class="llama-badge">
+          <div class="llama-badge-dot"></div>
+          <span class="mono" style="font-size:10px; color:var(--accent); letter-spacing:0.15em;">POWERED BY LLAMA 4 INSTRUCT — CUSTOM FINE-TUNED</span>
+        </div>
+
         <div class="spec-list">
           <div class="spec-row">
             <span class="spec-key">Model Architecture</span>
-            <span class="spec-val">AI model — Private model</span>
+            <span class="spec-val">Llama 4 Instruct — Fine-tuned</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-key">Deployment</span>
+            <span class="spec-val">Isolated Private Instance</span>
           </div>
           <div class="spec-row">
             <span class="spec-key">Data Retention</span>
@@ -908,8 +937,8 @@
             <span class="spec-val">Skills · Experience · Intent</span>
           </div>
           <div class="spec-row">
-            <span class="spec-key">Search Depth</span>
-            <span class="spec-val">LinkedIn Network + Search Layer</span>
+            <span class="spec-key">Data Source</span>
+            <span class="spec-val">Licensed LinkedIn Pipeline</span>
           </div>
           <div class="spec-row">
             <span class="spec-key">Latency</span>
@@ -948,8 +977,8 @@
               <div class="mono" style="font-size:9px; color:rgba(245,243,255,0.3); margin-top:4px; letter-spacing:0.1em;">DATA LEAKS</div>
             </div>
             <div style="background:var(--ink); padding:20px; border-top:1px solid var(--white-border);">
-              <div style="font-size:28px; font-weight:800; color:var(--accent); letter-spacing:-0.03em;">∞</div>
-              <div class="mono" style="font-size:9px; color:rgba(245,243,255,0.3); margin-top:4px; letter-spacing:0.1em;">SEARCHES AVAILABLE</div>
+              <div style="font-size:28px; font-weight:800; color:var(--accent); letter-spacing:-0.03em;">$9k</div>
+              <div class="mono" style="font-size:9px; color:rgba(245,243,255,0.3); margin-top:4px; letter-spacing:0.1em;">SAVED VS RECRUITER SEAT</div>
             </div>
           </div>
         </div>
@@ -968,29 +997,29 @@
       <div class="feature-cell">
         <div class="feature-num">01</div>
         <div class="feature-title">AI Candidate Ranking</div>
-        <div class="feature-desc">Every profile gets a 0–100 fit score with written reasoning. Hire, Maybe, Pass — decided by AI trained on recruitment outcomes, not generic text similarity. Scores update as your requirements evolve.</div>
+        <div class="feature-desc">Every profile gets a 0–100 fit score with written reasoning. Hire, Maybe, Pass — decided by a fine-tuned AI model trained on recruitment outcomes, not generic text similarity. Scores update as your requirements evolve.</div>
         <div class="feature-tag">Private AI Model</div>
       </div>
 
       <div class="feature-cell">
         <div class="feature-num">02</div>
-        <div class="feature-title">LinkedIn Search at Scale</div>
-        <div class="feature-desc">Search across 100,000+ LinkedIn profiles by title, skills, location, industry, and years of experience. Results delivered in under 60 seconds. No LinkedIn Recruiter seat required — saving you $9,000/year per recruiter.</div>
-        <div class="feature-tag">AI-Powered</div>
+        <div class="feature-title">LinkedIn Sourcing at Scale</div>
+        <div class="feature-desc">Search 100,000+ professional profiles by title, skills, location, industry, and experience. Results in under 60 seconds via our authorised data pipeline — no $9,000/year LinkedIn Recruiter seat required.</div>
+        <div class="feature-tag">Authorised Data Access</div>
       </div>
 
       <div class="feature-cell">
         <div class="feature-num">03</div>
         <div class="feature-title">Automated Email Outreach</div>
         <div class="feature-desc">The Stack generates personalized outreach emails and sends them at scale. Campaign parameters, tone, and targeting — configured once, delivered automatically. Full response tracking included.</div>
-        <div class="feature-tag">Coming Q2 2026</div>
+        <div class="feature-tag">Coming Q3 2026</div>
       </div>
 
       <div class="feature-cell">
         <div class="feature-num">04</div>
         <div class="feature-title">Competitor Intelligence</div>
         <div class="feature-desc">The House Edge monitors competitor job postings in real time — tracking who they're hiring, what skills they're prioritizing, and what they're paying. Stay ahead of the market without guessing.</div>
-        <div class="feature-tag">Coming Q2 2026</div>
+        <div class="feature-tag">Coming Q3 2026</div>
       </div>
 
       <div class="feature-cell">
@@ -1020,29 +1049,27 @@
     </div>
 
     <div class="product-row">
-      <!-- THE CROUPIER -->
       <div class="product-card featured" onclick="showPage('croupier')">
         <div class="product-arrow">↗</div>
         <div>
           <div class="product-badge badge-live">● Live Now</div>
           <div class="product-name">The Croupier</div>
           <div class="product-desc">
-            AI-powered LinkedIn candidate discovery and ranking. Define your requirements — skills, experience, location — and get a ranked shortlist in under 60 seconds. Powered by a private AI model that scores and explains every candidate.
+            AI-powered candidate discovery and ranking. Define your requirements — skills, experience, location — and get a ranked shortlist in under 60 seconds. Powered by a private fine-tuned AI model that scores and explains every candidate.
           </div>
           <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px;">
             <span class="feature-tag" style="margin-top:0;">Private AI</span>
-            <span class="feature-tag" style="margin-top:0;">LinkedIn Search</span>
+            <span class="feature-tag" style="margin-top:0;">Profile Search</span>
             <span class="feature-tag" style="margin-top:0;">AI Scoring</span>
           </div>
         </div>
         <div class="product-price">From $149<span>/mo</span></div>
       </div>
 
-      <!-- THE STACK -->
       <div class="product-card" onclick="showPage('stack')">
         <div class="product-arrow">↗</div>
         <div>
-          <div class="product-badge badge-beta">◐ Beta Q2 2026</div>
+          <div class="product-badge badge-beta">◐ Coming Q3 2026</div>
           <div class="product-name">The Stack</div>
           <div class="product-desc">
             Automated outreach at scale. AI writes personalized emails for every candidate in your pipeline and sends them automatically. No templates that feel like templates — hyper-personalized messaging that gets responses.
@@ -1055,11 +1082,10 @@
         <div class="product-price">$199<span>/mo</span></div>
       </div>
 
-      <!-- HOUSE EDGE -->
       <div class="product-card" onclick="showPage('house-edge')">
         <div class="product-arrow">↗</div>
         <div>
-          <div class="product-badge badge-beta">◐ Beta Q2 2026</div>
+          <div class="product-badge badge-beta">◐ Coming Q3 2026</div>
           <div class="product-name">The House Edge</div>
           <div class="product-desc">
             Competitive hiring intelligence. Monitor who your competitors are hiring, what skills they're targeting, and what salary ranges they're offering. Real-time job posting surveillance across any company.
@@ -1096,13 +1122,13 @@
       </div>
       <div class="step">
         <div class="step-num">STEP 02</div>
-        <div class="step-title">AI Searches LinkedIn</div>
-        <div class="step-body">Our system queries LinkedIn's network through a multi-layer pipeline, pulling full profiles including experience, education, skills, and open-to-work status. Up to 100 candidates per search.</div>
+        <div class="step-title">AI Sources Candidates</div>
+        <div class="step-body">Our authorised data pipeline surfaces professional profiles matching your criteria — including experience, education, skills, and open-to-work status. Up to 100 candidates per search, delivered in under 60 seconds.</div>
       </div>
       <div class="step">
         <div class="step-num">STEP 03</div>
         <div class="step-title">Private AI Ranks Every Profile</div>
-        <div class="step-body">Each candidate is scored 0–100 by a dedicated AI model with a written explanation. Strengths and concerns are flagged. Hire, Maybe, Pass is assigned. All in your private instance.</div>
+        <div class="step-body">Each candidate is scored 0–100 by your dedicated fine-tuned Llama 4 Instruct model. Strengths and concerns are flagged. Hire, Maybe, Pass is assigned — all within your private instance.</div>
       </div>
       <div class="step">
         <div class="step-num">STEP 04</div>
@@ -1122,7 +1148,7 @@
         TODAY.
       </h2>
       <div class="cta-buttons">
-        <a class="btn-primary" href="mailto:bernardliatme@outlook.com?subject=Demo Request&body=Hi, I'd like to book a demo of Dealers Choice Systems.">Book a Demo</a>
+        <a class="btn-primary" href="mailto:sales@asqsys.com?subject=Demo Request&body=Hi, I'd like to book a demo of Dealers Choice Systems.">Book a Demo</a>
         <button class="btn-outline" onclick="showPage('croupier')">View Pricing →</button>
       </div>
     </div>
@@ -1133,14 +1159,12 @@
     <div style="display:flex; gap:32px;">
       <a href="javascript:void(0);" onclick="showPage('privacy')" class="mono">Privacy</a>
       <a href="javascript:void(0);" onclick="showPage('terms')" class="mono">Terms</a>
-      <a href="mailto:bernardliatme@outlook.com" class="mono">Contact</a>
+      <a href="mailto:sales@asqsys.com" class="mono">Contact</a>
     </div>
   </footer>
 </main>
 
-<!-- ═══════════════════════════════════════════
-  CROUPIER PAGE
-════════════════════════════════════════════ -->
+<!-- CROUPIER PAGE -->
 <div id="croupier" class="page">
   <div class="back-nav">
     <span class="back-link" onclick="showPage('home')">← Dealer's Choice</span>
@@ -1152,7 +1176,7 @@
     <div class="product-badge badge-live" style="margin-bottom:16px;">● Live Now</div>
     <h1 style="font-size:clamp(3rem,9vw,8rem); font-weight:800; letter-spacing:-0.04em; line-height:0.9; margin-bottom:24px;">THE<br>CROUPIER</h1>
     <p style="font-size:18px; color:rgba(245,243,255,0.5); max-width:560px; line-height:1.6;">
-      AI-powered LinkedIn candidate discovery and ranking. Your private AI model scores every profile — with an explanation you can actually use.
+      AI-powered candidate discovery and ranking. Your private fine-tuned model scores every profile — with an explanation you can actually use.
     </p>
   </div>
 
@@ -1162,7 +1186,7 @@
       <div style="background:var(--ink); padding:32px;">
         <div class="mono" style="font-size:9px; color:var(--accent); letter-spacing:0.2em; margin-bottom:12px;">PRIVATE AI</div>
         <div style="font-size:15px; font-weight:700; margin-bottom:8px;">Your Data, Your Model</div>
-        <div style="font-size:13px; color:rgba(245,243,255,0.45); line-height:1.6;">A dedicated AI model — isolated per account. Your searches never train anyone else's model. Zero third-party data sharing.</div>
+        <div style="font-size:13px; color:rgba(245,243,255,0.45); line-height:1.6;">A dedicated Llama 4 Instruct model — fine-tuned for recruitment and isolated per account. Your searches never touch a shared model.</div>
       </div>
       <div style="background:var(--ink); padding:32px;">
         <div class="mono" style="font-size:9px; color:var(--accent); letter-spacing:0.2em; margin-bottom:12px;">AI SCORING</div>
@@ -1170,9 +1194,9 @@
         <div style="font-size:13px; color:rgba(245,243,255,0.45); line-height:1.6;">Every candidate gets a 0–100 fit score with written reasoning, key strengths, and concerns flagged. No more manual profile review at scale.</div>
       </div>
       <div style="background:var(--ink); padding:32px;">
-        <div class="mono" style="font-size:9px; color:var(--accent); letter-spacing:0.2em; margin-bottom:12px;">LINKEDIN SEARCH</div>
+        <div class="mono" style="font-size:9px; color:var(--accent); letter-spacing:0.2em; margin-bottom:12px;">CANDIDATE SOURCING</div>
         <div style="font-size:15px; font-weight:700; margin-bottom:8px;">No Recruiter Seat Needed</div>
-        <div style="font-size:13px; color:rgba(245,243,255,0.45); line-height:1.6;">Access 100,000+ LinkedIn profiles without a $9,000/year LinkedIn Recruiter seat. Search by role, skills, location, and experience level in under 60s.</div>
+        <div style="font-size:13px; color:rgba(245,243,255,0.45); line-height:1.6;">Access 100,000+ professional profiles without a $9,000/year LinkedIn Recruiter seat. Search by role, skills, location, and experience in under 60s.</div>
       </div>
     </div>
   </div>
@@ -1187,7 +1211,7 @@
         <div class="mono" style="font-size:10px; color:var(--accent); letter-spacing:0.2em; margin-bottom:24px;">YOUR REQUIREMENTS</div>
 
         <div style="background:rgba(168,85,247,0.06); border:1px solid var(--accent-border); padding:10px 14px; margin-bottom:24px;">
-          <div class="mono" style="font-size:9px; color:var(--accent); letter-spacing:0.15em;">DEMO — Limited sample database</div>
+          <div class="mono" style="font-size:9px; color:var(--accent); letter-spacing:0.15em;">DEMO — Sample candidate database</div>
         </div>
 
         <div style="display:flex; flex-direction:column; gap:14px;">
@@ -1240,11 +1264,11 @@
         <ul class="pricing-features">
           <li>1,000 Candidates / month</li>
           <li>Private AI Ranking</li>
-          <li>LinkedIn Profile Search</li>
+          <li>Professional Profile Search</li>
           <li>Search History</li>
           <li>Standard Support</li>
         </ul>
-        <button class="pricing-btn" onclick="openStripeCheckout('price_1T5UQDRvu0Wlomst6OcHgx2m')">Start Free Trial</button>
+        <button class="pricing-btn" onclick="openStripeCheckout('price_1T5UQDRvu0Wlomst6OcHgx2m')">Start 7-Day Free Trial</button>
       </div>
 
       <div class="pricing-card featured">
@@ -1254,12 +1278,12 @@
         <ul class="pricing-features">
           <li>5,000 Candidates / month</li>
           <li>Advanced Private AI Ranking</li>
-          <li>LinkedIn Profile Search</li>
+          <li>Professional Profile Search</li>
           <li>Search History + Bookmarks</li>
           <li>CSV Export</li>
           <li>Priority Support</li>
         </ul>
-        <button class="pricing-btn accent" onclick="openStripeCheckout('price_1T5aQfRvu0WlomstC3m4OFns')">Start Free Trial</button>
+        <button class="pricing-btn accent" onclick="openStripeCheckout('price_1T5aQfRvu0WlomstC3m4OFns')">Start 7-Day Free Trial</button>
       </div>
 
       <div class="pricing-card">
@@ -1269,13 +1293,13 @@
         <ul class="pricing-features">
           <li>15,000 Candidates / month</li>
           <li>Premium Private AI Ranking</li>
-          <li>LinkedIn Profile Search</li>
+          <li>Professional Profile Search</li>
           <li>Full History + Bookmarks</li>
           <li>CSV Export + Custom Reports</li>
           <li>Dedicated Support</li>
           <li>Customised Product Access</li>
         </ul>
-        <button class="pricing-btn" onclick="openStripeCheckout('price_1T9UO1Rvu0WlomstDwHIdo8B')">Start Free Trial</button>
+        <button class="pricing-btn" onclick="openStripeCheckout('price_1T9UO1Rvu0WlomstDwHIdo8B')">Start 7-Day Free Trial</button>
       </div>
     </div>
   </div>
@@ -1294,9 +1318,7 @@
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-  STACK PAGE
-════════════════════════════════════════════ -->
+<!-- STACK PAGE -->
 <div id="stack" class="page">
   <div class="back-nav">
     <span class="back-link" onclick="showPage('home')">← Dealer's Choice</span>
@@ -1305,7 +1327,7 @@
   </div>
 
   <div style="padding:80px 40px; max-width:1400px; margin:0 auto;">
-    <div class="product-badge badge-beta" style="margin-bottom:16px;">◐ Beta — Q2 2026</div>
+    <div class="product-badge badge-beta" style="margin-bottom:16px;">◐ Coming Q3 2026</div>
     <h1 style="font-size:clamp(3rem,9vw,8rem); font-weight:800; letter-spacing:-0.04em; line-height:0.9; margin-bottom:24px;">THE<br>STACK</h1>
     <p style="font-size:18px; color:rgba(245,243,255,0.5); max-width:560px; line-height:1.6; margin-bottom:60px;">
       Automated outreach at scale. AI generates personalized messages for every candidate and delivers them — without your team lifting a finger after setup.
@@ -1326,8 +1348,8 @@
 
     <div style="border:1px solid rgba(251,191,36,0.3); background:rgba(251,191,36,0.04); padding:40px; text-align:center; margin-bottom:60px;">
       <div class="mono" style="font-size:9px; color:#fbbf24; letter-spacing:0.2em; margin-bottom:12px;">⚠ PRODUCT IN DEVELOPMENT</div>
-      <p style="font-size:14px; color:rgba(245,243,255,0.5);">The Stack is completing final testing. Expected availability Q2 2026.</p>
-      <a href="mailto:bernardliatme@outlook.com?subject=Join Waitlist - The Stack" style="display:inline-block; margin-top:20px; padding:12px 32px; background:var(--accent); color:var(--ink); font-family:'DM Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.15em; text-decoration:none;">Join Waitlist</a>
+      <p style="font-size:14px; color:rgba(245,243,255,0.5);">The Stack is completing final testing. Expected availability Q3 2026.</p>
+      <a href="mailto:sales@asqsys.com?subject=Join Waitlist - The Stack" style="display:inline-block; margin-top:20px; padding:12px 32px; background:var(--accent); color:var(--ink); font-family:'DM Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.15em; text-decoration:none;">Join Waitlist</a>
     </div>
 
     <div style="display:flex; justify-content:space-between; align-items:center; padding:32px 0; border-top:1px solid var(--white-border);">
@@ -1340,9 +1362,7 @@
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-  HOUSE EDGE PAGE
-════════════════════════════════════════════ -->
+<!-- HOUSE EDGE PAGE -->
 <div id="house-edge" class="page">
   <div class="back-nav">
     <span class="back-link" onclick="showPage('home')">← Dealer's Choice</span>
@@ -1351,7 +1371,7 @@
   </div>
 
   <div style="padding:80px 40px; max-width:1400px; margin:0 auto;">
-    <div class="product-badge badge-beta" style="margin-bottom:16px;">◐ Beta — Q2 2026</div>
+    <div class="product-badge badge-beta" style="margin-bottom:16px;">◐ Coming Q3 2026</div>
     <h1 style="font-size:clamp(3rem,9vw,7rem); font-weight:800; letter-spacing:-0.04em; line-height:0.9; margin-bottom:24px;">THE HOUSE<br>EDGE</h1>
     <p style="font-size:18px; color:rgba(245,243,255,0.5); max-width:560px; line-height:1.6; margin-bottom:60px;">
       Real-time competitive hiring intelligence. Know exactly who your competitors are building their teams with — before the market does.
@@ -1377,8 +1397,8 @@
 
     <div style="border:1px solid rgba(251,191,36,0.3); background:rgba(251,191,36,0.04); padding:40px; text-align:center; margin-bottom:60px;">
       <div class="mono" style="font-size:9px; color:#fbbf24; letter-spacing:0.2em; margin-bottom:12px;">⚠ PRODUCT IN DEVELOPMENT</div>
-      <p style="font-size:14px; color:rgba(245,243,255,0.5);">The House Edge is completing final testing. Expected availability Q2 2026.</p>
-      <a href="mailto:bernardliatme@outlook.com?subject=Join Waitlist - House Edge" style="display:inline-block; margin-top:20px; padding:12px 32px; background:var(--accent); color:var(--ink); font-family:'DM Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.15em; text-decoration:none;">Join Waitlist</a>
+      <p style="font-size:14px; color:rgba(245,243,255,0.5);">The House Edge is completing final testing. Expected availability Q3 2026.</p>
+      <a href="mailto:sales@asqsys.com?subject=Join Waitlist - House Edge" style="display:inline-block; margin-top:20px; padding:12px 32px; background:var(--accent); color:var(--ink); font-family:'DM Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.15em; text-decoration:none;">Join Waitlist</a>
     </div>
 
     <div style="display:flex; justify-content:space-between; align-items:center; padding:32px 0; border-top:1px solid var(--white-border);">
@@ -1403,7 +1423,7 @@
       <h3 style="color:#f5f3ff; font-size:18px; font-weight:700;">What We Never Do</h3>
       <p>We never share your search data with third-party AI providers. We never use your candidate data to train shared models. We never sell your information to data brokers or recruiters.</p>
       <h3 style="color:#f5f3ff; font-size:18px; font-weight:700;">Contact</h3>
-      <p>Questions? <a href="mailto:bernardliatme@outlook.com" style="color:var(--accent);">bernardliatme@outlook.com</a></p>
+      <p>Questions? <a href="mailto:sales@asqsys.com" style="color:var(--accent);">sales@asqsys.com</a></p>
     </div>
   </div>
 </div>
@@ -1416,11 +1436,11 @@
     <div style="display:flex; flex-direction:column; gap:24px; font-size:14px; line-height:1.75; color:rgba(245,243,255,0.6);">
       <p>By using Dealer's Choice services, you agree to these terms.</p>
       <h3 style="color:#f5f3ff; font-size:18px; font-weight:700;">Acceptable Use</h3>
-      <p>You may use our platform only for legitimate recruitment and talent acquisition purposes. You agree not to misuse the LinkedIn data sourced through our platform or use it in violation of LinkedIn's terms of service.</p>
+      <p>You may use our platform only for legitimate recruitment and talent acquisition purposes. Candidate data sourced through the platform may only be used for professional outreach relevant to open roles.</p>
       <h3 style="color:#f5f3ff; font-size:18px; font-weight:700;">Subscriptions</h3>
-      <p>Subscriptions renew automatically. A 3-day free trial is available on all plans. Cancel anytime before the trial ends at no charge. Cancellations take effect at the end of the current billing period.</p>
+      <p>Subscriptions renew automatically. A 7-day free trial is available on all plans. Cancel anytime before the trial ends at no charge. Cancellations take effect at the end of the current billing period.</p>
       <h3 style="color:#f5f3ff; font-size:18px; font-weight:700;">Contact</h3>
-      <p>Questions? <a href="mailto:bernardliatme@outlook.com" style="color:var(--accent);">bernardliatme@outlook.com</a></p>
+      <p>Questions? <a href="mailto:sales@asqsys.com" style="color:var(--accent);">sales@asqsys.com</a></p>
     </div>
   </div>
 </div>
@@ -1428,14 +1448,12 @@
 <script>
   const WORKER_URL = 'https://payment-handler.bernardliatme.workers.dev';
 
-  // ─── PAGE ROUTING ────────────────────────────────
   function showPage(pageId) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
     window.scrollTo(0, 0);
   }
 
-  // ─── DEMO DATA ───────────────────────────────────
   const profiles = [
     { name: 'Sarah Chen', title: 'Senior Software Engineer', company: 'Upstart', location: 'San Francisco Bay Area', years: 8, skills:['Python', 'React', 'AWS', 'Kubernetes', 'Docker', 'TypeScript'] },
     { name: 'Michael Rodriguez', title: 'Lead Backend Engineer', company: 'Stripe', location: 'San Francisco Bay Area', years: 6, skills:['Node.js', 'Python', 'PostgreSQL', 'Redis', 'AWS', 'Go'] },
@@ -1454,7 +1472,7 @@
     const location = document.getElementById('demoLocation').value.toLowerCase();
     const container = document.getElementById('resultsContainer');
 
-    container.innerHTML = '<div style="text-align:center; padding:48px 0;"><div class="mono" style="font-size:10px; color:var(--accent); letter-spacing:0.2em; animation: pulse 1s infinite;">SEARCHING LINKEDIN · AI RANKING...</div></div>';
+    container.innerHTML = '<div style="text-align:center; padding:48px 0;"><div class="mono" style="font-size:10px; color:var(--accent); letter-spacing:0.2em; animation: pulse 1s infinite;">SOURCING CANDIDATES · AI RANKING...</div></div>';
 
     setTimeout(() => {
       const scored = profiles.map(p => {
@@ -1494,11 +1512,10 @@
               ${c.skills.slice(0,4).map(s => `<span class="mono" style="font-size:9px; padding:3px 8px; background:${c.matched.includes(s) ? 'rgba(168,85,247,0.15); color:var(--accent); border:1px solid var(--accent-border)' : 'rgba(255,255,255,0.05); color:rgba(245,243,255,0.35); border:1px solid var(--white-border)'};">${s}</span>`).join('')}
             </div>
           </div>`;
-      }).join('') + `<div class="mono" style="font-size:9px; color:rgba(245,243,255,0.2); text-align:center; margin-top:16px; letter-spacing:0.1em;">SHOWING ${scored.length} OF ${scored.length} MATCHES · DEMO DATABASE</div>`;
+      }).join('') + `<div class="mono" style="font-size:9px; color:rgba(245,243,255,0.2); text-align:center; margin-top:16px; letter-spacing:0.1em;">SHOWING ${scored.length} MATCHES · DEMO DATABASE</div>`;
     }, 1800);
   }
 
-  // ─── PAYMENT ─────────────────────────────────────
   async function openStripeCheckout(product) {
     try {
       showLoading('Creating checkout...');
@@ -1531,12 +1548,11 @@
         localStorage.setItem('dealersToken', token);
         showDashboard(product, token);
       } else {
-        alert('Invalid token. Check your email or contact bernardliatme@outlook.com');
+        alert('Invalid token. Check your email or contact sales@asqsys.com');
       }
     } catch(e) { closeLoading(); alert('Error validating. Please try again.'); }
   }
 
-  // ─── DASHBOARD ───────────────────────────────────
   async function showDashboard(product, token) {
     showLoading('Loading The Croupier...');
     try {
@@ -1606,7 +1622,6 @@
     } catch(e) { closeLoading(); alert('Error loading dashboard.'); }
   }
 
-  // ─── CANCEL SUBSCRIPTION ─────────────────────────
   async function cancelSubscription(token, btn) {
     const confirmed = confirm(
       'Are you sure you want to cancel?\n\nYou keep full access until the end of your current billing period. No refunds are issued for partial months.'
@@ -1635,16 +1650,15 @@
       } else {
         btn.disabled = false;
         btn.textContent = 'Cancel Subscription';
-        alert(d.error || 'Cancellation failed. Please contact bernardliatme@outlook.com');
+        alert(d.error || 'Cancellation failed. Please contact sales@asqsys.com');
       }
     } catch(e) {
       btn.disabled = false;
       btn.textContent = 'Cancel Subscription';
-      alert('Error. Please try again or contact bernardliatme@outlook.com');
+      alert('Error. Please try again or contact sales@asqsys.com');
     }
   }
 
-  // ─── LOADING ──────────────────────────────────────
   function showLoading(msg) {
     const m = document.createElement('div');
     m.id = 'loading-modal';
