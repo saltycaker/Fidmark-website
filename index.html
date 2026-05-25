@@ -3,287 +3,455 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dealer's Choice</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <title>Dealer's Choice — AI Recruitment Infrastructure</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --ink: #0b0416;
-      --paper: #faf5ff;
-      --accent: #a855f7;
-      --accent-dim: rgba(168,85,247,0.15);
-      --accent-border: rgba(168,85,247,0.35);
-      --white-dim: rgba(255,255,255,0.06);
-      --white-border: rgba(255,255,255,0.1);
+      --bg:      #09070f;
+      --bg2:     #0f0b1a;
+      --bg3:     #171025;
+      --border:  #1e1630;
+      --border2: #2a1f42;
+      --accent:  #a855f7;
+      --accent-dim: rgba(168,85,247,0.08);
+      --accent-border: rgba(168,85,247,0.25);
+      --green:   #5af78e;
+      --yellow:  #f7d35a;
+      --red:     #f76060;
+      --text:    #ede8f5;
+      --text2:   #7c6fa0;
+      --text3:   #3d3260;
+      --mono:    'Space Mono', monospace;
+      --display: 'Syne', sans-serif;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
-      background-color: var(--ink);
-      color: #f5f3ff;
-      font-family: 'Syne', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--display);
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
-    .mono { font-family: 'DM Mono', monospace; }
-    .serif { font-family: 'Instrument Serif', serif; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: var(--display); border: none; outline: none; }
 
-    body::before {
+    /* GRID PATTERN */
+    body::after {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 999;
-      opacity: 0.4;
-    }
-
-    .grid-pattern {
       background-image:
-        linear-gradient(rgba(168,85,247,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(168,85,247,0.04) 1px, transparent 1px);
-      background-size: 60px 60px;
+        linear-gradient(rgba(168,85,247,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(168,85,247,0.025) 1px, transparent 1px);
+      background-size: 52px 52px;
+      pointer-events: none;
+      z-index: 0;
     }
 
-    section { position: relative; width: 100%; }
-    html { scroll-behavior: smooth; }
-    .page { display: none; }
+    /* PAGES */
+    .page { display: none; position: relative; z-index: 1; }
     .page.active { display: block; }
 
-    /* NAV */
+    /* ─── NAV ─── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 20px 40px;
+      z-index: 200;
+      height: 60px;
+      background: rgba(9,7,15,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--white-border);
-      background: rgba(11,4,22,0.85);
-      backdrop-filter: blur(20px);
+      padding: 0 32px;
+      gap: 40px;
     }
 
     .nav-logo {
-      font-size: 15px;
-      font-weight: 800;
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 700;
       letter-spacing: -0.02em;
       cursor: pointer;
-      color: #f5f3ff;
+      white-space: nowrap;
     }
-    .nav-logo span { color: var(--accent); font-style: italic; }
+    .nav-logo .bracket { color: var(--text3); }
+    .nav-logo .accent  { color: var(--accent); }
 
-    .nav-links { display: flex; gap: 36px; }
-    .nav-links a {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: rgba(245,243,255,0.5);
-      text-decoration: none;
-      transition: color 0.2s;
+    .nav-links {
+      display: flex;
+      gap: 2px;
+      flex: 1;
     }
-    .nav-links a:hover { color: var(--accent); }
+
+    .nav-link {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 6px 14px;
+      color: var(--text2);
+      transition: color 0.15s, background 0.15s;
+      border-radius: 2px;
+    }
+    .nav-link:hover { color: var(--text); background: var(--bg3); }
 
     .nav-cta {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.1em;
       background: var(--accent);
-      color: var(--ink);
-      padding: 10px 22px;
-      font-weight: 500;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s;
+      color: var(--bg);
+      padding: 8px 20px;
+      font-weight: 700;
+      transition: background 0.15s;
+      border-radius: 2px;
+      flex-shrink: 0;
     }
     .nav-cta:hover { background: #c084fc; }
 
-    /* HERO */
+    /* ─── HERO ─── */
     .hero {
       min-height: 100vh;
+      padding: 100px 32px 80px;
       display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 40px 80px;
-      padding-top: 120px;
-      position: relative;
-      overflow: hidden;
+      align-items: center;
     }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .hero-content { flex: 1; }
 
     .hero-eyebrow {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 12px;
       margin-bottom: 28px;
+      flex-wrap: wrap;
     }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 3px 9px;
+      border-radius: 2px;
+    }
+    .tag-live   { background: rgba(90,247,142,0.12); color: var(--green);  border: 1px solid rgba(90,247,142,0.25); }
+    .tag-beta   { background: rgba(247,211,90,0.12); color: var(--yellow); border: 1px solid rgba(247,211,90,0.25); }
+    .tag-accent { background: var(--accent-dim);     color: var(--accent); border: 1px solid var(--accent-border); }
+
+    .eyebrow-sep { color: var(--text3); font-family: var(--mono); font-size: 12px; }
+    .eyebrow-sub { font-family: var(--mono); font-size: 11px; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; }
 
     .hero-title {
-      font-size: clamp(4rem, 12vw, 11rem);
+      font-size: clamp(42px, 7vw, 80px);
       font-weight: 800;
-      line-height: 0.88;
+      line-height: 1.0;
       letter-spacing: -0.04em;
-      color: #f5f3ff;
+      margin-bottom: 20px;
     }
 
-    .hero-title .ghost {
-      -webkit-text-stroke: 1px rgba(168,85,247,0.4);
-      color: transparent;
-      font-style: italic;
-      font-family: 'Instrument Serif', serif;
-      font-weight: 400;
-    }
+    .hero-title .accent-word { color: var(--accent); }
 
-    .hero-sub {
-      max-width: 480px;
-      color: rgba(245,243,255,0.5);
+    .hero-desc {
       font-size: 15px;
+      color: var(--text2);
       line-height: 1.7;
-      margin-top: 40px;
+      max-width: 420px;
+      margin-bottom: 32px;
     }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 44px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 12px 24px;
+      font-weight: 700;
+      transition: background 0.15s, transform 0.1s;
+      border-radius: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary:hover { background: #c084fc; transform: translateY(-1px); }
+
+    .btn-outline {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: transparent;
+      color: var(--text2);
+      padding: 12px 24px;
+      border: 1px solid var(--border2);
+      transition: border-color 0.15s, color 0.15s;
+      border-radius: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
     .hero-stats {
       display: flex;
-      gap: 60px;
-      margin-top: 60px;
-      padding-top: 40px;
-      border-top: 1px solid var(--white-border);
+      align-items: center;
+      gap: 28px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
     }
 
-    .hero-stat-val {
-      font-size: 36px;
-      font-weight: 800;
+    .stat-num {
+      display: block;
+      font-family: var(--mono);
+      font-size: 26px;
+      font-weight: 700;
       color: var(--accent);
       letter-spacing: -0.03em;
     }
 
-    .hero-stat-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text3);
       text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: rgba(245,243,255,0.35);
-      margin-top: 4px;
+      letter-spacing: 0.08em;
     }
 
-    /* MARQUEE */
+    .stat-divider { width: 1px; height: 32px; background: var(--border); }
+
+    /* TERMINAL MOCKUP */
+    .hero-visual {
+      flex: 0 0 380px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .terminal {
+      width: 360px;
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      border-radius: 4px;
+      box-shadow: 0 0 80px rgba(168,85,247,0.06);
+      overflow: hidden;
+    }
+
+    .terminal-bar {
+      height: 36px;
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 8px;
+    }
+
+    .t-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .t-dot.r { background: var(--red); }
+    .t-dot.y { background: var(--yellow); }
+    .t-dot.g { background: var(--green); }
+
+    .terminal-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text3);
+      margin-left: 8px;
+      letter-spacing: 0.05em;
+    }
+
+    .terminal-body {
+      padding: 20px;
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1.9;
+      color: #9b7ec8;
+      min-height: 240px;
+    }
+
+    .t-line { display: flex; gap: 8px; }
+    .t-prompt { color: var(--text3); flex-shrink: 0; }
+    .t-cmd { color: var(--text); }
+    .t-out { color: #9b7ec8; padding-left: 16px; display: block; }
+    .t-ok   { color: var(--green); }
+    .t-acc  { color: var(--accent); }
+    .t-dim  { color: var(--text3); }
+
+    .t-cursor {
+      display: inline-block;
+      width: 7px; height: 13px;
+      background: var(--accent);
+      animation: blink 1s step-end infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .terminal-footer {
+      border-top: 1px solid var(--border);
+      padding: 12px 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .tf-cell {
+      background: var(--bg3);
+      padding: 10px 14px;
+    }
+
+    .tf-val {
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+
+    .tf-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ─── MARQUEE ─── */
     .marquee-wrap {
       overflow: hidden;
-      border-top: 1px solid var(--white-border);
-      border-bottom: 1px solid var(--white-border);
-      padding: 14px 0;
-      background: rgba(168,85,247,0.04);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 11px 0;
+      background: var(--bg2);
+      position: relative;
+      z-index: 1;
     }
 
     .marquee-track {
       display: flex;
-      gap: 60px;
+      gap: 48px;
       white-space: nowrap;
-      animation: marquee 25s linear infinite;
+      animation: marquee 30s linear infinite;
     }
 
     .marquee-item {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.2em;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: rgba(245,243,255,0.3);
+      color: var(--text3);
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 18px;
       flex-shrink: 0;
     }
 
-    .marquee-dot {
-      width: 4px;
-      height: 4px;
-      background: var(--accent);
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
+    .m-dot { width: 3px; height: 3px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+    .m-dot.green  { background: var(--green); }
 
     @keyframes marquee {
-      0% { transform: translateX(0); }
+      0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
 
-    /* FEATURES GRID */
-    .features-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--white-border);
+    /* ─── SECTIONS ─── */
+    .section-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
     }
 
-    .feature-cell {
-      background: var(--ink);
-      padding: 56px 48px;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.3s;
-    }
-
-    .feature-cell:hover { background: rgba(168,85,247,0.03); }
-
-    .feature-num {
-      font-family: 'DM Mono', monospace;
+    .section-label {
+      font-family: var(--mono);
       font-size: 10px;
-      color: var(--accent);
-      letter-spacing: 0.2em;
-      margin-bottom: 24px;
-    }
-
-    .feature-title {
-      font-size: 22px;
-      font-weight: 800;
-      color: #f5f3ff;
-      margin-bottom: 14px;
-      letter-spacing: -0.02em;
-    }
-
-    .feature-desc {
-      font-size: 14px;
-      line-height: 1.7;
-      color: rgba(245,243,255,0.45);
-    }
-
-    .feature-tag {
-      display: inline-block;
-      margin-top: 20px;
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.2em;
       color: var(--accent);
-      border: 1px solid var(--accent-border);
-      padding: 5px 12px;
+      margin-bottom: 12px;
     }
 
-    /* PRODUCTS */
-    .product-row {
+    .section-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.0;
+    }
+
+    /* ─── PRODUCTS ─── */
+    .products-section {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+
+    .products-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 36px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .products-count {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text3);
+      letter-spacing: 0.1em;
+    }
+
+    .products-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 1px;
-      background: var(--white-border);
+      background: var(--border);
     }
 
     .product-card {
-      background: var(--ink);
-      padding: 48px 40px;
+      background: var(--bg2);
+      padding: 36px 32px;
       cursor: pointer;
       position: relative;
-      overflow: hidden;
-      transition: background 0.3s;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      gap: 20px;
+      transition: background 0.2s;
+      overflow: hidden;
     }
+
+    .product-card:hover { background: var(--bg3); }
 
     .product-card::after {
       content: '';
@@ -293,356 +461,499 @@
       background: var(--accent);
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.4s ease;
+      transition: transform 0.35s ease;
     }
 
     .product-card:hover::after { transform: scaleX(1); }
-    .product-card:hover { background: rgba(168,85,247,0.03); }
 
     .product-card.featured {
-      background: rgba(168,85,247,0.05);
-      border: 1px solid var(--accent-border);
+      background: var(--accent-dim);
+      border-left: 2px solid var(--accent);
     }
 
-    .product-badge {
-      display: inline-block;
-      font-family: 'DM Mono', monospace;
-      font-size: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      padding: 4px 10px;
-      margin-bottom: 20px;
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
     }
 
-    .badge-live { color: #6ee77a; border: 1px solid rgba(110,231,122,0.3); }
-    .badge-beta { color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
+    .card-arrow {
+      font-size: 16px;
+      color: var(--text3);
+      transition: all 0.25s;
+    }
+
+    .product-card:hover .card-arrow { color: var(--accent); transform: translate(3px, -3px); }
 
     .product-name {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 800;
-      color: #f5f3ff;
       letter-spacing: -0.03em;
-      margin-bottom: 12px;
+      line-height: 1.1;
     }
 
     .product-desc {
       font-size: 13px;
+      color: var(--text2);
       line-height: 1.65;
-      color: rgba(245,243,255,0.4);
-      margin-bottom: 28px;
       flex: 1;
     }
 
+    .product-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .ptag {
+      font-family: var(--mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      color: var(--text3);
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
     .product-price {
-      font-family: 'DM Mono', monospace;
-      font-size: 28px;
-      font-weight: 500;
+      font-family: var(--mono);
+      font-size: 22px;
+      font-weight: 700;
       color: var(--accent);
       letter-spacing: -0.02em;
     }
+    .product-price span { font-size: 12px; color: var(--text3); font-weight: 400; }
 
-    .product-price span {
-      font-size: 12px;
-      color: rgba(245,243,255,0.3);
-      letter-spacing: 0;
+    /* ─── TECHNOLOGY SECTION ─── */
+    .tech-section {
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
     }
 
-    .product-arrow {
-      position: absolute;
-      top: 48px; right: 40px;
-      font-size: 20px;
-      color: rgba(168,85,247,0.3);
-      transition: all 0.3s;
-    }
-
-    .product-card:hover .product-arrow {
-      color: var(--accent);
-      transform: translate(4px, -4px);
-    }
-
-    /* AI MODEL SECTION */
-    .ai-section {
+    .tech-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
     }
 
-    .ai-left {
-      padding: 100px 60px 100px 40px;
-      border-right: 1px solid var(--white-border);
+    .tech-left {
+      padding: 80px 60px 80px 32px;
+      border-right: 1px solid var(--border);
     }
 
-    .ai-right {
-      padding: 100px 40px 100px 60px;
-      background: rgba(168,85,247,0.02);
+    .tech-right {
+      padding: 80px 32px 80px 60px;
     }
 
-    .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      text-transform: uppercase;
-      letter-spacing: 0.3em;
+    .model-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      padding: 7px 14px;
+      margin: 28px 0;
+    }
+
+    .badge-dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+    .badge-text {
+      font-family: var(--mono);
+      font-size: 10px;
       color: var(--accent);
-      margin-bottom: 20px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
-    .section-title {
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1;
-      color: #f5f3ff;
-      margin-bottom: 24px;
-    }
-
-    .section-body {
-      font-size: 15px;
-      line-height: 1.75;
-      color: rgba(245,243,255,0.5);
-      max-width: 460px;
-    }
-
-    .spec-list {
-      margin-top: 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+    .spec-table {
+      width: 100%;
+      margin-top: 32px;
     }
 
     .spec-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--white-border);
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border);
     }
 
     .spec-key {
-      font-family: 'DM Mono', monospace;
+      font-family: var(--mono);
       font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: rgba(245,243,255,0.35);
+      letter-spacing: 0.08em;
+      color: var(--text3);
     }
 
     .spec-val {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
+      font-family: var(--mono);
+      font-size: 10px;
       color: var(--accent);
+      letter-spacing: 0.05em;
     }
 
-    /* PROCESS */
-    .process-section {
-      background: var(--paper);
-      color: var(--ink);
-      padding: 120px 40px;
+    .body-text {
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.75;
+      margin-top: 20px;
     }
 
-    .step-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      margin-top: 80px;
-      border: 1px solid rgba(0,0,0,0.1);
+    .output-example {
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      padding: 18px 20px;
+      margin-top: 28px;
     }
 
-    .step {
-      padding: 48px 36px;
-      border-right: 1px solid rgba(0,0,0,0.1);
-      position: relative;
-    }
-
-    .step:last-child { border-right: none; }
-
-    .step-num {
-      font-family: 'DM Mono', monospace;
+    .out-label {
+      font-family: var(--mono);
       font-size: 9px;
-      letter-spacing: 0.2em;
-      color: rgba(11,4,22,0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .out-score {
+      font-family: var(--mono);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+
+    .out-verdict {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 10px;
+      background: rgba(90,247,142,0.12);
+      border: 1px solid rgba(90,247,142,0.25);
+      color: var(--green);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .out-body {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text2);
+      line-height: 1.7;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      margin-top: 20px;
+    }
+
+    .metric-cell {
+      background: var(--bg3);
+      padding: 18px 20px;
+    }
+
+    .metric-val {
+      font-family: var(--mono);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+    }
+
+    .metric-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 3px;
+    }
+
+    /* ─── FEATURES ─── */
+    .features-section {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin-top: 48px;
+    }
+
+    .feature-cell {
+      background: var(--bg2);
+      padding: 36px 32px;
+      transition: background 0.2s;
+    }
+
+    .feature-cell:hover { background: var(--bg3); }
+
+    .feat-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 0.15em;
       margin-bottom: 20px;
     }
 
-    .step-title {
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--ink);
-      margin-bottom: 12px;
+    .feat-title {
+      font-size: 18px;
+      font-weight: 700;
       letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .feat-desc {
+      font-size: 13px;
+      color: var(--text2);
+      line-height: 1.65;
+    }
+
+    .feat-tag {
+      display: inline-block;
+      margin-top: 18px;
+      font-family: var(--mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+    }
+
+    /* ─── PROCESS ─── */
+    .process-section {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .process-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .step {
+      background: var(--bg);
+      padding: 32px 28px;
+    }
+
+    .step-num {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      color: var(--text3);
+      margin-bottom: 16px;
+    }
+
+    .step-title {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
     }
 
     .step-body {
       font-size: 13px;
+      color: var(--text2);
       line-height: 1.65;
-      color: rgba(11,4,22,0.55);
     }
 
-    /* CTA */
+    /* ─── CTA ─── */
     .cta-section {
-      padding: 140px 40px;
+      padding: 120px 0;
       text-align: center;
       position: relative;
+      z-index: 1;
       overflow: hidden;
     }
 
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(168,85,247,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
     .cta-title {
-      font-size: clamp(3rem, 10vw, 9rem);
+      font-size: clamp(40px, 9vw, 96px);
       font-weight: 800;
       letter-spacing: -0.04em;
-      line-height: 0.9;
-      color: #f5f3ff;
-      margin-bottom: 60px;
+      line-height: 0.95;
+      margin-bottom: 52px;
+      position: relative;
+      z-index: 1;
     }
 
-    .cta-title .italic {
-      font-family: 'Instrument Serif', serif;
-      font-weight: 400;
-      font-style: italic;
-      color: var(--accent);
-    }
+    .cta-title .accent-line { color: var(--accent); }
 
-    .cta-buttons {
+    .cta-actions {
       display: flex;
-      gap: 16px;
+      gap: 12px;
       justify-content: center;
       flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
     }
 
-    .btn-primary {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      background: var(--accent);
-      color: var(--ink);
-      padding: 18px 44px;
-      border: none;
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.2s;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .btn-primary:hover { background: #c084fc; }
-
-    .btn-outline {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      background: transparent;
-      color: #f5f3ff;
-      padding: 18px 44px;
-      border: 1px solid var(--white-border);
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.2s;
-    }
-    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* FOOTER */
+    /* ─── FOOTER ─── */
     footer {
-      padding: 40px;
-      border-top: 1px solid var(--white-border);
+      border-top: 1px solid var(--border);
+      padding: 28px 32px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
+      z-index: 1;
     }
 
-    footer .mono { font-size: 10px; color: rgba(245,243,255,0.25); letter-spacing: 0.1em; }
-
-    footer a {
-      color: rgba(245,243,255,0.25);
-      text-decoration: none;
-      transition: color 0.2s;
+    .footer-left {
+      font-family: var(--mono);
       font-size: 10px;
+      color: var(--text3);
+      letter-spacing: 0.06em;
     }
-    footer a:hover { color: var(--accent); }
 
-    /* PRODUCT PAGES */
+    .footer-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text3);
+      letter-spacing: 0.06em;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ─── PRODUCT PAGES ─── */
     .back-nav {
-      padding: 20px 40px;
-      border-bottom: 1px solid var(--white-border);
+      position: sticky;
+      top: 60px;
+      z-index: 100;
+      background: rgba(9,7,15,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 32px;
       display: flex;
       align-items: center;
-      gap: 16px;
-      background: rgba(11,4,22,0.95);
-      position: sticky;
-      top: 0;
-      z-index: 50;
+      gap: 12px;
     }
 
     .back-link {
-      font-family: 'DM Mono', monospace;
+      font-family: var(--mono);
       font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: rgba(245,243,255,0.4);
+      letter-spacing: 0.12em;
+      color: var(--text2);
       cursor: pointer;
-      transition: color 0.2s;
+      transition: color 0.15s;
     }
     .back-link:hover { color: var(--accent); }
 
+    .breadcrumb-sep { color: var(--text3); font-family: var(--mono); font-size: 11px; }
+    .breadcrumb-cur { font-family: var(--mono); font-size: 10px; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; }
+
+    /* Pricing */
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1px;
-      background: var(--white-border);
-      margin: 60px 0;
+      background: var(--border);
+      margin: 48px 0;
     }
 
     .pricing-card {
-      background: var(--ink);
-      padding: 48px 40px;
+      background: var(--bg2);
+      padding: 40px 32px;
       position: relative;
       display: flex;
       flex-direction: column;
     }
 
-    .pricing-card.featured {
-      background: rgba(168,85,247,0.05);
-    }
+    .pricing-card.featured { background: var(--accent-dim); }
 
     .pricing-card.featured::before {
       content: 'MOST POPULAR';
       position: absolute;
       top: 0; left: 50%;
       transform: translateX(-50%);
-      font-family: 'DM Mono', monospace;
+      font-family: var(--mono);
       font-size: 8px;
       letter-spacing: 0.2em;
-      color: var(--ink);
+      color: var(--bg);
       background: var(--accent);
-      padding: 4px 16px;
+      padding: 4px 14px;
     }
 
     .pricing-tier {
-      font-family: 'DM Mono', monospace;
+      font-family: var(--mono);
       font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: rgba(245,243,255,0.4);
-      margin-bottom: 16px;
+      letter-spacing: 0.15em;
+      color: var(--text3);
+      margin-bottom: 14px;
     }
 
     .pricing-amount {
-      font-size: 52px;
-      font-weight: 800;
-      color: #f5f3ff;
+      font-family: var(--mono);
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--text);
       letter-spacing: -0.04em;
       line-height: 1;
       margin-bottom: 4px;
     }
 
-    .pricing-amount span {
-      font-size: 18px;
-      color: rgba(245,243,255,0.3);
-      font-weight: 400;
-    }
+    .pricing-amount span { font-size: 16px; color: var(--text3); font-weight: 400; }
 
     .pricing-sub {
-      font-family: 'DM Mono', monospace;
+      font-family: var(--mono);
       font-size: 10px;
-      color: rgba(245,243,255,0.3);
-      margin-bottom: 32px;
+      color: var(--text3);
+      margin-bottom: 28px;
     }
 
     .pricing-features {
@@ -650,335 +961,549 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-bottom: 36px;
+      gap: 10px;
+      margin-bottom: 32px;
     }
 
     .pricing-features li {
       font-size: 13px;
-      color: rgba(245,243,255,0.6);
+      color: var(--text2);
       display: flex;
       gap: 10px;
       align-items: flex-start;
     }
 
     .pricing-features li::before {
-      content: '✦';
+      content: '//';
+      font-family: var(--mono);
       color: var(--accent);
-      font-size: 8px;
+      font-size: 9px;
       margin-top: 3px;
       flex-shrink: 0;
     }
 
     .pricing-btn {
-      font-family: 'DM Mono', monospace;
+      font-family: var(--mono);
       font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      padding: 14px 24px;
-      border: 1px solid var(--white-border);
+      letter-spacing: 0.12em;
+      padding: 13px 20px;
+      border: 1px solid var(--border2);
       background: transparent;
-      color: #f5f3ff;
+      color: var(--text2);
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.15s;
       text-align: center;
+      border-radius: 2px;
     }
     .pricing-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .pricing-btn.accent { background: var(--accent); color: var(--ink); border-color: var(--accent); }
-    .pricing-btn.accent:hover { background: #c084fc; }
+    .pricing-btn.accent { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+    .pricing-btn.accent:hover { background: #c084fc; border-color: #c084fc; }
 
-    /* token input */
-    .token-section {
-      max-width: 600px;
+    /* Token / Access */
+    .access-box {
+      border: 1px solid var(--accent-border);
+      background: var(--accent-dim);
+      padding: 52px;
+      text-align: center;
+      margin: 0 32px 80px;
+    }
+
+    .token-row {
+      display: flex;
+      max-width: 460px;
       margin: 0 auto;
-      padding: 60px 0;
     }
 
     .token-input {
-      width: 100%;
-      background: rgba(168,85,247,0.04);
-      border: 1px solid var(--accent-border);
-      color: #f5f3ff;
-      font-family: 'DM Mono', monospace;
-      font-size: 14px;
-      padding: 16px 20px;
-      letter-spacing: 0.1em;
+      flex: 1;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-right: none;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 13px;
+      padding: 13px 18px;
       outline: none;
       transition: border-color 0.2s;
+      border-radius: 2px 0 0 2px;
     }
     .token-input:focus { border-color: var(--accent); }
-    .token-input::placeholder { color: rgba(245,243,255,0.2); }
+    .token-input::placeholder { color: var(--text3); }
 
     .token-btn {
-      padding: 16px 32px;
+      padding: 13px 24px;
       background: var(--accent);
-      color: var(--ink);
-      font-family: 'DM Mono', monospace;
+      color: var(--bg);
+      font-family: var(--mono);
       font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.12em;
+      font-weight: 700;
       border: none;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.15s;
       white-space: nowrap;
+      border-radius: 0 2px 2px 0;
     }
     .token-btn:hover { background: #c084fc; }
 
     /* Demo */
-    .demo-input {
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .demo-left {
+      background: var(--bg2);
+      padding: 36px;
+    }
+
+    .demo-right {
+      background: var(--bg3);
+      padding: 36px;
+    }
+
+    .form-field {
+      margin-bottom: 16px;
+    }
+
+    .field-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text3);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .field-input {
       width: 100%;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--white-border);
-      color: #f5f3ff;
-      font-family: 'DM Mono', monospace;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      color: var(--text);
+      font-family: var(--mono);
       font-size: 12px;
-      padding: 12px 16px;
+      padding: 10px 14px;
       outline: none;
       transition: border-color 0.2s;
+      border-radius: 2px;
     }
-    .demo-input:focus { border-color: var(--accent); }
-    .demo-input::placeholder { color: rgba(245,243,255,0.2); }
+    .field-input:focus { border-color: var(--accent); }
+    .field-input::placeholder { color: var(--text3); }
 
-    .demo-select {
+    .field-select {
       width: 100%;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--white-border);
-      color: #f5f3ff;
-      font-family: 'DM Mono', monospace;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      color: var(--text);
+      font-family: var(--mono);
       font-size: 12px;
-      padding: 12px 16px;
+      padding: 10px 14px;
       outline: none;
+      border-radius: 2px;
     }
 
     .run-btn {
       width: 100%;
-      padding: 14px;
+      padding: 13px;
       background: var(--accent);
-      color: var(--ink);
-      font-family: 'DM Mono', monospace;
+      color: var(--bg);
+      font-family: var(--mono);
       font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.12em;
+      font-weight: 700;
       border: none;
       cursor: pointer;
-      font-weight: 500;
-      transition: background 0.2s;
-      margin-top: 16px;
+      transition: background 0.15s;
+      margin-top: 14px;
+      border-radius: 2px;
     }
     .run-btn:hover { background: #c084fc; }
 
     .result-card {
-      background: rgba(168,85,247,0.04);
-      border: 1px solid var(--accent-border);
-      padding: 16px 20px;
-      margin-bottom: 10px;
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      padding: 14px 16px;
+      margin-bottom: 8px;
+      border-radius: 2px;
     }
 
     .score-pill {
-      display: inline-block;
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      font-weight: 500;
-      padding: 3px 10px;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 2px;
     }
 
-    .score-high { background: rgba(110,231,122,0.15); color: #6ee77a; }
-    .score-mid  { background: rgba(251,191,36,0.15);  color: #fbbf24; }
-    .score-low  { background: rgba(248,113,113,0.15); color: #f87171; }
+    .score-high { background: rgba(90,247,142,0.12); color: var(--green); border: 1px solid rgba(90,247,142,0.25); }
+    .score-mid  { background: rgba(247,211,90,0.12); color: var(--yellow); border: 1px solid rgba(247,211,90,0.25); }
+    .score-low  { background: rgba(247,96,96,0.12); color: var(--red); border: 1px solid rgba(247,96,96,0.25); }
+
+    .skill-chip {
+      font-family: var(--mono);
+      font-size: 9px;
+      padding: 2px 7px;
+      border-radius: 2px;
+    }
+
+    .skill-match { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent-border); }
+    .skill-normal { background: var(--bg3); color: var(--text3); border: 1px solid var(--border); }
 
     @keyframes fadeUp {
-      from { opacity:0; transform:translateY(16px); }
-      to   { opacity:1; transform:translateY(0); }
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-    .fade-up { animation: fadeUp 0.5s ease-out forwards; }
+    .fade-up { animation: fadeUp 0.4s ease-out forwards; }
 
-    /* Llama badge */
-    .llama-badge {
-      display: inline-flex;
+    /* Loading modal */
+    #loading-modal {
+      position: fixed; inset: 0;
+      background: rgba(9,7,15,0.92);
+      z-index: 9999;
+      display: flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(168,85,247,0.08);
-      border: 1px solid var(--accent-border);
-      padding: 8px 16px;
-      margin-top: 28px;
-    }
-    .llama-badge-dot {
-      width: 6px; height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
+      justify-content: center;
     }
 
-    @media (max-width: 768px) {
-      .features-grid, .ai-section, .product-row { grid-template-columns: 1fr; }
+    /* Dashboard modal */
+    #dashboard-modal {
+      position: fixed; inset: 0;
+      background: rgba(9,7,15,0.95);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    /* WAITLIST NOTICE */
+    .waitlist-notice {
+      border: 1px solid rgba(247,211,90,0.25);
+      background: rgba(247,211,90,0.05);
+      padding: 32px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin: 40px 32px;
+      flex-wrap: wrap;
+    }
+
+    .notice-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--yellow);
+      margin-bottom: 6px;
+    }
+
+    .notice-text { font-size: 14px; color: var(--text2); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero-visual { display: none; }
+      .hero-inner { flex-direction: column; }
+      .tech-grid,
+      .process-intro { grid-template-columns: 1fr; }
+      .tech-left { border-right: none; border-bottom: 1px solid var(--border); padding: 60px 32px; }
+      .tech-right { padding: 60px 32px; }
+      .products-grid,
+      .features-grid,
+      .steps-grid { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
-      .step-grid { grid-template-columns: 1fr 1fr; }
-      .hero-stats { gap: 30px; flex-wrap: wrap; }
-      nav { padding: 16px 20px; }
+      .demo-grid { grid-template-columns: 1fr; }
+      nav { padding: 0 20px; gap: 20px; }
       .nav-links { display: none; }
-      .hero { padding: 0 20px 60px; }
     }
   </style>
 </head>
 <body>
 
-<!-- HOME PAGE -->
+<!-- ============================
+     HOME PAGE
+============================ -->
 <main id="home" class="page active">
 
   <!-- NAV -->
   <nav>
-    <div class="nav-logo" onclick="showPage('home')">Dealer's <span>choice</span></div>
+    <div class="nav-logo" onclick="showPage('home')">
+      <span class="bracket">[</span>DEALER'S<span class="accent">CHOICE</span><span class="bracket">]</span>
+    </div>
     <div class="nav-links">
-      <a href="#products">Products</a>
-      <a href="#technology">Technology</a>
-      <a href="#process">Process</a>
+      <a href="#products"   class="nav-link">Products</a>
+      <a href="#technology" class="nav-link">Technology</a>
+      <a href="#process"    class="nav-link">Process</a>
     </div>
     <button class="nav-cta" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Start Recruiting</button>
   </nav>
 
   <!-- HERO -->
-  <section class="hero grid-pattern" id="hero">
-    <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 60% 70% at 70% 40%, rgba(168,85,247,0.06) 0%, transparent 70%);pointer-events:none;"></div>
+  <section class="hero">
+    <div class="hero-inner">
 
-    <div style="position:relative;z-index:10;">
-      <p class="hero-eyebrow">AI-Powered Recruitment Automation</p>
-      <h1 class="hero-title">
-        HIRE<br>
-        <span class="ghost">smarter.</span><br>
-        FASTER.
-      </h1>
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span class="tag tag-accent">AI Recruitment Infrastructure</span>
+          <span class="eyebrow-sep">—</span>
+          <span class="eyebrow-sub">Private AI Model</span>
+        </div>
 
-      <div style="display:flex; gap:60px; align-items:flex-start; flex-wrap:wrap;">
-        <p class="hero-sub">
+        <h1 class="hero-title">
+          HIRE<br>
+          <span class="accent-word">SMARTER.</span><br>
+          FASTER.
+        </h1>
+
+        <p class="hero-desc">
           Dealers Choice builds private AI infrastructure for talent teams. Source candidates, automate outreach, and track competitors — without sharing your data with anyone.
         </p>
 
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="showPage('croupier')">Browse Products</button>
+          <a href="mailto:sales@asqsys.com?subject=Demo Request" class="btn-outline">Book a Demo</a>
+        </div>
+
         <div class="hero-stats">
           <div>
-            <div class="hero-stat-val">45s</div>
-            <div class="hero-stat-label">Avg. Search Time</div>
+            <span class="stat-num">45s</span>
+            <span class="stat-label">Avg. Search Time</span>
           </div>
+          <div class="stat-divider"></div>
           <div>
-            <div class="hero-stat-val">100k+</div>
-            <div class="hero-stat-label">Profiles Indexed</div>
+            <span class="stat-num">100k+</span>
+            <span class="stat-label">Profiles Indexed</span>
           </div>
+          <div class="stat-divider"></div>
           <div>
-            <div class="hero-stat-val">3-Day</div>
-            <div class="hero-stat-label">Free Trial</div>
+            <span class="stat-num">3-Day</span>
+            <span class="stat-label">Free Trial</span>
           </div>
         </div>
       </div>
+
+      <!-- TERMINAL MOCKUP -->
+      <div class="hero-visual">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="t-dot r"></div>
+            <div class="t-dot y"></div>
+            <div class="t-dot g"></div>
+            <span class="terminal-title">croupier — search</span>
+          </div>
+          <div class="terminal-body">
+            <div class="t-line">
+              <span class="t-prompt">$</span>
+              <span class="t-cmd">search --role "Sr. Engineer" --skills "Python,AWS"</span>
+            </div>
+            <span class="t-out t-dim">Querying 100k+ profiles...</span>
+            <span class="t-out t-ok">Found 47 candidates in 38s</span>
+            <span class="t-out t-dim">Running private AI model...</span>
+            <span class="t-out" style="color:#a855f7">Ranking with Llama 4 Instruct...</span>
+            <span class="t-out t-dim">────────────────────────────</span>
+            <span class="t-out"><span style="color:var(--green)">HIRE</span>  Sarah Chen       [92/100]</span>
+            <span class="t-out"><span style="color:var(--green)">HIRE</span>  James Kim         [88/100]</span>
+            <span class="t-out"><span style="color:var(--yellow)">MAYBE</span> Emily Thompson   [71/100]</span>
+            <span class="t-out"><span style="color:var(--yellow)">MAYBE</span> David Patel      [64/100]</span>
+            <span class="t-out t-dim">────────────────────────────</span>
+            <div class="t-line">
+              <span class="t-prompt">$</span>
+              <span class="t-cursor"></span>
+            </div>
+          </div>
+          <div class="terminal-footer">
+            <div class="tf-cell">
+              <div class="tf-val">92%</div>
+              <div class="tf-label">Match Accuracy</div>
+            </div>
+            <div class="tf-cell">
+              <div class="tf-val">0</div>
+              <div class="tf-label">Data Leaks</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <!-- MARQUEE -->
   <div class="marquee-wrap">
     <div class="marquee-track">
-      <span class="marquee-item"><span class="marquee-dot"></span>Private AI Model</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>LinkedIn Sourcing</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Automated Outreach</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Competitor Intelligence</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>AI Candidate Ranking</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Zero Data Sharing</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>3-Day Free Trial</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Llama 4 Instruct</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Private AI Model</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>LinkedIn Sourcing</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Automated Outreach</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Competitor Intelligence</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>AI Candidate Ranking</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Zero Data Sharing</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>3-Day Free Trial</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Llama 4 Instruct</span>
+      <span class="marquee-item"><span class="m-dot"></span>Private AI Model</span>
+      <span class="marquee-item"><span class="m-dot green"></span>LinkedIn Sourcing</span>
+      <span class="marquee-item"><span class="m-dot"></span>Automated Outreach</span>
+      <span class="marquee-item"><span class="m-dot green"></span>Competitor Intelligence</span>
+      <span class="marquee-item"><span class="m-dot"></span>AI Candidate Ranking</span>
+      <span class="marquee-item"><span class="m-dot green"></span>Zero Data Sharing</span>
+      <span class="marquee-item"><span class="m-dot"></span>3-Day Free Trial</span>
+      <span class="marquee-item"><span class="m-dot green"></span>Llama 4 Instruct</span>
+      <span class="marquee-item"><span class="m-dot"></span>Private AI Model</span>
+      <span class="marquee-item"><span class="m-dot green"></span>LinkedIn Sourcing</span>
+      <span class="marquee-item"><span class="m-dot"></span>Automated Outreach</span>
+      <span class="marquee-item"><span class="m-dot green"></span>Competitor Intelligence</span>
+      <span class="marquee-item"><span class="m-dot"></span>AI Candidate Ranking</span>
+      <span class="marquee-item"><span class="m-dot green"></span>Zero Data Sharing</span>
+      <span class="marquee-item"><span class="m-dot"></span>3-Day Free Trial</span>
+      <span class="marquee-item"><span class="m-dot green"></span>Llama 4 Instruct</span>
     </div>
   </div>
 
-  <!-- AI MODEL SECTION -->
-  <section id="technology" style="border-bottom:1px solid var(--white-border);">
-    <div class="ai-section">
-      <div class="ai-left">
-        <p class="section-label">The Engine</p>
-        <h2 class="section-title">Your Own<br>Private AI.</h2>
-        <p class="section-body">
-          Unlike generic tools that send your hiring data to third-party models, Dealers Choice runs a dedicated AI model — isolated per account, fine-tuned on recruitment intelligence, and visible to no one but you.
-        </p>
-        <p class="section-body" style="margin-top:16px;">
-          Candidate scores, search parameters, job descriptions, and results never leave our secure pipeline. Your sourcing strategy stays yours.
-        </p>
+  <!-- PRODUCTS SECTION -->
+  <section id="products" class="products-section">
+    <div class="section-wrap">
+      <div class="products-header">
+        <div>
+          <p class="section-label">The Suite</p>
+          <h2 class="section-title">Three Products.<br>One System.</h2>
+        </div>
+        <span class="products-count">03 PRODUCTS TOTAL</span>
+      </div>
 
-        <div class="llama-badge">
-          <div class="llama-badge-dot"></div>
-          <span class="mono" style="font-size:10px; color:var(--accent); letter-spacing:0.15em;">POWERED BY LLAMA 4 INSTRUCT — CUSTOM FINE-TUNED</span>
+      <div class="products-grid">
+        <!-- THE CROUPIER -->
+        <div class="product-card featured" onclick="showPage('croupier')">
+          <div class="card-top">
+            <span class="tag tag-live">Live Now</span>
+            <span class="card-arrow">&#8599;</span>
+          </div>
+          <div>
+            <div class="product-name">The Croupier</div>
+          </div>
+          <p class="product-desc">AI-powered candidate discovery and ranking. Define your requirements — skills, experience, location — and get a ranked shortlist in under 60 seconds. Powered by a private fine-tuned AI model that scores and explains every candidate.</p>
+          <div class="product-tags">
+            <span class="ptag">Private AI</span>
+            <span class="ptag">Profile Search</span>
+            <span class="ptag">AI Scoring</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">$149<span>/mo</span></div>
+            <span style="font-family:var(--mono); font-size:10px; color:var(--text3); letter-spacing:0.08em;">FROM</span>
+          </div>
         </div>
 
-        <div class="spec-list">
-          <div class="spec-row">
-            <span class="spec-key">Model Architecture</span>
-            <span class="spec-val">Llama 4 Instruct — Fine-tuned</span>
+        <!-- THE STACK -->
+        <div class="product-card" onclick="showPage('stack')">
+          <div class="card-top">
+            <span class="tag tag-beta">Q3 2026</span>
+            <span class="card-arrow">&#8599;</span>
           </div>
-          <div class="spec-row">
-            <span class="spec-key">Deployment</span>
-            <span class="spec-val">Isolated Private Instance</span>
+          <div>
+            <div class="product-name">The Stack</div>
           </div>
-          <div class="spec-row">
-            <span class="spec-key">Data Retention</span>
-            <span class="spec-val">Zero Third-Party Sharing</span>
+          <p class="product-desc">Automated outreach at scale. AI writes personalized emails for every candidate in your pipeline and sends them automatically. Hyper-personalized messaging that gets responses — not templates that look like templates.</p>
+          <div class="product-tags">
+            <span class="ptag">AI Outreach</span>
+            <span class="ptag">10k Campaigns</span>
           </div>
-          <div class="spec-row">
-            <span class="spec-key">Ranking Method</span>
-            <span class="spec-val">AI Fit Score 0–100</span>
+          <div class="product-footer">
+            <div class="product-price">$199<span>/mo</span></div>
           </div>
-          <div class="spec-row">
-            <span class="spec-key">Profile Analysis</span>
-            <span class="spec-val">Skills · Experience · Intent</span>
+        </div>
+
+        <!-- HOUSE EDGE -->
+        <div class="product-card" onclick="showPage('house-edge')">
+          <div class="card-top">
+            <span class="tag tag-beta">Q3 2026</span>
+            <span class="card-arrow">&#8599;</span>
           </div>
-          <div class="spec-row">
-            <span class="spec-key">Data Source</span>
-            <span class="spec-val">Licensed LinkedIn Pipeline</span>
+          <div>
+            <div class="product-name">The House Edge</div>
           </div>
-          <div class="spec-row">
-            <span class="spec-key">Latency</span>
-            <span class="spec-val">&lt; 60s Per Search</span>
+          <p class="product-desc">Competitive hiring intelligence. Monitor who your competitors are hiring, what skills they're targeting, and what salary ranges they're offering. Real-time job posting surveillance across any company.</p>
+          <div class="product-tags">
+            <span class="ptag">Real-Time Intel</span>
+            <span class="ptag">Salary Data</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">$149<span>/mo</span></div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="ai-right">
-        <p class="section-label">Why It Matters</p>
-        <h2 class="section-title" style="font-size:2rem;">No More<br>Black Boxes.</h2>
-        <p class="section-body">
-          Every AI score comes with a written explanation. Hire, Maybe, Pass — plus the reasoning behind it. Your team sees exactly why a candidate ranked where they did.
-        </p>
+  <!-- TECHNOLOGY SECTION -->
+  <section id="technology" class="tech-section">
+    <div style="max-width:1200px; margin:0 auto;">
+      <div class="tech-grid">
+        <div class="tech-left">
+          <p class="section-label">The Engine</p>
+          <h2 class="section-title" style="max-width:400px;">Your Own<br>Private AI.</h2>
+          <p class="body-text">Unlike generic tools that send your hiring data to third-party models, Dealers Choice runs a dedicated AI model — isolated per account, fine-tuned on recruitment intelligence, and visible to no one but you.</p>
+          <p class="body-text">Candidate scores, search parameters, job descriptions, and results never leave our secure pipeline. Your sourcing strategy stays yours.</p>
 
-        <div style="margin-top:48px; display:flex; flex-direction:column; gap:20px;">
-          <div style="padding:24px; border:1px solid var(--accent-border); background:rgba(168,85,247,0.04);">
-            <div class="mono" style="font-size:9px; color:var(--accent); letter-spacing:0.2em; margin-bottom:10px;">EXAMPLE OUTPUT</div>
-            <div style="font-size:13px; color:rgba(245,243,255,0.7); line-height:1.6;">
-              <strong style="color:#f5f3ff;">Score: 87/100 · Hire</strong><br>
-              Strong Python background (6y), AWS certified, led team of 8 engineers. Slightly over-qualified for IC role — could negotiate seniority.
-            </div>
+          <div class="model-badge">
+            <div class="badge-dot"></div>
+            <span class="badge-text">Powered by Llama 4 Instruct — Custom Fine-Tuned</span>
           </div>
 
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--white-border);">
-            <div style="background:var(--ink); padding:20px;">
-              <div style="font-size:28px; font-weight:800; color:var(--accent); letter-spacing:-0.03em;">92%</div>
-              <div class="mono" style="font-size:9px; color:rgba(245,243,255,0.3); margin-top:4px; letter-spacing:0.1em;">MATCH ACCURACY</div>
+          <div class="spec-table">
+            <div class="spec-row">
+              <span class="spec-key">Model Architecture</span>
+              <span class="spec-val">Llama 4 Instruct — Fine-tuned</span>
             </div>
-            <div style="background:var(--ink); padding:20px;">
-              <div style="font-size:28px; font-weight:800; color:var(--accent); letter-spacing:-0.03em;">3x</div>
-              <div class="mono" style="font-size:9px; color:rgba(245,243,255,0.3); margin-top:4px; letter-spacing:0.1em;">FASTER THAN MANUAL</div>
+            <div class="spec-row">
+              <span class="spec-key">Deployment</span>
+              <span class="spec-val">Isolated Private Instance</span>
             </div>
-            <div style="background:var(--ink); padding:20px; border-top:1px solid var(--white-border);">
-              <div style="font-size:28px; font-weight:800; color:var(--accent); letter-spacing:-0.03em;">0</div>
-              <div class="mono" style="font-size:9px; color:rgba(245,243,255,0.3); margin-top:4px; letter-spacing:0.1em;">DATA LEAKS</div>
+            <div class="spec-row">
+              <span class="spec-key">Data Retention</span>
+              <span class="spec-val">Zero Third-Party Sharing</span>
             </div>
-            <div style="background:var(--ink); padding:20px; border-top:1px solid var(--white-border);">
-              <div style="font-size:28px; font-weight:800; color:var(--accent); letter-spacing:-0.03em;">$9k</div>
-              <div class="mono" style="font-size:9px; color:rgba(245,243,255,0.3); margin-top:4px; letter-spacing:0.1em;">SAVED VS RECRUITER SEAT</div>
+            <div class="spec-row">
+              <span class="spec-key">Ranking Method</span>
+              <span class="spec-val">AI Fit Score 0–100</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Profile Analysis</span>
+              <span class="spec-val">Skills · Experience · Intent</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Data Source</span>
+              <span class="spec-val">Licensed LinkedIn Pipeline</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Latency</span>
+              <span class="spec-val">&lt; 60s Per Search</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tech-right">
+          <p class="section-label">Why It Matters</p>
+          <h2 class="section-title" style="font-size:2rem;">No More<br>Black Boxes.</h2>
+          <p class="body-text">Every AI score comes with a written explanation. Hire, Maybe, Pass — plus the reasoning behind it. Your team sees exactly why a candidate ranked where they did.</p>
+
+          <div class="output-example">
+            <div class="out-label">Example Output</div>
+            <div class="out-score">87/100</div>
+            <div class="out-verdict">Hire</div>
+            <div class="out-body">Strong Python background (6y), AWS certified, led team of 8 engineers. Slightly over-qualified for IC role — could negotiate seniority.</div>
+          </div>
+
+          <div class="metrics-grid">
+            <div class="metric-cell">
+              <div class="metric-val">92%</div>
+              <div class="metric-label">Match Accuracy</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-val">3x</div>
+              <div class="metric-label">Faster Than Manual</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-val">0</div>
+              <div class="metric-label">Data Leaks</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-val">$9k</div>
+              <div class="metric-label">Saved vs Recruiter Seat</div>
             </div>
           </div>
         </div>
@@ -987,264 +1512,190 @@
   </section>
 
   <!-- FEATURES GRID -->
-  <section style="border-bottom:1px solid var(--white-border);">
-    <div style="padding:80px 40px 40px;">
+  <section class="features-section">
+    <div class="section-wrap">
       <p class="section-label">Platform Capabilities</p>
-      <h2 class="section-title">Built for<br>Talent Teams.</h2>
-    </div>
+      <h2 class="section-title">Built for Talent Teams.</h2>
 
-    <div class="features-grid">
-      <div class="feature-cell">
-        <div class="feature-num">01</div>
-        <div class="feature-title">AI Candidate Ranking</div>
-        <div class="feature-desc">Every profile gets a 0–100 fit score with written reasoning. Hire, Maybe, Pass — decided by a fine-tuned AI model trained on recruitment outcomes, not generic text similarity. Scores update as your requirements evolve.</div>
-        <div class="feature-tag">Private AI Model</div>
-      </div>
-
-      <div class="feature-cell">
-        <div class="feature-num">02</div>
-        <div class="feature-title">LinkedIn Sourcing at Scale</div>
-        <div class="feature-desc">Search 100,000+ professional profiles by title, skills, location, industry, and experience. Results in under 60 seconds via our authorised data pipeline — no $9,000/year LinkedIn Recruiter seat required.</div>
-        <div class="feature-tag">Authorised Data Access</div>
-      </div>
-
-      <div class="feature-cell">
-        <div class="feature-num">03</div>
-        <div class="feature-title">Automated Email Outreach</div>
-        <div class="feature-desc">The Stack generates personalized outreach emails and sends them at scale. Campaign parameters, tone, and targeting — configured once, delivered automatically. Full response tracking included.</div>
-        <div class="feature-tag">Coming Q3 2026</div>
-      </div>
-
-      <div class="feature-cell">
-        <div class="feature-num">04</div>
-        <div class="feature-title">Competitor Intelligence</div>
-        <div class="feature-desc">The House Edge monitors competitor job postings in real time — tracking who they're hiring, what skills they're prioritizing, and what they're paying. Stay ahead of the market without guessing.</div>
-        <div class="feature-tag">Coming Q3 2026</div>
-      </div>
-
-      <div class="feature-cell">
-        <div class="feature-num">05</div>
-        <div class="feature-title">Search History & Bookmarks</div>
-        <div class="feature-desc">Every search is saved. Revisit past candidate pools, compare results across roles, and bookmark top candidates for later. Full export to CSV on Growth and Enterprise plans.</div>
-        <div class="feature-tag">Included</div>
-      </div>
-
-      <div class="feature-cell">
-        <div class="feature-num">06</div>
-        <div class="feature-title">Form AI Suggestions</div>
-        <div class="feature-desc">As you type your job requirements, the platform's AI suggests improvements in real time — standardizing job titles, expanding skill abbreviations, and correcting location formats so searches return better results.</div>
-        <div class="feature-tag">Live Product</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUCTS -->
-  <section id="products" style="border-bottom:1px solid var(--white-border);">
-    <div style="padding:80px 40px 40px; display:flex; justify-content:space-between; align-items:flex-end;">
-      <div>
-        <p class="section-label">The Suite</p>
-        <h2 class="section-title">Three Products.<br>One system.</h2>
-      </div>
-      <div class="mono" style="font-size:10px; color:rgba(245,243,255,0.25); letter-spacing:0.1em;">VIEW ALL / 3</div>
-    </div>
-
-    <div class="product-row">
-      <div class="product-card featured" onclick="showPage('croupier')">
-        <div class="product-arrow">↗</div>
-        <div>
-          <div class="product-badge badge-live">● Live Now</div>
-          <div class="product-name">The Croupier</div>
-          <div class="product-desc">
-            AI-powered candidate discovery and ranking. Define your requirements — skills, experience, location — and get a ranked shortlist in under 60 seconds. Powered by a private fine-tuned AI model that scores and explains every candidate.
-          </div>
-          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px;">
-            <span class="feature-tag" style="margin-top:0;">Private AI</span>
-            <span class="feature-tag" style="margin-top:0;">Profile Search</span>
-            <span class="feature-tag" style="margin-top:0;">AI Scoring</span>
-          </div>
+      <div class="features-grid">
+        <div class="feature-cell">
+          <div class="feat-num">01</div>
+          <div class="feat-title">AI Candidate Ranking</div>
+          <div class="feat-desc">Every profile gets a 0–100 fit score with written reasoning. Hire, Maybe, Pass — decided by a fine-tuned AI model trained on recruitment outcomes, not generic text similarity.</div>
+          <div class="feat-tag">Private AI Model</div>
         </div>
-        <div class="product-price">From $149<span>/mo</span></div>
-      </div>
-
-      <div class="product-card" onclick="showPage('stack')">
-        <div class="product-arrow">↗</div>
-        <div>
-          <div class="product-badge badge-beta">◐ Coming Q3 2026</div>
-          <div class="product-name">The Stack</div>
-          <div class="product-desc">
-            Automated outreach at scale. AI writes personalized emails for every candidate in your pipeline and sends them automatically. No templates that feel like templates — hyper-personalized messaging that gets responses.
-          </div>
-          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px;">
-            <span class="feature-tag" style="margin-top:0;">AI Outreach</span>
-            <span class="feature-tag" style="margin-top:0;">10k Campaigns</span>
-          </div>
+        <div class="feature-cell">
+          <div class="feat-num">02</div>
+          <div class="feat-title">LinkedIn Sourcing at Scale</div>
+          <div class="feat-desc">Search 100,000+ professional profiles by title, skills, location, industry, and experience. Results in under 60 seconds via our authorised data pipeline.</div>
+          <div class="feat-tag">Authorised Data Access</div>
         </div>
-        <div class="product-price">$199<span>/mo</span></div>
-      </div>
-
-      <div class="product-card" onclick="showPage('house-edge')">
-        <div class="product-arrow">↗</div>
-        <div>
-          <div class="product-badge badge-beta">◐ Coming Q3 2026</div>
-          <div class="product-name">The House Edge</div>
-          <div class="product-desc">
-            Competitive hiring intelligence. Monitor who your competitors are hiring, what skills they're targeting, and what salary ranges they're offering. Real-time job posting surveillance across any company.
-          </div>
-          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px;">
-            <span class="feature-tag" style="margin-top:0;">Real-Time Intel</span>
-            <span class="feature-tag" style="margin-top:0;">Salary Data</span>
-          </div>
+        <div class="feature-cell">
+          <div class="feat-num">03</div>
+          <div class="feat-title">Automated Email Outreach</div>
+          <div class="feat-desc">The Stack generates personalised outreach emails and sends them at scale. Campaign parameters, tone, and targeting — configured once, delivered automatically.</div>
+          <div class="feat-tag">Coming Q3 2026</div>
         </div>
-        <div class="product-price">$149<span>/mo</span></div>
+        <div class="feature-cell">
+          <div class="feat-num">04</div>
+          <div class="feat-title">Competitor Intelligence</div>
+          <div class="feat-desc">The House Edge monitors competitor job postings in real time — tracking who they're hiring, what skills they're prioritising, and what they're paying.</div>
+          <div class="feat-tag">Coming Q3 2026</div>
+        </div>
+        <div class="feature-cell">
+          <div class="feat-num">05</div>
+          <div class="feat-title">Search History + Bookmarks</div>
+          <div class="feat-desc">Every search is saved. Revisit past candidate pools, compare results across roles, and bookmark top candidates. Full CSV export on Growth and Enterprise plans.</div>
+          <div class="feat-tag">Included</div>
+        </div>
+        <div class="feature-cell">
+          <div class="feat-num">06</div>
+          <div class="feat-title">Form AI Suggestions</div>
+          <div class="feat-desc">As you type your job requirements, the platform's AI suggests improvements in real time — standardising job titles, expanding skill abbreviations, and correcting location formats.</div>
+          <div class="feat-tag">Live Product</div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- PROCESS -->
   <section id="process" class="process-section">
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; max-width:1400px; margin:0 auto;">
-      <div>
-        <p class="section-label" style="color:rgba(11,4,22,0.4);">How It Works</p>
-        <h2 class="section-title" style="color:var(--ink);">From Requirements<br>to Results.</h2>
+    <div class="section-wrap">
+      <div class="process-intro">
+        <div>
+          <p class="section-label">How It Works</p>
+          <h2 class="section-title">From Requirements<br>to Results.</h2>
+        </div>
+        <div style="padding-top:40px;">
+          <p class="body-text">Traditional sourcing takes weeks. Dealers Choice collapses that to minutes — while giving you richer candidate data than any manual search could surface.</p>
+        </div>
       </div>
-      <div>
-        <p style="font-size:15px; line-height:1.75; color:rgba(11,4,22,0.55); padding-top:50px;">
-          Traditional sourcing takes weeks. Dealers Choice collapses that to minutes — while giving you richer candidate data than any manual search could surface.
-        </p>
-      </div>
-    </div>
 
-    <div class="step-grid" style="max-width:1400px; margin:80px auto 0;">
-      <div class="step">
-        <div class="step-num">STEP 01</div>
-        <div class="step-title">Define Requirements</div>
-        <div class="step-body">Enter job title, required skills, experience level, and location. The AI suggests improvements in real time — standardising titles and correcting location formats before your search runs.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">STEP 02</div>
-        <div class="step-title">AI Sources Candidates</div>
-        <div class="step-body">Our authorised data pipeline surfaces professional profiles matching your criteria — including experience, education, skills, and open-to-work status. Up to 100 candidates per search, delivered in under 60 seconds.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">STEP 03</div>
-        <div class="step-title">Private AI Ranks Every Profile</div>
-        <div class="step-body">Each candidate is scored 0–100 by your dedicated fine-tuned Llama 4 Instruct model. Strengths and concerns are flagged. Hire, Maybe, Pass is assigned — all within your private instance.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">STEP 04</div>
-        <div class="step-title">Act on Results</div>
-        <div class="step-body">View ranked candidates with full profiles, bookmark favourites, export to CSV, and revisit past searches anytime. Optionally trigger The Stack to automate outreach to top matches.</div>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num">STEP 01</div>
+          <div class="step-title">Define Requirements</div>
+          <div class="step-body">Enter job title, required skills, experience level, and location. The AI suggests improvements in real time — standardising titles and correcting location formats before your search runs.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">STEP 02</div>
+          <div class="step-title">AI Sources Candidates</div>
+          <div class="step-body">Our authorised data pipeline surfaces professional profiles matching your criteria — including experience, education, skills, and open-to-work status. Up to 100 candidates per search in under 60 seconds.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">STEP 03</div>
+          <div class="step-title">Private AI Ranks Every Profile</div>
+          <div class="step-body">Each candidate is scored 0–100 by your dedicated fine-tuned Llama 4 Instruct model. Strengths and concerns are flagged. Hire, Maybe, Pass is assigned — all within your private instance.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">STEP 04</div>
+          <div class="step-title">Act on Results</div>
+          <div class="step-body">View ranked candidates with full profiles, bookmark favourites, export to CSV, and revisit past searches anytime. Optionally trigger The Stack to automate outreach to top matches.</div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
   <section class="cta-section">
-    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 50%, rgba(168,85,247,0.07) 0%, transparent 70%);pointer-events:none;"></div>
-    <div style="position:relative;z-index:10;">
-      <h2 class="cta-title">
-        RECRUIT<br>
-        <span class="italic">smarter</span><br>
-        TODAY.
-      </h2>
-      <div class="cta-buttons">
-        <a class="btn-primary" href="mailto:sales@asqsys.com?subject=Demo Request&body=Hi, I'd like to book a demo of Dealers Choice Systems.">Book a Demo</a>
-        <button class="btn-outline" onclick="showPage('croupier')">View Pricing →</button>
-      </div>
+    <h2 class="cta-title">
+      RECRUIT<br>
+      <span class="accent-line">SMARTER</span><br>
+      TODAY.
+    </h2>
+    <div class="cta-actions">
+      <a class="btn-primary" href="mailto:sales@asqsys.com?subject=Demo Request&body=Hi, I'd like to book a demo of Dealers Choice Systems.">Book a Demo</a>
+      <button class="btn-outline" onclick="showPage('croupier')">View Pricing</button>
     </div>
   </section>
 
   <footer>
-    <div class="mono">© 2026 Dealer's Choice Systems. All rights reserved.</div>
-    <div style="display:flex; gap:32px;">
-      <a href="javascript:void(0);" onclick="showPage('privacy')" class="mono">Privacy</a>
-      <a href="javascript:void(0);" onclick="showPage('terms')" class="mono">Terms</a>
-      <a href="mailto:sales@asqsys.com" class="mono">Contact</a>
+    <div class="footer-left">// 2026 Dealer's Choice Systems. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="javascript:void(0);" onclick="showPage('privacy')">Privacy</a>
+      <a href="javascript:void(0);" onclick="showPage('terms')">Terms</a>
+      <a href="mailto:sales@asqsys.com">Contact</a>
     </div>
   </footer>
 </main>
 
-<!-- CROUPIER PAGE -->
+<!-- ============================
+     CROUPIER PAGE
+============================ -->
 <div id="croupier" class="page">
   <div class="back-nav">
     <span class="back-link" onclick="showPage('home')">← Dealer's Choice</span>
-    <span class="mono" style="color:rgba(245,243,255,0.2); font-size:10px;">/</span>
-    <span class="mono" style="font-size:10px; color:rgba(245,243,255,0.4); letter-spacing:0.1em;">THE CROUPIER</span>
+    <span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-cur">The Croupier</span>
   </div>
 
-  <div style="padding:80px 40px 40px; max-width:1400px; margin:0 auto;">
-    <div class="product-badge badge-live" style="margin-bottom:16px;">● Live Now</div>
-    <h1 style="font-size:clamp(3rem,9vw,8rem); font-weight:800; letter-spacing:-0.04em; line-height:0.9; margin-bottom:24px;">THE<br>CROUPIER</h1>
-    <p style="font-size:18px; color:rgba(245,243,255,0.5); max-width:560px; line-height:1.6;">
-      AI-powered candidate discovery and ranking. Your private fine-tuned model scores every profile — with an explanation you can actually use.
-    </p>
+  <div style="padding:64px 32px 40px; max-width:1200px; margin:0 auto;">
+    <span class="tag tag-live" style="margin-bottom:16px; display:inline-block;">Live Now</span>
+    <h1 style="font-size:clamp(3rem,9vw,7.5rem); font-weight:800; letter-spacing:-0.04em; line-height:0.92; margin:16px 0 20px;">THE<br>CROUPIER</h1>
+    <p style="font-size:16px; color:var(--text2); max-width:520px; line-height:1.65;">AI-powered candidate discovery and ranking. Your private fine-tuned model scores every profile — with an explanation you can actually use.</p>
   </div>
 
   <!-- FEATURE HIGHLIGHTS -->
-  <div style="max-width:1400px; margin:0 auto; padding:0 40px;">
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--white-border); margin-bottom:60px;">
-      <div style="background:var(--ink); padding:32px;">
-        <div class="mono" style="font-size:9px; color:var(--accent); letter-spacing:0.2em; margin-bottom:12px;">PRIVATE AI</div>
+  <div style="max-width:1200px; margin:0 auto 0; padding:0 32px;">
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); margin-bottom:48px;">
+      <div style="background:var(--bg2); padding:28px 32px;">
+        <div style="font-family:var(--mono); font-size:9px; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:10px;">Private AI</div>
         <div style="font-size:15px; font-weight:700; margin-bottom:8px;">Your Data, Your Model</div>
-        <div style="font-size:13px; color:rgba(245,243,255,0.45); line-height:1.6;">A dedicated Llama 4 Instruct model — fine-tuned for recruitment and isolated per account. Your searches never touch a shared model.</div>
+        <div style="font-size:13px; color:var(--text2); line-height:1.6;">A dedicated Llama 4 Instruct model — fine-tuned for recruitment and isolated per account. Your searches never touch a shared model.</div>
       </div>
-      <div style="background:var(--ink); padding:32px;">
-        <div class="mono" style="font-size:9px; color:var(--accent); letter-spacing:0.2em; margin-bottom:12px;">AI SCORING</div>
+      <div style="background:var(--bg2); padding:28px 32px;">
+        <div style="font-family:var(--mono); font-size:9px; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:10px;">AI Scoring</div>
         <div style="font-size:15px; font-weight:700; margin-bottom:8px;">Hire / Maybe / Pass</div>
-        <div style="font-size:13px; color:rgba(245,243,255,0.45); line-height:1.6;">Every candidate gets a 0–100 fit score with written reasoning, key strengths, and concerns flagged. No more manual profile review at scale.</div>
+        <div style="font-size:13px; color:var(--text2); line-height:1.6;">Every candidate gets a 0–100 fit score with written reasoning, key strengths, and concerns flagged. No more manual profile review at scale.</div>
       </div>
-      <div style="background:var(--ink); padding:32px;">
-        <div class="mono" style="font-size:9px; color:var(--accent); letter-spacing:0.2em; margin-bottom:12px;">CANDIDATE SOURCING</div>
+      <div style="background:var(--bg2); padding:28px 32px;">
+        <div style="font-family:var(--mono); font-size:9px; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:10px;">Candidate Sourcing</div>
         <div style="font-size:15px; font-weight:700; margin-bottom:8px;">No Recruiter Seat Needed</div>
-        <div style="font-size:13px; color:rgba(245,243,255,0.45); line-height:1.6;">Access 100,000+ professional profiles without a $9,000/year LinkedIn Recruiter seat. Search by role, skills, location, and experience in under 60s.</div>
+        <div style="font-size:13px; color:var(--text2); line-height:1.6;">Access 100,000+ professional profiles without a $9,000/year LinkedIn Recruiter seat. Search by role, skills, location, and experience in under 60s.</div>
       </div>
     </div>
   </div>
 
-  <!-- DEMO -->
-  <div style="max-width:1400px; margin:0 auto; padding:0 40px 60px;">
+  <!-- INTERACTIVE DEMO -->
+  <div style="max-width:1200px; margin:0 auto; padding:0 32px 56px;">
     <p class="section-label">Interactive Demo</p>
-    <h2 style="font-size:2.5rem; font-weight:800; letter-spacing:-0.03em; margin-bottom:40px;">See It In Action</h2>
+    <h2 style="font-size:2rem; font-weight:800; letter-spacing:-0.03em; margin-bottom:36px;">See It In Action</h2>
 
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--white-border);">
-      <div style="background:var(--ink); padding:40px;">
-        <div class="mono" style="font-size:10px; color:var(--accent); letter-spacing:0.2em; margin-bottom:24px;">YOUR REQUIREMENTS</div>
-
-        <div style="background:rgba(168,85,247,0.06); border:1px solid var(--accent-border); padding:10px 14px; margin-bottom:24px;">
-          <div class="mono" style="font-size:9px; color:var(--accent); letter-spacing:0.15em;">DEMO — Sample candidate database</div>
+    <div class="demo-grid">
+      <div class="demo-left">
+        <div style="font-family:var(--mono); font-size:9px; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:20px;">Your Requirements</div>
+        <div style="background:var(--accent-dim); border:1px solid var(--accent-border); padding:8px 12px; margin-bottom:20px;">
+          <span style="font-family:var(--mono); font-size:9px; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase;">Demo — Sample candidate database</span>
         </div>
-
-        <div style="display:flex; flex-direction:column; gap:14px;">
-          <div>
-            <label class="mono" style="font-size:9px; color:rgba(245,243,255,0.4); letter-spacing:0.15em; display:block; margin-bottom:6px;">JOB TITLE</label>
-            <input class="demo-input" id="demoJobTitle" value="Software Engineer" placeholder="e.g. Software Engineer">
-          </div>
-          <div>
-            <label class="mono" style="font-size:9px; color:rgba(245,243,255,0.4); letter-spacing:0.15em; display:block; margin-bottom:6px;">REQUIRED SKILLS</label>
-            <input class="demo-input" id="demoSkills" value="Python, React, AWS" placeholder="e.g. Python, React, AWS">
-          </div>
-          <div>
-            <label class="mono" style="font-size:9px; color:rgba(245,243,255,0.4); letter-spacing:0.15em; display:block; margin-bottom:6px;">EXPERIENCE</label>
-            <select class="demo-select" id="demoExperience">
-              <option value="1-3">1–3 years</option>
-              <option value="3-5">3–5 years</option>
-              <option value="5+" selected>5+ years</option>
-              <option value="10+">10+ years</option>
-            </select>
-          </div>
-          <div>
-            <label class="mono" style="font-size:9px; color:rgba(245,243,255,0.4); letter-spacing:0.15em; display:block; margin-bottom:6px;">LOCATION</label>
-            <input class="demo-input" id="demoLocation" value="San Francisco Bay Area" placeholder="e.g. San Francisco">
-          </div>
+        <div class="form-field">
+          <label class="field-label">Job Title</label>
+          <input class="field-input" id="demoJobTitle" value="Software Engineer" placeholder="e.g. Software Engineer">
         </div>
-        <button class="run-btn" onclick="runDemo()">Search Candidates →</button>
+        <div class="form-field">
+          <label class="field-label">Required Skills</label>
+          <input class="field-input" id="demoSkills" value="Python, React, AWS" placeholder="e.g. Python, React, AWS">
+        </div>
+        <div class="form-field">
+          <label class="field-label">Experience</label>
+          <select class="field-select" id="demoExperience">
+            <option value="1-3">1–3 years</option>
+            <option value="3-5">3–5 years</option>
+            <option value="5+" selected>5+ years</option>
+            <option value="10+">10+ years</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="field-label">Location</label>
+          <input class="field-input" id="demoLocation" value="San Francisco Bay Area" placeholder="e.g. San Francisco">
+        </div>
+        <button class="run-btn" onclick="runDemo()">Search Candidates</button>
       </div>
 
-      <div style="background:rgba(168,85,247,0.02); padding:40px;">
-        <div class="mono" style="font-size:10px; color:var(--accent); letter-spacing:0.2em; margin-bottom:24px;">AI-RANKED RESULTS</div>
+      <div class="demo-right">
+        <div style="font-family:var(--mono); font-size:9px; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:20px;">AI-Ranked Results</div>
         <div id="resultsContainer">
-          <div style="text-align:center; padding:60px 0; color:rgba(245,243,255,0.2);">
-            <div class="mono" style="font-size:12px; letter-spacing:0.1em;">Run a search to see candidates</div>
+          <div style="text-align:center; padding:60px 0;">
+            <div style="font-family:var(--mono); font-size:11px; color:var(--text3); letter-spacing:0.1em;">Run a search to see candidates</div>
           </div>
         </div>
       </div>
@@ -1252,9 +1703,9 @@
   </div>
 
   <!-- PRICING -->
-  <div style="max-width:1400px; margin:0 auto; padding:0 40px 80px;">
+  <div style="max-width:1200px; margin:0 auto; padding:0 32px 72px;">
     <p class="section-label">Pricing</p>
-    <h2 style="font-size:2.5rem; font-weight:800; letter-spacing:-0.03em; margin-bottom:40px;">Choose Your Scale</h2>
+    <h2 style="font-size:2rem; font-weight:800; letter-spacing:-0.03em; margin-bottom:40px;">Choose Your Scale</h2>
 
     <div class="pricing-grid">
       <div class="pricing-card">
@@ -1305,146 +1756,155 @@
   </div>
 
   <!-- ACCESS TOKEN -->
-  <div style="max-width:1400px; margin:0 auto; padding:0 40px 100px;">
-    <div style="border:1px solid var(--accent-border); padding:60px; text-align:center; background:rgba(168,85,247,0.03);">
-      <p class="section-label" style="text-align:center;">Already a Customer</p>
-      <h3 style="font-size:2rem; font-weight:800; letter-spacing:-0.03em; margin-bottom:8px;">Access Your Dashboard</h3>
-      <p style="font-size:14px; color:rgba(245,243,255,0.4); margin-bottom:40px; font-family:'DM Mono',monospace;">Enter the access token sent to your email after purchase</p>
-      <div style="display:flex; gap:0; max-width:480px; margin:0 auto;">
-        <input type="text" id="croupierToken" placeholder="DEALERS-XXXX-XXXX" class="token-input" style="flex:1;">
-        <button class="token-btn" onclick="validateTokenOnPage('croupier')">Unlock →</button>
-      </div>
+  <div class="access-box">
+    <p class="section-label" style="justify-content:center; display:flex;">Already a Customer</p>
+    <h3 style="font-size:1.8rem; font-weight:800; letter-spacing:-0.03em; margin-bottom:8px;">Access Your Dashboard</h3>
+    <p style="font-family:var(--mono); font-size:11px; color:var(--text3); margin-bottom:32px; letter-spacing:0.05em;">Enter the access token sent to your email after purchase</p>
+    <div class="token-row">
+      <input type="text" id="croupierToken" placeholder="DEALERS-XXXX-XXXX" class="token-input">
+      <button class="token-btn" onclick="validateTokenOnPage('croupier')">Unlock</button>
     </div>
   </div>
 </div>
 
-<!-- STACK PAGE -->
+<!-- ============================
+     STACK PAGE
+============================ -->
 <div id="stack" class="page">
   <div class="back-nav">
     <span class="back-link" onclick="showPage('home')">← Dealer's Choice</span>
-    <span class="mono" style="color:rgba(245,243,255,0.2); font-size:10px;">/</span>
-    <span class="mono" style="font-size:10px; color:rgba(245,243,255,0.4); letter-spacing:0.1em;">THE STACK</span>
+    <span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-cur">The Stack</span>
   </div>
 
-  <div style="padding:80px 40px; max-width:1400px; margin:0 auto;">
-    <div class="product-badge badge-beta" style="margin-bottom:16px;">◐ Coming Q3 2026</div>
-    <h1 style="font-size:clamp(3rem,9vw,8rem); font-weight:800; letter-spacing:-0.04em; line-height:0.9; margin-bottom:24px;">THE<br>STACK</h1>
-    <p style="font-size:18px; color:rgba(245,243,255,0.5); max-width:560px; line-height:1.6; margin-bottom:60px;">
-      Automated outreach at scale. AI generates personalized messages for every candidate and delivers them — without your team lifting a finger after setup.
-    </p>
+  <div style="padding:64px 32px 60px; max-width:1200px; margin:0 auto;">
+    <span class="tag tag-beta" style="margin-bottom:16px; display:inline-block;">Coming Q3 2026</span>
+    <h1 style="font-size:clamp(3rem,9vw,7.5rem); font-weight:800; letter-spacing:-0.04em; line-height:0.92; margin:16px 0 20px;">THE<br>STACK</h1>
+    <p style="font-size:16px; color:var(--text2); max-width:520px; line-height:1.65; margin-bottom:52px;">Automated outreach at scale. AI generates personalized messages for every candidate and delivers them — without your team lifting a finger after setup.</p>
 
-    <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--white-border); margin-bottom:60px;">
-      <div style="background:var(--ink); padding:40px;">
-        <div class="mono" style="font-size:9px; color:var(--accent); letter-spacing:0.2em; margin-bottom:16px;">WHAT IT DOES</div>
-        <h3 style="font-size:20px; font-weight:800; margin-bottom:16px;">Personalized at Scale</h3>
-        <p style="font-size:14px; color:rgba(245,243,255,0.45); line-height:1.7;">Every outreach email is written by AI — personalised to the candidate's profile, role, and company. Not mail-merge templates. Actual personalization that reads like a human wrote it.</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); margin-bottom:48px;">
+      <div style="background:var(--bg2); padding:36px 32px;">
+        <div style="font-family:var(--mono); font-size:9px; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:14px;">What It Does</div>
+        <div style="font-size:18px; font-weight:700; margin-bottom:14px;">Personalized at Scale</div>
+        <p style="font-size:13px; color:var(--text2); line-height:1.7;">Every outreach email is written by AI — personalised to the candidate's profile, role, and company. Not mail-merge templates. Actual personalization that reads like a human wrote it.</p>
       </div>
-      <div style="background:var(--ink); padding:40px;">
-        <div class="mono" style="font-size:9px; color:var(--accent); letter-spacing:0.2em; margin-bottom:16px;">CAPACITY</div>
-        <h3 style="font-size:20px; font-weight:800; margin-bottom:16px;">10,000 Campaigns</h3>
-        <p style="font-size:14px; color:rgba(245,243,255,0.45); line-height:1.7;">One seat, 10,000 outreach campaigns per month. Configure your tone, schedule, and follow-up cadence — The Stack handles delivery, tracking, and response monitoring automatically.</p>
+      <div style="background:var(--bg2); padding:36px 32px;">
+        <div style="font-family:var(--mono); font-size:9px; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:14px;">Capacity</div>
+        <div style="font-size:18px; font-weight:700; margin-bottom:14px;">10,000 Campaigns</div>
+        <p style="font-size:13px; color:var(--text2); line-height:1.7;">One seat, 10,000 outreach campaigns per month. Configure your tone, schedule, and follow-up cadence — The Stack handles delivery, tracking, and response monitoring automatically.</p>
       </div>
     </div>
 
-    <div style="border:1px solid rgba(251,191,36,0.3); background:rgba(251,191,36,0.04); padding:40px; text-align:center; margin-bottom:60px;">
-      <div class="mono" style="font-size:9px; color:#fbbf24; letter-spacing:0.2em; margin-bottom:12px;">⚠ PRODUCT IN DEVELOPMENT</div>
-      <p style="font-size:14px; color:rgba(245,243,255,0.5);">The Stack is completing final testing. Expected availability Q3 2026.</p>
-      <a href="mailto:sales@asqsys.com?subject=Join Waitlist - The Stack" style="display:inline-block; margin-top:20px; padding:12px 32px; background:var(--accent); color:var(--ink); font-family:'DM Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.15em; text-decoration:none;">Join Waitlist</a>
-    </div>
-
-    <div style="display:flex; justify-content:space-between; align-items:center; padding:32px 0; border-top:1px solid var(--white-border);">
+    <div class="waitlist-notice" style="margin:0 0 48px;">
       <div>
-        <div class="mono" style="font-size:10px; color:rgba(245,243,255,0.3); letter-spacing:0.1em; margin-bottom:4px;">PRICING</div>
-        <div style="font-size:40px; font-weight:800; color:var(--accent); letter-spacing:-0.03em;">$199<span style="font-size:16px; color:rgba(245,243,255,0.3); font-weight:400;">/mo</span></div>
+        <div class="notice-label">Product in Development</div>
+        <div class="notice-text">The Stack is completing final testing. Expected availability Q3 2026.</div>
       </div>
-      <div class="mono" style="font-size:11px; color:rgba(245,243,255,0.35);">10,000 Campaigns Included</div>
+      <a href="mailto:sales@asqsys.com?subject=Join Waitlist - The Stack" class="btn-primary">Join Waitlist</a>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:28px 0; border-top:1px solid var(--border);">
+      <div>
+        <div style="font-family:var(--mono); font-size:9px; color:var(--text3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">Pricing</div>
+        <div style="font-family:var(--mono); font-size:36px; font-weight:700; color:var(--accent); letter-spacing:-0.03em;">$199<span style="font-size:14px; color:var(--text3); font-weight:400;">/mo</span></div>
+      </div>
+      <div style="font-family:var(--mono); font-size:11px; color:var(--text3);">10,000 Campaigns Included</div>
     </div>
   </div>
 </div>
 
-<!-- HOUSE EDGE PAGE -->
+<!-- ============================
+     HOUSE EDGE PAGE
+============================ -->
 <div id="house-edge" class="page">
   <div class="back-nav">
     <span class="back-link" onclick="showPage('home')">← Dealer's Choice</span>
-    <span class="mono" style="color:rgba(245,243,255,0.2); font-size:10px;">/</span>
-    <span class="mono" style="font-size:10px; color:rgba(245,243,255,0.4); letter-spacing:0.1em;">THE HOUSE EDGE</span>
+    <span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-cur">The House Edge</span>
   </div>
 
-  <div style="padding:80px 40px; max-width:1400px; margin:0 auto;">
-    <div class="product-badge badge-beta" style="margin-bottom:16px;">◐ Coming Q3 2026</div>
-    <h1 style="font-size:clamp(3rem,9vw,7rem); font-weight:800; letter-spacing:-0.04em; line-height:0.9; margin-bottom:24px;">THE HOUSE<br>EDGE</h1>
-    <p style="font-size:18px; color:rgba(245,243,255,0.5); max-width:560px; line-height:1.6; margin-bottom:60px;">
-      Real-time competitive hiring intelligence. Know exactly who your competitors are building their teams with — before the market does.
-    </p>
+  <div style="padding:64px 32px 60px; max-width:1200px; margin:0 auto;">
+    <span class="tag tag-beta" style="margin-bottom:16px; display:inline-block;">Coming Q3 2026</span>
+    <h1 style="font-size:clamp(2.5rem,7vw,6.5rem); font-weight:800; letter-spacing:-0.04em; line-height:0.92; margin:16px 0 20px;">THE HOUSE<br>EDGE</h1>
+    <p style="font-size:16px; color:var(--text2); max-width:520px; line-height:1.65; margin-bottom:52px;">Real-time competitive hiring intelligence. Know exactly who your competitors are building their teams with — before the market does.</p>
 
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--white-border); margin-bottom:60px;">
-      <div style="background:var(--ink); padding:32px;">
-        <div class="mono" style="font-size:9px; color:var(--accent); letter-spacing:0.2em; margin-bottom:12px;">JOB MONITORING</div>
-        <div style="font-size:16px; font-weight:700; margin-bottom:8px;">Live Job Tracking</div>
-        <div style="font-size:13px; color:rgba(245,243,255,0.45); line-height:1.6;">Every new job posting from tracked competitors — surfaced in real time. Know what roles they're building, which teams they're growing, and when.</div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); margin-bottom:48px;">
+      <div style="background:var(--bg2); padding:28px 32px;">
+        <div style="font-family:var(--mono); font-size:9px; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:10px;">Job Monitoring</div>
+        <div style="font-size:15px; font-weight:700; margin-bottom:8px;">Live Job Tracking</div>
+        <div style="font-size:13px; color:var(--text2); line-height:1.6;">Every new job posting from tracked competitors — surfaced in real time. Know what roles they're building, which teams they're growing, and when.</div>
       </div>
-      <div style="background:var(--ink); padding:32px;">
-        <div class="mono" style="font-size:9px; color:var(--accent); letter-spacing:0.2em; margin-bottom:12px;">SKILL ANALYSIS</div>
-        <div style="font-size:16px; font-weight:700; margin-bottom:8px;">Hiring Pattern Intel</div>
-        <div style="font-size:13px; color:rgba(245,243,255,0.45); line-height:1.6;">Identify which technologies, skills, and seniority levels competitors are prioritising. Spot strategic shifts in their talent strategy before they become public.</div>
+      <div style="background:var(--bg2); padding:28px 32px;">
+        <div style="font-family:var(--mono); font-size:9px; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:10px;">Skill Analysis</div>
+        <div style="font-size:15px; font-weight:700; margin-bottom:8px;">Hiring Pattern Intel</div>
+        <div style="font-size:13px; color:var(--text2); line-height:1.6;">Identify which technologies, skills, and seniority levels competitors are prioritising. Spot strategic shifts in their talent strategy before they become public.</div>
       </div>
-      <div style="background:var(--ink); padding:32px;">
-        <div class="mono" style="font-size:9px; color:var(--accent); letter-spacing:0.2em; margin-bottom:12px;">SALARY DATA</div>
-        <div style="font-size:16px; font-weight:700; margin-bottom:8px;">Market Benchmarking</div>
-        <div style="font-size:13px; color:rgba(245,243,255,0.45); line-height:1.6;">Real-time salary range data from competitor job postings. Benchmark your compensation packages and adjust offers to stay competitive in the talent market.</div>
+      <div style="background:var(--bg2); padding:28px 32px;">
+        <div style="font-family:var(--mono); font-size:9px; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:10px;">Salary Data</div>
+        <div style="font-size:15px; font-weight:700; margin-bottom:8px;">Market Benchmarking</div>
+        <div style="font-size:13px; color:var(--text2); line-height:1.6;">Real-time salary range data from competitor job postings. Benchmark your compensation packages and stay competitive in the talent market.</div>
       </div>
     </div>
 
-    <div style="border:1px solid rgba(251,191,36,0.3); background:rgba(251,191,36,0.04); padding:40px; text-align:center; margin-bottom:60px;">
-      <div class="mono" style="font-size:9px; color:#fbbf24; letter-spacing:0.2em; margin-bottom:12px;">⚠ PRODUCT IN DEVELOPMENT</div>
-      <p style="font-size:14px; color:rgba(245,243,255,0.5);">The House Edge is completing final testing. Expected availability Q3 2026.</p>
-      <a href="mailto:sales@asqsys.com?subject=Join Waitlist - House Edge" style="display:inline-block; margin-top:20px; padding:12px 32px; background:var(--accent); color:var(--ink); font-family:'DM Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.15em; text-decoration:none;">Join Waitlist</a>
-    </div>
-
-    <div style="display:flex; justify-content:space-between; align-items:center; padding:32px 0; border-top:1px solid var(--white-border);">
+    <div class="waitlist-notice" style="margin:0 0 48px;">
       <div>
-        <div class="mono" style="font-size:10px; color:rgba(245,243,255,0.3); letter-spacing:0.1em; margin-bottom:4px;">PRICING</div>
-        <div style="font-size:40px; font-weight:800; color:var(--accent); letter-spacing:-0.03em;">$149<span style="font-size:16px; color:rgba(245,243,255,0.3); font-weight:400;">/mo</span></div>
+        <div class="notice-label">Product in Development</div>
+        <div class="notice-text">The House Edge is completing final testing. Expected availability Q3 2026.</div>
       </div>
-      <div class="mono" style="font-size:11px; color:rgba(245,243,255,0.35);">Real-Time Updates Included</div>
+      <a href="mailto:sales@asqsys.com?subject=Join Waitlist - House Edge" class="btn-primary">Join Waitlist</a>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:28px 0; border-top:1px solid var(--border);">
+      <div>
+        <div style="font-family:var(--mono); font-size:9px; color:var(--text3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">Pricing</div>
+        <div style="font-family:var(--mono); font-size:36px; font-weight:700; color:var(--accent); letter-spacing:-0.03em;">$149<span style="font-size:14px; color:var(--text3); font-weight:400;">/mo</span></div>
+      </div>
+      <div style="font-family:var(--mono); font-size:11px; color:var(--text3);">Real-Time Updates Included</div>
     </div>
   </div>
 </div>
 
-<!-- PRIVACY -->
+<!-- ============================
+     PRIVACY PAGE
+============================ -->
 <div id="privacy" class="page">
   <div class="back-nav"><span class="back-link" onclick="showPage('home')">← Dealer's Choice</span></div>
-  <div style="max-width:800px; margin:0 auto; padding:80px 40px;">
+  <div style="max-width:760px; margin:0 auto; padding:72px 32px 100px;">
     <h1 style="font-size:3rem; font-weight:800; letter-spacing:-0.04em; margin-bottom:48px;">Privacy Policy</h1>
-    <div style="display:flex; flex-direction:column; gap:24px; font-size:14px; line-height:1.75; color:rgba(245,243,255,0.6);">
+    <div style="display:flex; flex-direction:column; gap:24px; font-size:14px; line-height:1.8; color:var(--text2);">
       <p>At Dealer's Choice, your data privacy is a core design principle — not an afterthought. Our private AI model architecture means your candidate data, search parameters, and hiring intelligence never leave your account environment.</p>
-      <h3 style="color:#f5f3ff; font-size:18px; font-weight:700;">Information We Collect</h3>
+      <h3 style="color:var(--text); font-size:17px; font-weight:700;">Information We Collect</h3>
       <p>Name and email when you create an account. Payment information processed securely via Stripe. Usage data to improve platform performance. Search queries and candidate results — stored privately in your account.</p>
-      <h3 style="color:#f5f3ff; font-size:18px; font-weight:700;">What We Never Do</h3>
+      <h3 style="color:var(--text); font-size:17px; font-weight:700;">What We Never Do</h3>
       <p>We never share your search data with third-party AI providers. We never use your candidate data to train shared models. We never sell your information to data brokers or recruiters.</p>
-      <h3 style="color:#f5f3ff; font-size:18px; font-weight:700;">Contact</h3>
+      <h3 style="color:var(--text); font-size:17px; font-weight:700;">Contact</h3>
       <p>Questions? <a href="mailto:sales@asqsys.com" style="color:var(--accent);">sales@asqsys.com</a></p>
     </div>
   </div>
 </div>
 
-<!-- TERMS -->
+<!-- ============================
+     TERMS PAGE
+============================ -->
 <div id="terms" class="page">
   <div class="back-nav"><span class="back-link" onclick="showPage('home')">← Dealer's Choice</span></div>
-  <div style="max-width:800px; margin:0 auto; padding:80px 40px;">
+  <div style="max-width:760px; margin:0 auto; padding:72px 32px 100px;">
     <h1 style="font-size:3rem; font-weight:800; letter-spacing:-0.04em; margin-bottom:48px;">Terms of Service</h1>
-    <div style="display:flex; flex-direction:column; gap:24px; font-size:14px; line-height:1.75; color:rgba(245,243,255,0.6);">
+    <div style="display:flex; flex-direction:column; gap:24px; font-size:14px; line-height:1.8; color:var(--text2);">
       <p>By using Dealer's Choice services, you agree to these terms.</p>
-      <h3 style="color:#f5f3ff; font-size:18px; font-weight:700;">Acceptable Use</h3>
+      <h3 style="color:var(--text); font-size:17px; font-weight:700;">Acceptable Use</h3>
       <p>You may use our platform only for legitimate recruitment and talent acquisition purposes. Candidate data sourced through the platform may only be used for professional outreach relevant to open roles.</p>
-      <h3 style="color:#f5f3ff; font-size:18px; font-weight:700;">Subscriptions</h3>
+      <h3 style="color:var(--text); font-size:17px; font-weight:700;">Subscriptions</h3>
       <p>Subscriptions renew automatically. A 3-Day free trial is available on all plans. Cancel anytime before the trial ends at no charge. Cancellations take effect at the end of the current billing period.</p>
-      <h3 style="color:#f5f3ff; font-size:18px; font-weight:700;">Contact</h3>
+      <h3 style="color:var(--text); font-size:17px; font-weight:700;">Contact</h3>
       <p>Questions? <a href="mailto:sales@asqsys.com" style="color:var(--accent);">sales@asqsys.com</a></p>
     </div>
   </div>
 </div>
 
+<!-- ============================
+     SCRIPTS
+============================ -->
 <script>
   const WORKER_URL = 'https://payment-handler.bernardliatme.workers.dev';
 
@@ -1454,25 +1914,28 @@
     window.scrollTo(0, 0);
   }
 
+  // Demo data
   const profiles = [
-    { name: 'Sarah Chen', title: 'Senior Software Engineer', company: 'Upstart', location: 'San Francisco Bay Area', years: 8, skills:['Python', 'React', 'AWS', 'Kubernetes', 'Docker', 'TypeScript'] },
-    { name: 'Michael Rodriguez', title: 'Lead Backend Engineer', company: 'Stripe', location: 'San Francisco Bay Area', years: 6, skills:['Node.js', 'Python', 'PostgreSQL', 'Redis', 'AWS', 'Go'] },
-    { name: 'Emily Thompson', title: 'Full Stack Developer', company: 'Notion', location: 'San Francisco Bay Area', years: 5, skills:['React', 'TypeScript', 'Node.js', 'MongoDB', 'AWS'] },
-    { name: 'James Kim', title: 'Staff Software Engineer', company: 'Persona', location: 'San Francisco Bay Area', years: 10, skills:['Java', 'React', 'AWS', 'Kubernetes', 'GraphQL', 'Python'] },
-    { name: 'David Patel', title: 'Senior Frontend Engineer', company: 'Figma', location: 'San Francisco Bay Area', years: 7, skills: ['React', 'TypeScript', 'WebGL', 'CSS', 'JavaScript'] },
-    { name: 'Jennifer Williams', title: 'Data Engineer', company: 'Databricks', location: 'San Francisco Bay Area', years: 5, skills:['Python', 'Spark', 'AWS', 'SQL', 'Kafka'] },
-    { name: 'Alex Martinez', title: 'DevOps Engineer', company: 'HashiCorp', location: 'San Francisco Bay Area', years: 6, skills:['Kubernetes', 'Docker', 'Terraform', 'AWS', 'Python', 'Go'] },
-    { name: 'Maria Garcia', title: 'ML Engineer', company: 'OpenAI', location: 'San Francisco Bay Area', years: 4, skills: ['Python', 'TensorFlow', 'PyTorch', 'AWS', 'Kubernetes'] }
+    { name:'Sarah Chen',       title:'Senior Software Engineer',  company:'Upstart',      location:'San Francisco Bay Area', years:8,  skills:['Python','React','AWS','Kubernetes','Docker','TypeScript'] },
+    { name:'Michael Rodriguez',title:'Lead Backend Engineer',     company:'Stripe',       location:'San Francisco Bay Area', years:6,  skills:['Node.js','Python','PostgreSQL','Redis','AWS','Go'] },
+    { name:'Emily Thompson',   title:'Full Stack Developer',      company:'Notion',       location:'San Francisco Bay Area', years:5,  skills:['React','TypeScript','Node.js','MongoDB','AWS'] },
+    { name:'James Kim',        title:'Staff Software Engineer',   company:'Persona',      location:'San Francisco Bay Area', years:10, skills:['Java','React','AWS','Kubernetes','GraphQL','Python'] },
+    { name:'David Patel',      title:'Senior Frontend Engineer',  company:'Figma',        location:'San Francisco Bay Area', years:7,  skills:['React','TypeScript','WebGL','CSS','JavaScript'] },
+    { name:'Jennifer Williams',title:'Data Engineer',             company:'Databricks',   location:'San Francisco Bay Area', years:5,  skills:['Python','Spark','AWS','SQL','Kafka'] },
+    { name:'Alex Martinez',    title:'DevOps Engineer',           company:'HashiCorp',    location:'San Francisco Bay Area', years:6,  skills:['Kubernetes','Docker','Terraform','AWS','Python','Go'] },
+    { name:'Maria Garcia',     title:'ML Engineer',               company:'OpenAI',       location:'San Francisco Bay Area', years:4,  skills:['Python','TensorFlow','PyTorch','AWS','Kubernetes'] }
   ];
 
   function runDemo() {
-    const jobTitle = document.getElementById('demoJobTitle').value.toLowerCase();
+    const jobTitle  = document.getElementById('demoJobTitle').value.toLowerCase();
     const inputSkills = document.getElementById('demoSkills').value.split(',').map(s => s.trim().toLowerCase());
-    const experience = document.getElementById('demoExperience').value;
-    const location = document.getElementById('demoLocation').value.toLowerCase();
-    const container = document.getElementById('resultsContainer');
+    const experience  = document.getElementById('demoExperience').value;
+    const location    = document.getElementById('demoLocation').value.toLowerCase();
+    const container   = document.getElementById('resultsContainer');
 
-    container.innerHTML = '<div style="text-align:center; padding:48px 0;"><div class="mono" style="font-size:10px; color:var(--accent); letter-spacing:0.2em; animation: pulse 1s infinite;">SOURCING CANDIDATES · AI RANKING...</div></div>';
+    container.innerHTML = `<div style="padding:48px 0; text-align:center;">
+      <div style="font-family:var(--mono); font-size:10px; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase;">Sourcing candidates · AI ranking...</div>
+    </div>`;
 
     setTimeout(() => {
       const scored = profiles.map(p => {
@@ -1481,38 +1944,41 @@
         else if (jobTitle.includes('engineer') && p.title.toLowerCase().includes('engineer')) score += 30;
         const matched = p.skills.filter(s => inputSkills.some(i => s.toLowerCase().includes(i) || i.includes(s.toLowerCase())));
         score += Math.min(45, matched.length * 11);
-        const expNums = experience.split('-').map(e => parseInt(e.replace('+', '')));
+        const expNums = experience.split('-').map(e => parseInt(e.replace('+','')));
         if (experience.includes('+') && p.years >= expNums[0]) score += 10;
         else if (expNums.length === 2 && p.years >= expNums[0] && p.years <= expNums[1]) score += 10;
         if (p.location.toLowerCase().includes(location.split(' ')[0])) score += 5;
         return { ...p, score: Math.min(97, score), matched };
-      }).sort((a, b) => b.score - a.score).filter(p => p.score > 25).slice(0, 5);
+      }).sort((a,b) => b.score - a.score).filter(p => p.score > 25).slice(0,5);
 
       if (!scored.length) {
-        container.innerHTML = '<div style="text-align:center; padding:60px 0; color:rgba(245,243,255,0.2);" class="mono">No matches — try broader criteria</div>';
+        container.innerHTML = `<div style="text-align:center; padding:60px 0; font-family:var(--mono); font-size:11px; color:var(--text3);">No matches — try broader criteria</div>`;
         return;
       }
 
       container.innerHTML = scored.map((c, i) => {
         const rec = c.score >= 75 ? 'Hire' : c.score >= 50 ? 'Maybe' : 'Pass';
-        const recClass = c.score >= 75 ? 'score-high' : c.score >= 50 ? 'score-mid' : 'score-low';
+        const cls = c.score >= 75 ? 'score-high' : c.score >= 50 ? 'score-mid' : 'score-low';
+        const skillChips = c.skills.slice(0,4).map(s => {
+          const isMatch = c.matched.includes(s);
+          return `<span class="skill-chip ${isMatch ? 'skill-match' : 'skill-normal'}">${s}</span>`;
+        }).join('');
         return `
-          <div class="result-card fade-up" style="animation-delay:${i * 80}ms">
+          <div class="result-card fade-up" style="animation-delay:${i*70}ms">
             <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
               <div>
-                <div style="font-size:14px; font-weight:700; margin-bottom:2px;">${c.name}</div>
-                <div class="mono" style="font-size:10px; color:rgba(245,243,255,0.4);">${c.title} · ${c.company}</div>
+                <div style="font-size:14px; font-weight:700; margin-bottom:3px;">${c.name}</div>
+                <div style="font-family:var(--mono); font-size:10px; color:var(--text3); letter-spacing:0.05em;">${c.title} · ${c.company}</div>
               </div>
               <div style="display:flex; gap:8px; align-items:center; flex-shrink:0;">
-                <span class="mono" style="font-size:20px; font-weight:700; color:var(--accent);">${c.score}</span>
-                <span class="score-pill ${recClass}">${rec}</span>
+                <span style="font-family:var(--mono); font-size:22px; font-weight:700; color:var(--accent);">${c.score}</span>
+                <span class="score-pill ${cls}">${rec}</span>
               </div>
             </div>
-            <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;">
-              ${c.skills.slice(0,4).map(s => `<span class="mono" style="font-size:9px; padding:3px 8px; background:${c.matched.includes(s) ? 'rgba(168,85,247,0.15); color:var(--accent); border:1px solid var(--accent-border)' : 'rgba(255,255,255,0.05); color:rgba(245,243,255,0.35); border:1px solid var(--white-border)'};">${s}</span>`).join('')}
-            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:5px; margin-top:6px;">${skillChips}</div>
           </div>`;
-      }).join('') + `<div class="mono" style="font-size:9px; color:rgba(245,243,255,0.2); text-align:center; margin-top:16px; letter-spacing:0.1em;">SHOWING ${scored.length} MATCHES · DEMO DATABASE</div>`;
+      }).join('') +
+      `<div style="font-family:var(--mono); font-size:9px; color:var(--text3); text-align:center; margin-top:14px; letter-spacing:0.1em; text-transform:uppercase;">Showing ${scored.length} matches · Demo database</div>`;
     }, 1800);
   }
 
@@ -1520,8 +1986,8 @@
     try {
       showLoading('Creating checkout...');
       const r = await fetch(`${WORKER_URL}/api/create-checkout`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
         body: JSON.stringify({ product })
       });
       const d = await r.json();
@@ -1538,8 +2004,8 @@
     try {
       showLoading('Validating...');
       const r = await fetch(`${WORKER_URL}/api/validate-token`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
         body: JSON.stringify({ token })
       });
       const result = await r.json();
@@ -1557,65 +2023,61 @@
     showLoading('Loading The Croupier...');
     try {
       const r = await fetch(`${WORKER_URL}/api/get-usage`, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        method:'POST', headers:{'Content-Type':'application/json'},
         body: JSON.stringify({ token })
       });
       const d = await r.json();
       closeLoading();
 
-      const usage = d.usage || {};
-      const pct = Math.min(100, ((usage.candidates_found / usage.limit) * 100)).toFixed(1);
-      const color = pct >= 90 ? '#f87171' : pct >= 75 ? '#fbbf24' : 'var(--accent)';
-      const dashUrl = product === 'croupier' ? 'https://croupier-site.vercel.app/' : '#';
+      const usage   = d.usage || {};
+      const pct     = Math.min(100, ((usage.candidates_found / usage.limit) * 100)).toFixed(1);
+      const barColor = pct >= 90 ? 'var(--red)' : pct >= 75 ? 'var(--yellow)' : 'var(--accent)';
+      const dashUrl  = product === 'croupier' ? 'https://croupier-site.vercel.app/' : '#';
       const isCancelling = d.cancelling || d.status === 'cancelling';
-      const cancelsAt = d.cancels_at
-        ? new Date(d.cancels_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
-        : null;
+      const cancelsAt = d.cancels_at ? new Date(d.cancels_at).toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' }) : null;
 
       const statusBadge = isCancelling
-        ? `<div style="background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.3);padding:12px 16px;margin-bottom:28px;display:flex;align-items:center;gap:10px;">
-             <span style="color:#fbbf24;font-size:12px;">⏳</span>
-             <span class="mono" style="font-size:10px;color:#fbbf24;letter-spacing:0.1em;">Cancels ${cancelsAt} — full access until then</span>
+        ? `<div style="background:rgba(247,211,90,0.08);border:1px solid rgba(247,211,90,0.25);padding:11px 14px;margin-bottom:24px;display:flex;align-items:center;gap:10px;">
+             <span style="font-family:var(--mono);font-size:10px;color:var(--yellow);letter-spacing:0.1em;">Cancels ${cancelsAt} — full access until then</span>
            </div>`
         : d.status === 'past_due'
-        ? `<div style="background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.3);padding:12px 16px;margin-bottom:28px;">
-             <span class="mono" style="font-size:10px;color:#f87171;letter-spacing:0.1em;">⚠ Payment past due — update billing to avoid losing access</span>
+        ? `<div style="background:rgba(247,96,96,0.08);border:1px solid rgba(247,96,96,0.25);padding:11px 14px;margin-bottom:24px;">
+             <span style="font-family:var(--mono);font-size:10px;color:var(--red);letter-spacing:0.1em;">Payment past due — update billing to avoid losing access</span>
            </div>`
         : '';
 
       const cancelButton = isCancelling
-        ? `<div class="mono" style="font-size:9px;color:rgba(245,243,255,0.25);text-align:center;padding:14px;letter-spacing:0.1em;">CANCELLATION ALREADY SCHEDULED</div>`
-        : `<button
-             onclick="cancelSubscription('${token}', this)"
-             style="width:100%;padding:14px;background:transparent;border:1px solid rgba(248,113,113,0.3);color:rgba(248,113,113,0.6);font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.15em;cursor:pointer;transition:all 0.2s;"
-             onmouseover="this.style.borderColor='#f87171';this.style.color='#f87171'"
-             onmouseout="this.style.borderColor='rgba(248,113,113,0.3)';this.style.color='rgba(248,113,113,0.6)'">
+        ? `<div style="font-family:var(--mono);font-size:9px;color:var(--text3);text-align:center;padding:12px;letter-spacing:0.1em;text-transform:uppercase;">Cancellation already scheduled</div>`
+        : `<button onclick="cancelSubscription('${token}', this)"
+             style="width:100%;padding:12px;background:transparent;border:1px solid rgba(247,96,96,0.25);color:rgba(247,96,96,0.6);font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.12em;cursor:pointer;transition:all 0.15s;border-radius:2px;"
+             onmouseover="this.style.borderColor='var(--red)';this.style.color='var(--red)'"
+             onmouseout="this.style.borderColor='rgba(247,96,96,0.25)';this.style.color='rgba(247,96,96,0.6)'">
              Cancel Subscription
            </button>`;
 
       const modal = document.createElement('div');
       modal.id = 'dashboard-modal';
-      modal.style.cssText = 'position:fixed;inset:0;background:rgba(11,4,22,0.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;';
+      modal.style.cssText = 'position:fixed;inset:0;background:rgba(9,7,15,0.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;';
       modal.innerHTML = `
-        <div style="background:var(--ink);border:1px solid var(--accent-border);max-width:540px;width:100%;padding:60px 48px;">
-          <div class="mono" style="font-size:9px;color:var(--accent);letter-spacing:0.3em;margin-bottom:16px;">ACCESS GRANTED</div>
-          <h2 style="font-size:2.5rem;font-weight:800;letter-spacing:-0.04em;margin-bottom:40px;">${product === 'croupier' ? 'The Croupier' : 'The Stack'}</h2>
+        <div style="background:var(--bg2);border:1px solid var(--accent-border);max-width:480px;width:100%;padding:48px 40px;">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:0.25em;text-transform:uppercase;margin-bottom:14px;">Access Granted</div>
+          <h2 style="font-size:2rem;font-weight:800;letter-spacing:-0.04em;margin-bottom:36px;">${product === 'croupier' ? 'The Croupier' : 'The Stack'}</h2>
           ${statusBadge}
-          <div style="margin-bottom:32px;">
+          <div style="margin-bottom:28px;">
             <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
-              <span class="mono" style="font-size:10px;color:rgba(245,243,255,0.4);letter-spacing:0.1em;">MONTHLY USAGE</span>
-              <span class="mono" style="font-size:10px;color:var(--accent);">${(usage.candidates_found||0).toLocaleString()} / ${(usage.limit||0).toLocaleString()}</span>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;">Monthly Usage</span>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--accent);">${(usage.candidates_found||0).toLocaleString()} / ${(usage.limit||0).toLocaleString()}</span>
             </div>
-            <div style="height:4px;background:rgba(255,255,255,0.08);width:100%;">
-              <div style="height:4px;background:${color};width:${pct}%;transition:width 0.6s;"></div>
+            <div style="height:3px;background:var(--bg3);width:100%;border-radius:2px;">
+              <div style="height:3px;background:${barColor};width:${pct}%;transition:width 0.6s;border-radius:2px;"></div>
             </div>
-            <div style="display:flex;justify-content:space-between;margin-top:8px;">
-              <span class="mono" style="font-size:9px;color:rgba(245,243,255,0.25);">${pct}% used</span>
-              <span class="mono" style="font-size:9px;color:rgba(245,243,255,0.25);">${usage.searches_this_month||0} searches</span>
+            <div style="display:flex;justify-content:space-between;margin-top:6px;">
+              <span style="font-family:var(--mono);font-size:9px;color:var(--text3);">${pct}% used</span>
+              <span style="font-family:var(--mono);font-size:9px;color:var(--text3);">${usage.searches_this_month||0} searches</span>
             </div>
           </div>
-          <a href="${dashUrl}" target="_blank" style="display:block;width:100%;padding:18px;background:var(--accent);color:var(--ink);font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.2em;text-align:center;text-decoration:none;font-weight:500;margin-bottom:12px;">Open The Croupier →</a>
-          <button onclick="document.getElementById('dashboard-modal').remove()" style="width:100%;padding:14px;background:transparent;border:1px solid var(--white-border);color:rgba(245,243,255,0.4);font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.15em;cursor:pointer;margin-bottom:12px;">Close</button>
+          <a href="${dashUrl}" target="_blank" style="display:block;width:100%;padding:15px;background:var(--accent);color:var(--bg);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.15em;text-align:center;text-decoration:none;font-weight:700;margin-bottom:10px;border-radius:2px;">Open The Croupier</a>
+          <button onclick="document.getElementById('dashboard-modal').remove()" style="width:100%;padding:12px;background:transparent;border:1px solid var(--border2);color:var(--text2);font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.12em;cursor:pointer;margin-bottom:10px;border-radius:2px;">Close</button>
           <div id="cancel-area">${cancelButton}</div>
         </div>`;
       document.body.appendChild(modal);
@@ -1623,29 +2085,21 @@
   }
 
   async function cancelSubscription(token, btn) {
-    const confirmed = confirm(
-      'Are you sure you want to cancel?\n\nYou keep full access until the end of your current billing period. No refunds are issued for partial months.'
-    );
+    const confirmed = confirm('Are you sure you want to cancel?\n\nYou keep full access until the end of your current billing period. No refunds are issued for partial months.');
     if (!confirmed) return;
-
     btn.disabled = true;
     btn.textContent = 'Cancelling...';
-
     try {
       const r = await fetch(`${WORKER_URL}/api/cancel-subscription`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method:'POST', headers:{'Content-Type':'application/json'},
         body: JSON.stringify({ token })
       });
       const d = await r.json();
-
       if (d.success) {
-        const cancelsAt = d.cancels_at
-          ? new Date(d.cancels_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
-          : 'end of billing period';
+        const cancelsAt = d.cancels_at ? new Date(d.cancels_at).toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'}) : 'end of billing period';
         document.getElementById('cancel-area').innerHTML = `
-          <div style="background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.3);padding:12px 16px;text-align:center;">
-            <span class="mono" style="font-size:10px;color:#fbbf24;letter-spacing:0.1em;">⏳ Cancels ${cancelsAt} — full access until then</span>
+          <div style="background:rgba(247,211,90,0.08);border:1px solid rgba(247,211,90,0.25);padding:11px 14px;text-align:center;">
+            <span style="font-family:var(--mono);font-size:10px;color:var(--yellow);letter-spacing:0.1em;">Cancels ${cancelsAt} — full access until then</span>
           </div>`;
       } else {
         btn.disabled = false;
@@ -1662,8 +2116,8 @@
   function showLoading(msg) {
     const m = document.createElement('div');
     m.id = 'loading-modal';
-    m.style.cssText = 'position:fixed;inset:0;background:rgba(11,4,22,0.9);z-index:9999;display:flex;align-items:center;justify-content:center;';
-    m.innerHTML = `<div class="mono" style="font-size:10px;color:var(--accent);letter-spacing:0.3em;text-transform:uppercase;">${msg}</div>`;
+    m.style.cssText = 'position:fixed;inset:0;background:rgba(9,7,15,0.92);z-index:9999;display:flex;align-items:center;justify-content:center;';
+    m.innerHTML = `<div style="font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:0.25em;text-transform:uppercase;">${msg}</div>`;
     document.body.appendChild(m);
   }
 
