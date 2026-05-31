@@ -1206,6 +1206,120 @@
 
     .notice-text { font-size: 14px; color: var(--text2); }
 
+    /* ─── DOWNLOAD SECTION ─── */
+    .download-block {
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+    }
+
+    .download-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      padding: 36px 40px;
+      flex-wrap: wrap;
+    }
+
+    .download-meta-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .download-filename {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .download-specs {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .download-spec {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text3);
+      letter-spacing: 0.08em;
+    }
+
+    .download-sep {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--border2);
+    }
+
+    .download-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .btn-download {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 13px 28px;
+      font-weight: 700;
+      transition: background 0.15s, transform 0.1s;
+      border-radius: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .btn-download:hover { background: #c084fc; transform: translateY(-1px); }
+
+    .download-subtext {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--text3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .smartscreen-notice {
+      border-top: 1px solid var(--border);
+      padding: 14px 40px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: rgba(247,211,90,0.03);
+    }
+
+    .smartscreen-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--yellow);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+      padding-top: 2px;
+      white-space: nowrap;
+    }
+
+    .smartscreen-text {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text3);
+      line-height: 1.75;
+      letter-spacing: 0.02em;
+    }
+
     /* RESPONSIVE */
     @media (max-width: 900px) {
       .hero-visual { display: none; }
@@ -1221,6 +1335,9 @@
       .demo-grid { grid-template-columns: 1fr; }
       nav { padding: 0 20px; gap: 20px; }
       .nav-links { display: none; }
+      .download-main { flex-direction: column; align-items: flex-start; }
+      .download-actions { align-items: flex-start; }
+      .smartscreen-notice { padding: 14px 20px; }
     }
   </style>
 </head>
@@ -1344,14 +1461,16 @@
       <span class="marquee-item"><span class="m-dot green"></span>Zero Data Sharing</span>
       <span class="marquee-item"><span class="m-dot"></span>3-Day Free Trial</span>
       <span class="marquee-item"><span class="m-dot green"></span>Llama 4 Instruct</span>
-      <span class="marquee-item"><span class="m-dot"></span>Private AI Model</span>
-      <span class="marquee-item"><span class="m-dot green"></span>LinkedIn Sourcing</span>
-      <span class="marquee-item"><span class="m-dot"></span>Automated Outreach</span>
-      <span class="marquee-item"><span class="m-dot green"></span>Competitor Intelligence</span>
-      <span class="marquee-item"><span class="m-dot"></span>AI Candidate Ranking</span>
-      <span class="marquee-item"><span class="m-dot green"></span>Zero Data Sharing</span>
-      <span class="marquee-item"><span class="m-dot"></span>3-Day Free Trial</span>
-      <span class="marquee-item"><span class="m-dot green"></span>Llama 4 Instruct</span>
+      <span class="marquee-item"><span class="m-dot"></span>Windows Desktop App</span>
+      <span class="marquee-item"><span class="m-dot green"></span>Private AI Model</span>
+      <span class="marquee-item"><span class="m-dot"></span>LinkedIn Sourcing</span>
+      <span class="marquee-item"><span class="m-dot green"></span>Automated Outreach</span>
+      <span class="marquee-item"><span class="m-dot"></span>Competitor Intelligence</span>
+      <span class="marquee-item"><span class="m-dot green"></span>AI Candidate Ranking</span>
+      <span class="marquee-item"><span class="m-dot"></span>Zero Data Sharing</span>
+      <span class="marquee-item"><span class="m-dot green"></span>3-Day Free Trial</span>
+      <span class="marquee-item"><span class="m-dot"></span>Llama 4 Instruct</span>
+      <span class="marquee-item"><span class="m-dot green"></span>Windows Desktop App</span>
     </div>
   </div>
 
@@ -1381,6 +1500,7 @@
             <span class="ptag">Private AI</span>
             <span class="ptag">Profile Search</span>
             <span class="ptag">AI Scoring</span>
+            <span class="ptag">Windows App</span>
           </div>
           <div class="product-footer">
             <div class="product-price">$149<span>/mo</span></div>
@@ -1656,6 +1776,66 @@
     </div>
   </div>
 
+  <!-- ═══════════════════════════════════════════════
+       DOWNLOAD SECTION  ←  NEW SECTION
+       ─────────────────────────────────────────────
+       IMPORTANT: Replace the href in .btn-download
+       with your actual public URL once you upload the
+       file. Recommended options:
+         • GitHub Releases:
+           https://github.com/saltycaker/dealers-choice-website/raw/refs/heads/main/releases/latest/download/TheCroupierSetup.exe
+         • Direct web server:
+           https://yourdomain.com/downloads/TheCroupierSetup.exe
+         • Amazon S3 / Cloudflare R2 public bucket URL
+  ═══════════════════════════════════════════════ -->
+  <div style="max-width:1200px; margin:0 auto; padding:0 32px 56px; border-bottom:1px solid var(--border);">
+    <p class="section-label">Desktop Application</p>
+    <h2 style="font-size:2rem; font-weight:800; letter-spacing:-0.03em; margin-bottom:36px;">Download for Windows (beta)</h2>
+
+    <div class="download-block">
+      <div class="download-main">
+        <div>
+          <div class="download-meta-label">Windows Desktop App (beta)</div>
+          <div class="download-filename">TheCroupierSetup.exe</div>
+          <div class="download-specs">
+            <span class="download-spec">v1.0.0</span>
+            <span class="download-sep">·</span>
+            <span class="download-spec">Windows 10 / 11</span>
+            <span class="download-sep">·</span>
+            <span class="download-spec">64-bit</span>
+            <span class="download-sep">·</span>
+            <span class="download-spec">~24 MB</span>
+          </div>
+        </div>
+        <div class="download-actions">
+          <!-- ↓ REPLACE THIS HREF WITH YOUR ACTUAL DOWNLOAD URL ↓ -->
+          <a href="https://github.com/saltycaker/dealers-choice-website/raw/refs/heads/main/releases/latest/download/TheCroupierSetup.exe"
+             download="TheCroupierSetup.exe"
+             class="btn-download">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+              <path d="M7 1v8M4 6l3 3 3-3M2 11h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Download for Windows (beta)
+          </a>
+          <span class="download-subtext">Requires active subscription to use</span>
+        </div>
+      </div>
+
+      <div class="smartscreen-notice">
+        <span class="smartscreen-label">Windows Note</span>
+        <span class="smartscreen-text">
+          Windows SmartScreen may flag this installer as unrecognised software.
+          Click <strong style="color:var(--text2);">More info</strong> then
+          <strong style="color:var(--text2);">Run anyway</strong> to proceed.
+          This is standard for independently-distributed software and does not indicate any security issue.
+        </span>
+      </div>
+    </div>
+  </div>
+  <!-- ═══════════════════════════════════════════════
+       END DOWNLOAD SECTION
+  ═══════════════════════════════════════════════ -->
+
   <!-- INTERACTIVE DEMO -->
   <div style="max-width:1200px; margin:0 auto; padding:0 32px 56px;">
     <p class="section-label">Interactive Demo</p>
@@ -1908,6 +2088,14 @@
 <script>
   const WORKER_URL = 'https://payment-handler.bernardliatme.workers.dev';
 
+  // ─── IMPORTANT: Set your installer download URL here.
+  // This is used by the customer dashboard modal download button.
+  // Options:
+  //   GitHub Releases: 'https://github.com/saltycaker/dealers-choice-website/raw/refs/heads/main/releases/latest/download/TheCroupierSetup.exe'
+  //   Web server:      'https://yourdomain.com/downloads/TheCroupierSetup.exe'
+  //   S3 / R2:         your public bucket URL
+  const INSTALLER_URL = 'https://github.com/saltycaker/dealers-choice-website/raw/refs/heads/main/releases/latest/download/TheCroupierSetup.exe';
+
   function showPage(pageId) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
@@ -2076,7 +2264,11 @@
               <span style="font-family:var(--mono);font-size:9px;color:var(--text3);">${usage.searches_this_month||0} searches</span>
             </div>
           </div>
-          <a href="${dashUrl}" target="_blank" style="display:block;width:100%;padding:15px;background:var(--accent);color:var(--bg);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.15em;text-align:center;text-decoration:none;font-weight:700;margin-bottom:10px;border-radius:2px;">Open The Croupier</a>
+          <a href="${dashUrl}" target="_blank" style="display:block;width:100%;padding:15px;background:var(--accent);color:var(--bg);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.15em;text-align:center;text-decoration:none;font-weight:700;margin-bottom:8px;border-radius:2px;">Open The Croupier</a>
+          <a href="${INSTALLER_URL}" download="TheCroupierSetup.exe" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;background:transparent;border:1px solid var(--accent-border);color:var(--accent);font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.15em;text-align:center;text-decoration:none;margin-bottom:10px;border-radius:2px;box-sizing:border-box;transition:background 0.15s;" onmouseover="this.style.background='var(--accent-dim)'" onmouseout="this.style.background='transparent'">
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1v8M4 6l3 3 3-3M2 11h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Download Windows App
+          </a>
           <button onclick="document.getElementById('dashboard-modal').remove()" style="width:100%;padding:12px;background:transparent;border:1px solid var(--border2);color:var(--text2);font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.12em;cursor:pointer;margin-bottom:10px;border-radius:2px;">Close</button>
           <div id="cancel-area">${cancelButton}</div>
         </div>`;
