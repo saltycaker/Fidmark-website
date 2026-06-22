@@ -240,6 +240,48 @@
     .partner-sep-dot { width: 4px; height: 4px; background: rgba(255,255,255,0.3); border-radius: 50%; }
     .partner-tld { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; color: rgba(255,255,255,0.4); }
 
+    /* ─── INTEGRATIONS SCROLL ─── */
+    .integrations-section {
+      padding: 60px 0; border-bottom: 1px solid var(--b);
+      background: var(--bg1); position: relative; z-index: 1; overflow: hidden;
+    }
+    .integrations-label {
+      font-family: var(--mono); font-size: 10px; text-transform: uppercase;
+      letter-spacing: 0.2em; color: var(--accent); text-align: center; margin-bottom: 32px;
+    }
+    .integrations-scroll {
+      display: flex; gap: 48px; padding: 20px 0;
+      animation: scrollIntegrations 40s linear infinite;
+    }
+    .integration-card {
+      flex-shrink: 0; background: var(--card); border: 1px solid var(--b);
+      border-radius: 12px; padding: 24px 32px; min-width: 200px;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .integration-card:hover {
+      border-color: rgba(168,85,247,0.3); transform: translateY(-4px);
+    }
+    .integration-icon {
+      font-size: 32px; font-weight: 700; color: var(--t1);
+    }
+    .integration-name {
+      font-family: var(--mono); font-size: 11px; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--t2);
+    }
+    .integration-tag {
+      font-family: var(--mono); font-size: 8px; text-transform: uppercase;
+      letter-spacing: 0.1em; padding: 3px 8px; border-radius: 4px;
+      background: rgba(168,85,247,0.1); color: var(--accent); border: 1px solid rgba(168,85,247,0.2);
+    }
+    @keyframes scrollIntegrations {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .integrations-scroll:hover {
+      animation-play-state: paused;
+    }
+
     /* ─── SECTION SHARED ─── */
     .sw { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
     .sec-label {
@@ -652,6 +694,75 @@
         <span class="partner-sep-dot"></span>
         <span class="partner-tld">asqsys.ma</span>
       </a>
+    </div>
+  </div>
+
+  <!-- INTEGRATIONS -->
+  <div class="integrations-section">
+    <div class="integrations-label reveal">Native Integrations</div>
+    <div class="integrations-scroll">
+      <!-- First set -->
+      <div class="integration-card">
+        <div class="integration-icon">🎯</div>
+        <div class="integration-name">100Hires</div>
+        <div class="integration-tag">ATS</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon">🤝</div>
+        <div class="integration-name">Recruitee</div>
+        <div class="integration-tag">ATS</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon">🎷</div>
+        <div class="integration-name">JazzHR</div>
+        <div class="integration-tag">ATS</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon">🐘</div>
+        <div class="integration-name">Odoo</div>
+        <div class="integration-tag">HRMS</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon">🧠</div>
+        <div class="integration-name">SmartSuite</div>
+        <div class="integration-tag">CRM</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon">⚡</div>
+        <div class="integration-name">Custom</div>
+        <div class="integration-tag">API</div>
+      </div>
+      <!-- Duplicate for seamless scroll -->
+      <div class="integration-card">
+        <div class="integration-icon">🎯</div>
+        <div class="integration-name">100Hires</div>
+        <div class="integration-tag">ATS</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon">🤝</div>
+        <div class="integration-name">Recruitee</div>
+        <div class="integration-tag">ATS</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon">🎷</div>
+        <div class="integration-name">JazzHR</div>
+        <div class="integration-tag">ATS</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon">🐘</div>
+        <div class="integration-name">Odoo</div>
+        <div class="integration-tag">HRMS</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon">🧠</div>
+        <div class="integration-name">SmartSuite</div>
+        <div class="integration-tag">CRM</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon">⚡</div>
+        <div class="integration-name">Custom</div>
+        <div class="integration-tag">API</div>
+      </div>
     </div>
   </div>
 
