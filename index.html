@@ -1110,7 +1110,7 @@
     <article class="docs-main">
       <h2 id="api-getting-started">Getting Started</h2>
       <p>The Croupier API lets you integrate AI-powered candidate discovery directly into your existing tools. Every request is authenticated, rate-limited, and returns structured JSON.</p>
-      <p>To get started, you'll need an API key. API access is available on Growth and Enterprise plans, or as a custom integration. Reach out to our team to enable API access for your account.</p>
+      <p>To get started, you'll need an API key. API access is a <strong>separate offering</strong> from our web plans and requires a custom agreement. This protects against abuse and ensures your volume is properly supported. Reach out to our team to request access.</p>
 
       <h2 id="api-authentication">Authentication</h2>
       <p>All API requests require a Bearer token in the <code>Authorization</code> header. Tokens are scoped to your account and carry the same permissions as your web dashboard.</p>
@@ -1118,12 +1118,11 @@
       <p>Never expose your API token in client-side code or public repositories. Rotate tokens periodically from your account settings.</p>
 
       <h2 id="api-rate-limits">Rate Limits</h2>
-      <p>Rate limits are enforced per account and vary by plan:</p>
+      <p>Rate limits are negotiated per account based on your expected volume and use case. We do not offer self-serve API access — every API account is reviewed before credentials are issued. This prevents abuse and protects the platform for all users.</p>
       <ul>
-        <li><strong>Starter:</strong> Not included — API access requires upgrade</li>
-        <li><strong>Growth:</strong> 100 requests / minute</li>
-        <li><strong>Enterprise:</strong> 500 requests / minute</li>
-        <li><strong>Custom:</strong> Tailored to your volume</li>
+        <li><strong>Standard:</strong> 100 requests / minute — suitable for small teams and ATS integrations</li>
+        <li><strong>High Volume:</strong> 500 requests / minute — suitable for enterprise workflows and bulk operations</li>
+        <li><strong>Custom:</strong> Tailored limits for large-scale integrations — contact us</li>
       </ul>
       <p>Rate limit headers are returned with every response:</p>
       <pre><code>X-RateLimit-Limit: 100
@@ -1251,7 +1250,7 @@ X-RateLimit-Reset: 1718900000</code></pre>
 
       <div class="docs-cta-box">
         <h3>Ready to integrate?</h3>
-        <p>API access is available on Growth and Enterprise plans, or as a custom integration. Our team will set you up with credentials, walk through your use case, and help you go live.</p>
+        <p>API access is a separate offering from our web plans. Every API account is reviewed before credentials are issued to prevent abuse and ensure proper support. Our team will set you up with credentials, walk through your use case, and help you go live.</p>
         <a href="mailto:sales@asqsys.com?subject=Croupier API Access Request" class="btn-primary">Contact Us →</a>
       </div>
     </article>
