@@ -287,12 +287,12 @@
     .products-section { padding: 96px 0; border-bottom: 1px solid var(--b); position: relative; z-index: 1; }
     .products-hd { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; gap: 20px; flex-wrap: wrap; }
     .products-count { font-family: var(--mono); font-size: 10px; color: var(--t4); letter-spacing: 0.1em; }
-    .products-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .products-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
     .pcard {
       background: var(--card); border: 1px solid var(--b); border-radius: 14px;
       padding: 28px; cursor: pointer; position: relative; display: flex;
       flex-direction: column; gap: 18px; transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-      overflow: hidden;
+      overflow: hidden; flex: 1 1 340px; max-width: 420px;
     }
     .pcard::before {
       content: ''; position: absolute; inset: 0; border-radius: inherit;
@@ -542,12 +542,49 @@
     .notice-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--yellow); margin-bottom: 6px; }
     .notice-text { font-size: 14px; color: var(--t2); }
 
+    /* DOCS LAYOUT */
+    .docs-layout { display: grid; grid-template-columns: 260px 1fr 220px; gap: 40px; max-width: 1200px; margin: 0 auto; padding: 32px 24px 80px; }
+    .docs-sidebar { position: sticky; top: 80px; height: calc(100vh - 100px); overflow-y: auto; padding-right: 16px; }
+    .docs-sidebar::-webkit-scrollbar { width: 4px; }
+    .docs-sidebar::-webkit-scrollbar-thumb { background: var(--b2); border-radius: 4px; }
+    .docs-nav-group { margin-bottom: 28px; }
+    .docs-nav-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--t4); margin-bottom: 10px; }
+    .docs-nav-link { display: block; font-size: 13px; color: var(--t3); padding: 5px 0; transition: color 0.15s; cursor: pointer; border-left: 2px solid transparent; padding-left: 10px; margin-left: -12px; }
+    .docs-nav-link:hover, .docs-nav-link.active { color: var(--accent); border-left-color: var(--accent); }
+    .docs-main { min-width: 0; }
+    .docs-main h1 { font-family: var(--display); font-size: 2.8rem; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 16px; line-height: 1.1; }
+    .docs-main h2 { font-family: var(--display); font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; margin: 48px 0 16px; padding-bottom: 10px; border-bottom: 1px solid var(--b); }
+    .docs-main h3 { font-family: var(--display); font-size: 1.1rem; font-weight: 700; margin: 32px 0 12px; }
+    .docs-main p { font-size: 14px; color: var(--t2); line-height: 1.75; margin-bottom: 16px; }
+    .docs-main code { font-family: var(--mono); font-size: 12px; background: var(--bg3); padding: 2px 6px; border-radius: 4px; color: var(--accent2); }
+    .docs-main pre { background: var(--bg1); border: 1px solid var(--b); border-radius: 10px; padding: 20px; overflow-x: auto; margin: 20px 0; }
+    .docs-main pre code { background: none; padding: 0; font-size: 12px; color: var(--t2); display: block; line-height: 1.6; }
+    .docs-main ul { list-style: none; padding-left: 0; margin-bottom: 16px; }
+    .docs-main li { font-size: 14px; color: var(--t2); line-height: 1.75; padding-left: 16px; position: relative; margin-bottom: 8px; }
+    .docs-main li::before { content: '//'; font-family: var(--mono); color: var(--accent); font-size: 9px; position: absolute; left: 0; top: 3px; }
+    .docs-toc { position: sticky; top: 80px; height: calc(100vh - 100px); overflow-y: auto; padding-left: 16px; border-left: 1px solid var(--b); }
+    .docs-toc-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--t4); margin-bottom: 12px; }
+    .docs-toc-link { display: block; font-size: 12px; color: var(--t3); padding: 4px 0; transition: color 0.15s; cursor: pointer; }
+    .docs-toc-link:hover { color: var(--accent); }
+    .docs-toc-link.l2 { padding-left: 12px; }
+    .docs-cta-box { background: var(--card); border: 1px solid var(--b); border-radius: 14px; padding: 32px; margin-top: 48px; text-align: center; }
+    .docs-cta-box h3 { font-family: var(--display); font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
+    .docs-cta-box p { font-size: 13px; color: var(--t2); margin-bottom: 20px; }
+    .docs-tag { display: inline-block; font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; padding: 4px 10px; border-radius: 4px; margin-bottom: 8px; }
+    .docs-tag.get { background: rgba(74,222,128,0.1); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
+    .docs-tag.post { background: rgba(168,85,247,0.1); color: var(--accent); border: 1px solid rgba(168,85,247,0.2); }
+    .endpoint-row { display: flex; align-items: center; gap: 12px; margin: 16px 0 8px; }
+    .endpoint-path { font-family: var(--mono); font-size: 13px; color: var(--t1); }
+    @media (max-width: 1100px) { .docs-layout { grid-template-columns: 220px 1fr; } .docs-toc { display: none; } }
+    @media (max-width: 768px) { .docs-layout { grid-template-columns: 1fr; } .docs-sidebar { display: none; } }
+
     /* RESPONSIVE */
     @media (max-width: 900px) {
       .tech-grid, .process-intro { grid-template-columns: 1fr; }
       .tech-left { border-right: none; border-bottom: 1px solid var(--b); padding: 60px 0; }
       .tech-right { padding: 60px 0; }
-      .products-grid, .features-grid, .steps-grid { grid-template-columns: 1fr; }
+      .features-grid, .steps-grid { grid-template-columns: 1fr; }
+      .products-grid { flex-direction: column; align-items: center; }
       .pricing-grid { grid-template-columns: 1fr; }
       .demo-grid { grid-template-columns: 1fr; }
       nav { padding: 0 16px; }
@@ -762,8 +799,8 @@
       <div class="features-grid">
         <div class="fcell reveal d1"><div class="fnum">01</div><div class="ftitle">AI Candidate Ranking</div><div class="fdesc">Every profile gets a 0–100 fit score with written reasoning. Hire, Maybe, Pass — decided by a fine-tuned model trained on recruitment outcomes, not generic text similarity.</div><span class="ftag">Private AI Model</span></div>
         <div class="fcell reveal d2"><div class="fnum">02</div><div class="ftitle">LinkedIn Sourcing at Scale</div><div class="fdesc">Search 100,000+ professional profiles by title, skills, location, and experience. Results in under 60 seconds via our authorised data pipeline. No $9k/yr recruiter seat needed.</div><span class="ftag">Authorised Data Access</span></div>
-        <div class="fcell reveal d3"><div class="fnum">03</div><div class="ftitle">Automated Email Outreach</div><div class="fdesc">The Stack generates personalised outreach emails and sends them at scale. Campaign parameters, tone, and targeting — configured once, delivered automatically to every match.</div><span class="ftag">Coming Q3 2026</span></div>
-        <div class="fcell reveal d4"><div class="fnum">04</div><div class="ftitle">Competitor Intelligence</div><div class="fdesc">The House Edge monitors competitor job postings in real time — tracking who they're hiring, what skills they're prioritising, and what salary ranges they're offering.</div><span class="ftag">Coming Q3 2026</span></div>
+        <div class="fcell reveal d3"><div class="fnum">03</div><div class="ftitle">REST API Access</div><div class="fdesc">Integrate candidate discovery and scoring directly into your existing ATS, CRM, or internal tools. Full REST API with JSON responses, webhooks, and rate-limited tiers.</div><span class="ftag">Croupier API</span></div>
+        <div class="fcell reveal d4"><div class="fnum">04</div><div class="ftitle">Private AI Scoring</div><div class="fdesc">Every candidate gets a 0–100 fit score with written reasoning from your dedicated fine-tuned Llama 4 Instruct model. Hire, Maybe, Pass — decided privately per account.</div><span class="ftag">Live Product</span></div>
         <div class="fcell reveal d5"><div class="fnum">05</div><div class="ftitle">Search History + Bookmarks</div><div class="fdesc">Every search is saved. Revisit past candidate pools, compare results across roles, and bookmark top candidates. Full CSV export on Growth and Enterprise plans.</div><span class="ftag">Included</span></div>
         <div class="fcell reveal d6"><div class="fnum">06</div><div class="ftitle">Real-Time AI Suggestions</div><div class="fdesc">As you type your job requirements, the AI suggests improvements — standardising job titles, expanding skill abbreviations, and correcting location formats before your search runs.</div><span class="ftag">Live Product</span></div>
       </div>
@@ -776,9 +813,9 @@
       <div class="products-hd reveal">
         <div>
           <span class="sec-label">The Suite</span>
-          <h2 class="sec-title">Three products.<br>One system.</h2>
+          <h2 class="sec-title">Two products.<br>One system.</h2>
         </div>
-        <span class="products-count">03 products</span>
+        <span class="products-count">02 products</span>
       </div>
       <div class="products-grid">
         <div class="pcard featured reveal d1" onclick="showPage('croupier')">
@@ -791,19 +828,15 @@
             <span style="font-family:var(--mono);font-size:10px;color:var(--t4);">FROM</span>
           </div>
         </div>
-        <div class="pcard reveal d2" onclick="showPage('stack')">
-          <div class="pcard-top"><span class="tag tag-beta">Q3 2026</span><span class="pcard-arrow">↗</span></div>
-          <div class="pname">The Stack</div>
-          <p class="pdesc">Automated outreach at scale. AI writes personalized emails for every candidate in your pipeline and delivers them automatically. Not templates — actual personalization that gets responses.</p>
-          <div class="ptags"><span class="ptag">AI Outreach</span><span class="ptag">10k Campaigns</span></div>
-          <div class="pfoot"><div class="pprice">$199<span>/mo</span></div></div>
-        </div>
-        <div class="pcard reveal d3" onclick="showPage('house-edge')">
-          <div class="pcard-top"><span class="tag tag-beta">Q3 2026</span><span class="pcard-arrow">↗</span></div>
-          <div class="pname">The House Edge</div>
-          <p class="pdesc">Competitive hiring intelligence. Monitor who your competitors are hiring, what skills they're targeting, and what salary ranges they're offering. Real-time job posting surveillance.</p>
-          <div class="ptags"><span class="ptag">Real-Time Intel</span><span class="ptag">Salary Data</span></div>
-          <div class="pfoot"><div class="pprice">$149<span>/mo</span></div></div>
+        <div class="pcard reveal d2" onclick="showPage('croupier-api')">
+          <div class="pcard-top"><span class="tag tag-live">Live Now</span><span class="pcard-arrow">↗</span></div>
+          <div class="pname">Croupier API</div>
+          <p class="pdesc">Programmatic access to our candidate discovery and ranking engine. Build custom workflows, integrate with your ATS, and automate sourcing at scale with full REST API coverage.</p>
+          <div class="ptags"><span class="ptag">REST API</span><span class="ptag">Webhooks</span><span class="ptag">JSON</span></div>
+          <div class="pfoot">
+            <div class="pprice">Custom</div>
+            <span style="font-family:var(--mono);font-size:10px;color:var(--t4);">CONTACT US</span>
+          </div>
         </div>
       </div>
     </div>
@@ -869,7 +902,7 @@
         <div class="step reveal d1"><div class="step-num">Step 01</div><div class="step-title">Define Requirements</div><div class="step-body">Enter job title, required skills, experience level, and location. The AI suggests improvements in real time before your search runs.</div></div>
         <div class="step reveal d2"><div class="step-num">Step 02</div><div class="step-title">AI Sources Candidates</div><div class="step-body">Our authorised pipeline surfaces profiles matching your criteria — experience, education, skills, and open-to-work status. Up to 100 candidates in under 60 seconds.</div></div>
         <div class="step reveal d3"><div class="step-num">Step 03</div><div class="step-title">Private AI Scores Every Profile</div><div class="step-body">Each candidate is scored 0–100 by your dedicated fine-tuned Llama 4 Instruct model. Strengths and concerns flagged. Hire, Maybe, Pass assigned — privately.</div></div>
-        <div class="step reveal d4"><div class="step-num">Step 04</div><div class="step-title">Act on Results</div><div class="step-body">View ranked candidates, bookmark favourites, export to CSV, and revisit past searches. Optionally trigger The Stack to automate outreach to your top matches.</div></div>
+        <div class="step reveal d4"><div class="step-num">Step 04</div><div class="step-title">Act on Results</div><div class="step-body">View ranked candidates, bookmark favourites, export to CSV, and revisit past searches. Full API access available for custom integrations and automation.</div></div>
       </div>
     </div>
   </section>
@@ -997,63 +1030,6 @@
 </div>
 
 <!-- ══════════════════════════════
-     STACK PAGE
-══════════════════════════════ -->
-<div id="stack" class="page">
-  <div class="back-nav"><span class="back-link" onclick="showPage('home')">← Dealer's Choice</span><span class="bc-sep">/</span><span class="bc-cur">The Stack</span></div>
-  <div style="padding:72px 24px 60px;max-width:1200px;margin:0 auto;">
-    <span class="tag tag-beta" style="margin-bottom:20px;display:inline-block;">Coming Q3 2026</span>
-    <h1 style="font-family:var(--display);font-size:clamp(3rem,9vw,7rem);font-weight:800;letter-spacing:-0.04em;line-height:0.92;margin:18px 0 20px;">THE<br>STACK</h1>
-    <p style="font-size:16px;color:var(--t2);max-width:500px;line-height:1.65;margin-bottom:52px;">Automated outreach at scale. AI generates personalized messages for every candidate and delivers them — without your team lifting a finger after setup.</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:40px;">
-      <div style="background:var(--card);border:1px solid var(--b);border-radius:14px;padding:32px;">
-        <div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:14px;">What It Does</div>
-        <div style="font-family:var(--display);font-size:18px;font-weight:700;margin-bottom:12px;">Personalized at Scale</div>
-        <p style="font-size:13px;color:var(--t2);line-height:1.7;">Every outreach email is written by AI — personalised to the candidate's profile, role, and company. Not mail-merge templates. Actual personalization that reads like a human wrote it.</p>
-      </div>
-      <div style="background:var(--card);border:1px solid var(--b);border-radius:14px;padding:32px;">
-        <div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:14px;">Capacity</div>
-        <div style="font-family:var(--display);font-size:18px;font-weight:700;margin-bottom:12px;">10,000 Campaigns</div>
-        <p style="font-size:13px;color:var(--t2);line-height:1.7;">One seat, 10,000 outreach campaigns per month. Configure your tone, schedule, and follow-up cadence — The Stack handles delivery, tracking, and response monitoring automatically.</p>
-      </div>
-    </div>
-    <div class="waitlist-notice">
-      <div><div class="notice-label">Product in Development</div><div class="notice-text">The Stack is completing final testing. Expected availability Q3 2026.</div></div>
-      <a href="mailto:sales@asqsys.com?subject=Join Waitlist - The Stack" class="btn-primary">Join Waitlist →</a>
-    </div>
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:28px 0;border-top:1px solid var(--b);margin-top:16px;">
-      <div><div style="font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Pricing</div><div style="font-family:var(--mono);font-size:40px;font-weight:700;color:var(--accent);letter-spacing:-0.03em;">$199<span style="font-size:14px;color:var(--t3);font-weight:400;">/mo</span></div></div>
-      <div style="font-family:var(--mono);font-size:11px;color:var(--t3);">10,000 Campaigns Included</div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════
-     HOUSE EDGE PAGE
-══════════════════════════════ -->
-<div id="house-edge" class="page">
-  <div class="back-nav"><span class="back-link" onclick="showPage('home')">← Dealer's Choice</span><span class="bc-sep">/</span><span class="bc-cur">The House Edge</span></div>
-  <div style="padding:72px 24px 60px;max-width:1200px;margin:0 auto;">
-    <span class="tag tag-beta" style="margin-bottom:20px;display:inline-block;">Coming Q3 2026</span>
-    <h1 style="font-family:var(--display);font-size:clamp(2.5rem,7vw,6rem);font-weight:800;letter-spacing:-0.04em;line-height:0.92;margin:18px 0 20px;">THE HOUSE<br>EDGE</h1>
-    <p style="font-size:16px;color:var(--t2);max-width:500px;line-height:1.65;margin-bottom:52px;">Real-time competitive hiring intelligence. Know exactly who your competitors are building their teams with — before the market does.</p>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:40px;">
-      <div style="background:var(--card);border:1px solid var(--b);border-radius:14px;padding:28px;"><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px;">Job Monitoring</div><div style="font-family:var(--display);font-size:16px;font-weight:700;margin-bottom:10px;">Live Job Tracking</div><div style="font-size:13px;color:var(--t2);line-height:1.65;">Every new posting from tracked competitors — surfaced in real time. Know what roles they're building and when.</div></div>
-      <div style="background:var(--card);border:1px solid var(--b);border-radius:14px;padding:28px;"><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px;">Skill Analysis</div><div style="font-family:var(--display);font-size:16px;font-weight:700;margin-bottom:10px;">Hiring Pattern Intel</div><div style="font-size:13px;color:var(--t2);line-height:1.65;">Identify which technologies and seniority levels competitors are prioritising before they become public.</div></div>
-      <div style="background:var(--card);border:1px solid var(--b);border-radius:14px;padding:28px;"><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px;">Salary Data</div><div style="font-family:var(--display);font-size:16px;font-weight:700;margin-bottom:10px;">Market Benchmarking</div><div style="font-size:13px;color:var(--t2);line-height:1.65;">Real-time salary range data from competitor postings. Stay competitive in the talent market.</div></div>
-    </div>
-    <div class="waitlist-notice">
-      <div><div class="notice-label">Product in Development</div><div class="notice-text">The House Edge is completing final testing. Expected availability Q3 2026.</div></div>
-      <a href="mailto:sales@asqsys.com?subject=Join Waitlist - House Edge" class="btn-primary">Join Waitlist →</a>
-    </div>
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:28px 0;border-top:1px solid var(--b);margin-top:16px;">
-      <div><div style="font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Pricing</div><div style="font-family:var(--mono);font-size:40px;font-weight:700;color:var(--accent);letter-spacing:-0.03em;">$149<span style="font-size:14px;color:var(--t3);font-weight:400;">/mo</span></div></div>
-      <div style="font-family:var(--mono);font-size:11px;color:var(--t3);">Real-Time Updates Included</div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════
      PRIVACY PAGE
 ══════════════════════════════ -->
 <div id="privacy" class="page">
@@ -1088,6 +1064,213 @@
       <h3 style="color:var(--t1);font-family:var(--display);font-size:18px;font-weight:700;">Contact</h3>
       <p>Questions? <a href="mailto:sales@asqsys.com" style="color:var(--accent);">sales@asqsys.com</a></p>
     </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     CROUPIER API DOCS PAGE
+══════════════════════════════ -->
+<div id="croupier-api" class="page">
+  <div class="back-nav">
+    <span class="back-link" onclick="showPage('home')">← Dealer's Choice</span>
+    <span class="bc-sep">/</span>
+    <span class="bc-cur">Croupier API</span>
+  </div>
+
+  <div style="padding:72px 24px 0;max-width:1200px;margin:0 auto;">
+    <span class="tag tag-live" style="margin-bottom:20px;display:inline-block;">Live Now</span>
+    <h1 style="font-family:var(--display);font-size:clamp(2.2rem,6vw,4.5rem);font-weight:800;letter-spacing:-0.04em;line-height:1;margin:12px 0 16px;">Croupier API</h1>
+    <p style="font-size:16px;color:var(--t2);max-width:600px;line-height:1.65;margin-bottom:32px;">Programmatic access to AI-powered candidate discovery and ranking. Integrate with your ATS, build custom workflows, and automate sourcing at scale.</p>
+  </div>
+
+  <div class="docs-layout">
+    <!-- LEFT SIDEBAR -->
+    <aside class="docs-sidebar">
+      <div class="docs-nav-group">
+        <div class="docs-nav-label">Overview</div>
+        <a class="docs-nav-link active" onclick="document.getElementById('api-getting-started').scrollIntoView({behavior:'smooth'})">Getting Started</a>
+        <a class="docs-nav-link" onclick="document.getElementById('api-authentication').scrollIntoView({behavior:'smooth'})">Authentication</a>
+        <a class="docs-nav-link" onclick="document.getElementById('api-rate-limits').scrollIntoView({behavior:'smooth'})">Rate Limits</a>
+      </div>
+      <div class="docs-nav-group">
+        <div class="docs-nav-label">Endpoints</div>
+        <a class="docs-nav-link" onclick="document.getElementById('api-search').scrollIntoView({behavior:'smooth'})">Search Candidates</a>
+        <a class="docs-nav-link" onclick="document.getElementById('api-rank').scrollIntoView({behavior:'smooth'})">Rank Profile</a>
+        <a class="docs-nav-link" onclick="document.getElementById('api-history').scrollIntoView({behavior:'smooth'})">Search History</a>
+        <a class="docs-nav-link" onclick="document.getElementById('api-webhooks').scrollIntoView({behavior:'smooth'})">Webhooks</a>
+      </div>
+      <div class="docs-nav-group">
+        <div class="docs-nav-label">Resources</div>
+        <a class="docs-nav-link" onclick="document.getElementById('api-errors').scrollIntoView({behavior:'smooth'})">Error Codes</a>
+        <a class="docs-nav-link" onclick="document.getElementById('api-sdks').scrollIntoView({behavior:'smooth'})">SDKs</a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <article class="docs-main">
+      <h2 id="api-getting-started">Getting Started</h2>
+      <p>The Croupier API lets you integrate AI-powered candidate discovery directly into your existing tools. Every request is authenticated, rate-limited, and returns structured JSON.</p>
+      <p>To get started, you'll need an API key. API access is available on Growth and Enterprise plans, or as a custom integration. Reach out to our team to enable API access for your account.</p>
+
+      <h2 id="api-authentication">Authentication</h2>
+      <p>All API requests require a Bearer token in the <code>Authorization</code> header. Tokens are scoped to your account and carry the same permissions as your web dashboard.</p>
+      <pre><code>Authorization: Bearer &lt;YOUR_API_TOKEN&gt;</code></pre>
+      <p>Never expose your API token in client-side code or public repositories. Rotate tokens periodically from your account settings.</p>
+
+      <h2 id="api-rate-limits">Rate Limits</h2>
+      <p>Rate limits are enforced per account and vary by plan:</p>
+      <ul>
+        <li><strong>Starter:</strong> Not included — API access requires upgrade</li>
+        <li><strong>Growth:</strong> 100 requests / minute</li>
+        <li><strong>Enterprise:</strong> 500 requests / minute</li>
+        <li><strong>Custom:</strong> Tailored to your volume</li>
+      </ul>
+      <p>Rate limit headers are returned with every response:</p>
+      <pre><code>X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 87
+X-RateLimit-Reset: 1718900000</code></pre>
+
+      <h2 id="api-search">Search Candidates</h2>
+      <div class="endpoint-row">
+        <span class="docs-tag get">GET</span>
+        <span class="endpoint-path">/v1/candidates/search</span>
+      </div>
+      <p>Search 100,000+ professional profiles by job title, skills, location, and experience. Returns a ranked list of candidates with AI fit scores.</p>
+      <h3>Query Parameters</h3>
+      <ul>
+        <li><code>job_title</code> — required. Target role, e.g. "Software Engineer"</li>
+        <li><code>skills</code> — comma-separated required skills</li>
+        <li><code>location</code> — city, region, or "Remote"</li>
+        <li><code>experience</code> — 1-3, 3-5, 5+, or 10+</li>
+        <li><code>limit</code> — max results, default 20, max 100</li>
+      </ul>
+      <h3>Example Request</h3>
+      <pre><code>curl -X GET "https://api.dealerschoice.systems/v1/candidates/search?job_title=Software+Engineer&skills=Python,React&location=San+Francisco&experience=5+&limit=20" \
+  -H "Authorization: Bearer sk_live_..." \
+  -H "Content-Type: application/json"</code></pre>
+      <h3>Example Response</h3>
+      <pre><code>{
+  "candidates": [
+    {
+      "id": "cand_7f8a9b2c",
+      "name": "Sarah Chen",
+      "title": "Senior Software Engineer",
+      "company": "Upstart",
+      "location": "San Francisco Bay Area",
+      "years_experience": 8,
+      "skills": ["Python", "React", "AWS", "Kubernetes"],
+      "ai_score": 96,
+      "verdict": "Hire",
+      "reasoning": "Strong technical match with deep cloud infrastructure experience..."
+    }
+  ],
+  "total": 1,
+  "search_id": "srch_3d2e1a4b"
+}</code></pre>
+
+      <h2 id="api-rank">Rank Profile</h2>
+      <div class="endpoint-row">
+        <span class="docs-tag post">POST</span>
+        <span class="endpoint-path">/v1/candidates/rank</span>
+      </div>
+      <p>Submit a candidate profile and receive an AI-generated fit score with written reasoning. Useful for evaluating applicants from your own pipeline.</p>
+      <h3>Request Body</h3>
+      <pre><code>{
+  "job_title": "Software Engineer",
+  "required_skills": ["Python", "React", "AWS"],
+  "candidate": {
+    "name": "Alex Rivera",
+    "title": "Backend Engineer",
+    "experience_years": 4,
+    "skills": ["Python", "Django", "PostgreSQL", "AWS"],
+    "location": "Remote"
+  }
+}</code></pre>
+      <h3>Response</h3>
+      <pre><code>{
+  "ai_score": 84,
+  "verdict": "Hire",
+  "reasoning": "Strong Python and AWS experience. Missing React but has solid backend fundamentals...",
+  "strengths": ["Python", "AWS"],
+  "concerns": ["Missing React frontend experience"]
+}</code></pre>
+
+      <h2 id="api-history">Search History</h2>
+      <div class="endpoint-row">
+        <span class="docs-tag get">GET</span>
+        <span class="endpoint-path">/v1/searches</span>
+      </div>
+      <p>List all searches performed by your account, with pagination and filtering by date range.</p>
+      <pre><code>curl -X GET "https://api.dealerschoice.systems/v1/searches?limit=50&from=2026-01-01" \
+  -H "Authorization: Bearer sk_live_..."</code></pre>
+
+      <h2 id="api-webhooks">Webhooks</h2>
+      <p>Receive real-time events when candidate searches complete or when new high-scoring candidates are discovered. Configure webhook endpoints from your dashboard.</p>
+      <h3>Event Types</h3>
+      <ul>
+        <li><code>search.completed</code> — triggered when a candidate search finishes</li>
+        <li><code>candidate.ranked</code> — triggered when a candidate scores above your threshold</li>
+        <li><code>subscription.updated</code> — triggered on plan changes</li>
+      </ul>
+      <h3>Webhook Payload</h3>
+      <pre><code>{
+  "event": "search.completed",
+  "timestamp": "2026-06-25T14:32:00Z",
+  "data": {
+    "search_id": "srch_3d2e1a4b",
+    "candidates_found": 42,
+    "top_score": 96
+  }
+}</code></pre>
+
+      <h2 id="api-errors">Error Codes</h2>
+      <p>All errors follow a consistent JSON structure:</p>
+      <pre><code>{
+  "error": {
+    "code": "rate_limit_exceeded",
+    "message": "You have exceeded your rate limit. Retry after 60 seconds.",
+    "status": 429
+  }
+}</code></pre>
+      <ul>
+        <li><code>400</code> — Bad Request — missing or invalid parameters</li>
+        <li><code>401</code> — Unauthorized — invalid or missing API token</li>
+        <li><code>403</code> — Forbidden — API access not enabled for this account</li>
+        <li><code>404</code> — Not Found — candidate or search ID does not exist</li>
+        <li><code>429</code> — Too Many Requests — rate limit exceeded</li>
+        <li><code>500</code> — Internal Server Error — contact support</li>
+      </ul>
+
+      <h2 id="api-sdks">SDKs</h2>
+      <p>Official SDKs are available for popular languages. Community contributions welcome.</p>
+      <ul>
+        <li><strong>Python:</strong> <code>pip install croupier-api</code></li>
+        <li><strong>JavaScript / Node.js:</strong> <code>npm install @dealerschoice/croupier-api</code></li>
+        <li><strong>Ruby:</strong> <code>gem install croupier</code></li>
+      </ul>
+
+      <div class="docs-cta-box">
+        <h3>Ready to integrate?</h3>
+        <p>API access is available on Growth and Enterprise plans, or as a custom integration. Our team will set you up with credentials, walk through your use case, and help you go live.</p>
+        <a href="mailto:sales@asqsys.com?subject=Croupier API Access Request" class="btn-primary">Contact Us →</a>
+      </div>
+    </article>
+
+    <!-- RIGHT TOC -->
+    <aside class="docs-toc">
+      <div class="docs-toc-label">On this page</div>
+      <a class="docs-toc-link" onclick="document.getElementById('api-getting-started').scrollIntoView({behavior:'smooth'})">Getting Started</a>
+      <a class="docs-toc-link" onclick="document.getElementById('api-authentication').scrollIntoView({behavior:'smooth'})">Authentication</a>
+      <a class="docs-toc-link" onclick="document.getElementById('api-rate-limits').scrollIntoView({behavior:'smooth'})">Rate Limits</a>
+      <a class="docs-toc-link" onclick="document.getElementById('api-search').scrollIntoView({behavior:'smooth'})">Search Candidates</a>
+      <a class="docs-toc-link l2" onclick="document.getElementById('api-search').scrollIntoView({behavior:'smooth'})">Query Parameters</a>
+      <a class="docs-toc-link l2" onclick="document.getElementById('api-search').scrollIntoView({behavior:'smooth'})">Example Request</a>
+      <a class="docs-toc-link" onclick="document.getElementById('api-rank').scrollIntoView({behavior:'smooth'})">Rank Profile</a>
+      <a class="docs-toc-link" onclick="document.getElementById('api-history').scrollIntoView({behavior:'smooth'})">Search History</a>
+      <a class="docs-toc-link" onclick="document.getElementById('api-webhooks').scrollIntoView({behavior:'smooth'})">Webhooks</a>
+      <a class="docs-toc-link" onclick="document.getElementById('api-errors').scrollIntoView({behavior:'smooth'})">Error Codes</a>
+      <a class="docs-toc-link" onclick="document.getElementById('api-sdks').scrollIntoView({behavior:'smooth'})">SDKs</a>
+    </aside>
   </div>
 </div>
 
@@ -1181,7 +1364,7 @@
 
   /* ── TOKEN ── */
   async function validateTokenOnPage(product) {
-    const el = document.getElementById(product === 'croupier' ? 'croupierToken' : 'stackToken');
+    const el = document.getElementById('croupierToken');
     const token = el ? el.value.trim() : '';
     if (!token) { alert('Please enter your access token.'); return; }
     try {
@@ -1204,7 +1387,7 @@
       const usage = d.usage || {};
       const pct = Math.min(100, ((usage.candidates_found / usage.limit) * 100)).toFixed(1);
       const barColor = pct >= 90 ? 'var(--red)' : pct >= 75 ? 'var(--yellow)' : 'var(--accent)';
-      const dashUrl = product === 'croupier' ? 'https://croupier-site.vercel.app/' : '#';
+      const dashUrl = 'https://croupier-site.vercel.app/';
       const isCancelling = d.cancelling || d.status === 'cancelling';
       const cancelsAt = d.cancels_at ? new Date(d.cancels_at).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}) : null;
       const statusBadge = isCancelling
@@ -1220,7 +1403,7 @@
       modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(20px);';
       modal.innerHTML = `<div style="background:var(--bg1);border:1px solid rgba(168,85,247,0.2);max-width:460px;width:100%;padding:44px 36px;border-radius:16px;">
         <div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;">Access Granted</div>
-        <h2 style="font-family:var(--display);font-size:2rem;font-weight:800;letter-spacing:-0.04em;margin-bottom:32px;">${product==='croupier'?'The Croupier':'The Stack'}</h2>
+        <h2 style="font-family:var(--display);font-size:2rem;font-weight:800;letter-spacing:-0.04em;margin-bottom:32px;">The Croupier</h2>
         ${statusBadge}
         <div style="margin-bottom:24px;">
           <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
