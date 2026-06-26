@@ -48,7 +48,6 @@
     a { color: inherit; text-decoration: none; }
     button { cursor: pointer; border: none; outline: none; font-family: var(--sans); }
 
-    /* noise overlay */
     body::before {
       content: '';
       position: fixed; inset: 0;
@@ -61,7 +60,6 @@
     .page { display: none; position: relative; z-index: 1; }
     .page.active { display: block; }
 
-    /* ─── SCROLL REVEAL ─── */
     .reveal {
       opacity: 0;
       transform: translateY(22px);
@@ -75,7 +73,6 @@
     .d5 { transition-delay: 0.40s; }
     .d6 { transition-delay: 0.48s; }
 
-    /* ─── NAV ─── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       height: 60px;
@@ -106,7 +103,6 @@
     }
     .nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
 
-    /* ─── HERO ─── */
     .hero {
       min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
@@ -171,7 +167,6 @@
     .hstat-l { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--t3); }
     .hstat-sep { width: 1px; height: 28px; background: var(--b); }
 
-    /* TERMINAL */
     .hero-terminal {
       background: var(--bg1); border: 1px solid var(--b);
       border-radius: 12px; overflow: hidden;
@@ -204,7 +199,6 @@
     .tfv { font-family: var(--mono); font-size: 20px; font-weight: 700; color: var(--accent); }
     .tfl { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--t3); }
 
-    /* ─── MARQUEE ─── */
     .marquee-wrap {
       border-top: 1px solid var(--b); border-bottom: 1px solid var(--b);
       padding: 14px 0; background: var(--bg1); overflow: hidden; position: relative; z-index: 1;
@@ -222,7 +216,6 @@
     .mdot.g { background: var(--green); }
     @keyframes marquee { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
 
-    /* ─── PARTNERS ─── */
     .partners-section {
       padding: 80px 24px; border-bottom: 1px solid var(--b);
       background: var(--bg); text-align: center; position: relative; z-index: 1;
@@ -240,7 +233,6 @@
     .partner-sep-dot { width: 4px; height: 4px; background: rgba(255,255,255,0.3); border-radius: 50%; }
     .partner-tld { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; color: rgba(255,255,255,0.4); }
 
-    /* ─── INTEGRATIONS SCROLL ─── */
     .integrations-section {
       padding: 80px 24px; border-bottom: 1px solid var(--b);
       background: var(--bg); text-align: center; position: relative; z-index: 1;
@@ -271,7 +263,6 @@
       animation-play-state: paused;
     }
 
-    /* ─── SECTION SHARED ─── */
     .sw { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
     .sec-label {
       font-family: var(--mono); font-size: 10px; text-transform: uppercase;
@@ -283,16 +274,15 @@
     }
     .sec-sub { font-size: 15px; color: var(--t2); line-height: 1.7; margin-top: 14px; max-width: 480px; }
 
-    /* ─── PRODUCTS ─── */
     .products-section { padding: 96px 0; border-bottom: 1px solid var(--b); position: relative; z-index: 1; }
     .products-hd { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; gap: 20px; flex-wrap: wrap; }
     .products-count { font-family: var(--mono); font-size: 10px; color: var(--t4); letter-spacing: 0.1em; }
-    .products-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .products-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
     .pcard {
       background: var(--card); border: 1px solid var(--b); border-radius: 14px;
       padding: 28px; cursor: pointer; position: relative; display: flex;
       flex-direction: column; gap: 18px; transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-      overflow: hidden; flex: 1 1 340px; max-width: 420px;
+      overflow: hidden;
     }
     .pcard::before {
       content: ''; position: absolute; inset: 0; border-radius: inherit;
@@ -320,7 +310,6 @@
     .pprice { font-family: var(--mono); font-size: 20px; font-weight: 700; color: var(--accent); letter-spacing: -0.02em; }
     .pprice span { font-size: 11px; color: var(--t3); font-weight: 400; }
 
-    /* ─── TAG BADGES ─── */
     .tag {
       font-family: var(--mono); font-size: 9px; text-transform: uppercase;
       letter-spacing: 0.1em; padding: 3px 10px; border-radius: 999px;
@@ -329,7 +318,6 @@
     .tag-beta   { background: rgba(250,204,21,0.1); color: var(--yellow); border: 1px solid rgba(250,204,21,0.2); }
     .tag-accent { background: rgba(168,85,247,0.1); color: var(--accent); border: 1px solid rgba(168,85,247,0.2); }
 
-    /* ─── TECHNOLOGY ─── */
     .tech-section { border-bottom: 1px solid var(--b); position: relative; z-index: 1; }
     .tech-grid { display: grid; grid-template-columns: 1fr 1fr; }
     .tech-left { padding: 96px 64px 96px 0; border-right: 1px solid var(--b); }
@@ -368,7 +356,6 @@
     .mval { font-family: var(--mono); font-size: 26px; font-weight: 700; color: var(--accent); letter-spacing: -0.03em; }
     .mlbl { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--t3); margin-top: 3px; }
 
-    /* ─── FEATURES ─── */
     .features-section { padding: 96px 0; border-bottom: 1px solid var(--b); position: relative; z-index: 1; }
     .features-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 52px; }
     .fcell {
@@ -392,7 +379,6 @@
       border: 1px solid rgba(168,85,247,0.2); color: var(--accent); border-radius: 4px;
     }
 
-    /* ─── PROCESS ─── */
     .process-section { padding: 96px 0; border-bottom: 1px solid var(--b); background: var(--bg1); position: relative; z-index: 1; }
     .process-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-bottom: 52px; align-items: end; }
     .steps-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
@@ -405,7 +391,6 @@
     .step-title { font-family: var(--display); font-size: 16px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 10px; }
     .step-body { font-size: 13px; color: var(--t2); line-height: 1.65; }
 
-    /* ─── CTA ─── */
     .cta-section {
       padding: 140px 24px; text-align: center; position: relative; z-index: 1; overflow: hidden;
     }
@@ -421,7 +406,6 @@
     }
     .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
 
-    /* ─── FOOTER ─── */
     footer {
       border-top: 1px solid var(--b); padding: 28px 24px;
       display: flex; justify-content: space-between; align-items: center;
@@ -432,7 +416,6 @@
     .footer-links a { font-family: var(--mono); font-size: 10px; color: var(--t3); letter-spacing: 0.05em; transition: color 0.15s; }
     .footer-links a:hover { color: var(--t1); }
 
-    /* ─── INNER PAGES ─── */
     .back-nav {
       position: sticky; top: 60px; z-index: 100;
       background: rgba(0,0,0,0.85); backdrop-filter: blur(20px);
@@ -444,7 +427,6 @@
     .bc-sep { color: var(--t4); font-size: 12px; }
     .bc-cur { font-family: var(--mono); font-size: 10px; color: var(--t4); letter-spacing: 0.1em; text-transform: uppercase; }
 
-    /* PRICING */
     .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 48px 0; }
     .price-card {
       background: var(--card); border: 1px solid var(--b); border-radius: 14px;
@@ -474,7 +456,6 @@
     .price-btn.acc { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
     .price-btn.acc:hover { background: var(--accent2); border-color: var(--accent2); }
 
-    /* ACCESS */
     .access-box {
       border: 1px solid rgba(168,85,247,0.2); background: rgba(168,85,247,0.05);
       border-radius: 16px; padding: 52px; text-align: center; margin: 0 24px 80px;
@@ -495,7 +476,6 @@
     }
     .token-btn:hover { background: var(--accent2); }
 
-    /* DEMO */
     .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .demo-left { background: var(--card); border: 1px solid var(--b); border-radius: 14px; padding: 32px; }
     .demo-right { background: var(--bg1); border: 1px solid var(--b); border-radius: 14px; padding: 32px; }
@@ -533,7 +513,6 @@
     @keyframes fadeUp { from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;} }
     .fade-up { animation: fadeUp 0.4s var(--ease) forwards; }
 
-    /* WAITLIST */
     .waitlist-notice {
       border: 1px solid rgba(250,204,21,0.2); background: rgba(250,204,21,0.04);
       padding: 28px 32px; display: flex; align-items: center; justify-content: space-between;
@@ -542,51 +521,135 @@
     .notice-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--yellow); margin-bottom: 6px; }
     .notice-text { font-size: 14px; color: var(--t2); }
 
-    /* DOCS LAYOUT */
-    .docs-layout { display: grid; grid-template-columns: 260px 1fr 220px; gap: 40px; max-width: 1200px; margin: 0 auto; padding: 32px 24px 80px; }
-    .docs-sidebar { position: sticky; top: 80px; height: calc(100vh - 100px); overflow-y: auto; padding-right: 16px; }
-    .docs-sidebar::-webkit-scrollbar { width: 4px; }
-    .docs-sidebar::-webkit-scrollbar-thumb { background: var(--b2); border-radius: 4px; }
-    .docs-nav-group { margin-bottom: 28px; }
-    .docs-nav-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--t4); margin-bottom: 10px; }
-    .docs-nav-link { display: block; font-size: 13px; color: var(--t3); padding: 5px 0; transition: color 0.15s; cursor: pointer; border-left: 2px solid transparent; padding-left: 10px; margin-left: -12px; }
-    .docs-nav-link:hover, .docs-nav-link.active { color: var(--accent); border-left-color: var(--accent); }
-    .docs-main { min-width: 0; }
-    .docs-main h1 { font-family: var(--display); font-size: 2.8rem; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 16px; line-height: 1.1; }
-    .docs-main h2 { font-family: var(--display); font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; margin: 48px 0 16px; padding-bottom: 10px; border-bottom: 1px solid var(--b); }
-    .docs-main h3 { font-family: var(--display); font-size: 1.1rem; font-weight: 700; margin: 32px 0 12px; }
-    .docs-main p { font-size: 14px; color: var(--t2); line-height: 1.75; margin-bottom: 16px; }
-    .docs-main code { font-family: var(--mono); font-size: 12px; background: var(--bg3); padding: 2px 6px; border-radius: 4px; color: var(--accent2); }
-    .docs-main pre { background: var(--bg1); border: 1px solid var(--b); border-radius: 10px; padding: 20px; overflow-x: auto; margin: 20px 0; }
-    .docs-main pre code { background: none; padding: 0; font-size: 12px; color: var(--t2); display: block; line-height: 1.6; }
-    .docs-main ul { list-style: none; padding-left: 0; margin-bottom: 16px; }
-    .docs-main li { font-size: 14px; color: var(--t2); line-height: 1.75; padding-left: 16px; position: relative; margin-bottom: 8px; }
-    .docs-main li::before { content: '//'; font-family: var(--mono); color: var(--accent); font-size: 9px; position: absolute; left: 0; top: 3px; }
-    .docs-toc { position: sticky; top: 80px; height: calc(100vh - 100px); overflow-y: auto; padding-left: 16px; border-left: 1px solid var(--b); }
-    .docs-toc-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--t4); margin-bottom: 12px; }
-    .docs-toc-link { display: block; font-size: 12px; color: var(--t3); padding: 4px 0; transition: color 0.15s; cursor: pointer; }
-    .docs-toc-link:hover { color: var(--accent); }
-    .docs-toc-link.l2 { padding-left: 12px; }
-    .docs-cta-box { background: var(--card); border: 1px solid var(--b); border-radius: 14px; padding: 32px; margin-top: 48px; text-align: center; }
-    .docs-cta-box h3 { font-family: var(--display); font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
-    .docs-cta-box p { font-size: 13px; color: var(--t2); margin-bottom: 20px; }
-    .docs-tag { display: inline-block; font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; padding: 4px 10px; border-radius: 4px; margin-bottom: 8px; }
-    .docs-tag.get { background: rgba(74,222,128,0.1); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
-    .docs-tag.post { background: rgba(168,85,247,0.1); color: var(--accent); border: 1px solid rgba(168,85,247,0.2); }
-    .endpoint-row { display: flex; align-items: center; gap: 12px; margin: 16px 0 8px; }
-    .endpoint-path { font-family: var(--mono); font-size: 13px; color: var(--t1); }
-    @media (max-width: 1100px) { .docs-layout { grid-template-columns: 220px 1fr; } .docs-toc { display: none; } }
-    @media (max-width: 768px) { .docs-layout { grid-template-columns: 1fr; } .docs-sidebar { display: none; } }
+    /* ─── DOCS (Croupier API) ─── */
+    .docs-hero { padding: 64px 24px 0; max-width: 1200px; margin: 0 auto; }
+    .docs-shell {
+      max-width: 1280px; margin: 0 auto; padding: 0 24px 80px;
+      display: grid; grid-template-columns: 248px 1fr 220px; gap: 40px;
+      align-items: start;
+    }
+    .docs-sidebar { position: sticky; top: 116px; max-height: calc(100vh - 140px); overflow-y: auto; padding-right: 8px; }
+    .docs-search {
+      width: 100%; background: var(--bg1); border: 1px solid var(--b); color: var(--t1);
+      font-family: var(--mono); font-size: 11px; padding: 9px 12px; border-radius: 8px;
+      outline: none; margin-bottom: 22px; transition: border-color 0.2s;
+    }
+    .docs-search:focus { border-color: var(--accent); }
+    .docs-search::placeholder { color: var(--t4); }
+    .docs-group { margin-bottom: 4px; }
+    .docs-group-head {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      padding: 8px 6px; cursor: pointer; border-radius: 6px; transition: background 0.15s;
+      font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--t2); font-weight: 700; user-select: none;
+    }
+    .docs-group-head:hover { background: rgba(255,255,255,0.04); }
+    .docs-chev { font-size: 9px; color: var(--t4); transition: transform 0.2s; flex-shrink: 0; }
+    .docs-group.collapsed .docs-chev { transform: rotate(-90deg); }
+    .docs-group-items { display: flex; flex-direction: column; gap: 1px; padding-left: 4px; overflow: hidden; }
+    .docs-group.collapsed .docs-group-items { display: none; }
+    .docs-item {
+      font-size: 13px; color: var(--t3); padding: 7px 10px; border-radius: 6px;
+      cursor: pointer; transition: color 0.15s, background 0.15s; display: block;
+      border-left: 2px solid transparent;
+    }
+    .docs-item:hover { color: var(--t1); background: rgba(255,255,255,0.04); }
+    .docs-item.active { color: var(--accent); background: rgba(168,85,247,0.08); border-left-color: var(--accent); font-weight: 600; }
+    .docs-item.hidden-by-search { display: none; }
+
+    .docs-content { min-width: 0; }
+    .docs-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .docs-h1 { font-family: var(--display); font-size: 2.1rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 14px; }
+    .docs-lede { font-size: 15px; color: var(--t2); line-height: 1.7; max-width: 620px; margin-bottom: 22px; }
+    .docs-actions { display: flex; gap: 8px; margin-bottom: 36px; }
+    .docs-action-btn {
+      font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--t2); background: var(--bg1); border: 1px solid var(--b); padding: 7px 13px;
+      border-radius: 7px; display: inline-flex; align-items: center; gap: 6px; transition: all 0.15s;
+    }
+    .docs-action-btn:hover { color: var(--t1); border-color: var(--b2); background: var(--bg2); }
+    .docs-section { margin-bottom: 48px; padding-top: 8px; }
+    .docs-h2 { font-family: var(--display); font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 14px; }
+    .docs-h3 { font-family: var(--display); font-size: 1.02rem; font-weight: 700; letter-spacing: -0.01em; margin: 22px 0 10px; }
+    .docs-p { font-size: 14px; color: var(--t2); line-height: 1.75; margin-bottom: 14px; max-width: 680px; }
+    .docs-p code, .docs-li code {
+      font-family: var(--mono); font-size: 12px; color: var(--accent2);
+      background: rgba(168,85,247,0.08); padding: 2px 6px; border-radius: 4px;
+    }
+    .docs-li { font-size: 14px; color: var(--t2); line-height: 1.7; margin-bottom: 8px; padding-left: 18px; position: relative; max-width: 680px; }
+    .docs-li::before { content: '—'; position: absolute; left: 0; color: var(--t4); }
+
+    .code-block {
+      background: var(--bg1); border: 1px solid var(--b); border-radius: 10px;
+      overflow: hidden; margin: 16px 0 20px;
+    }
+    .code-bar {
+      height: 34px; background: var(--bg2); border-bottom: 1px solid var(--b);
+      display: flex; align-items: center; justify-content: space-between; padding: 0 14px;
+    }
+    .code-lang { font-family: var(--mono); font-size: 10px; color: var(--t3); letter-spacing: 0.08em; text-transform: uppercase; }
+    .code-copy { font-family: var(--mono); font-size: 9px; color: var(--t3); cursor: pointer; transition: color 0.15s; letter-spacing: 0.06em; text-transform: uppercase; }
+    .code-copy:hover { color: var(--accent); }
+    .code-pre {
+      padding: 16px 18px; font-family: var(--mono); font-size: 12px; line-height: 1.8;
+      color: var(--t2); overflow-x: auto; white-space: pre;
+    }
+    .code-pre .ck { color: var(--accent2); }
+    .code-pre .cs { color: var(--green); }
+    .code-pre .cc { color: var(--t4); }
+
+    .endpoints-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 18px 0 8px; }
+    .endpoint-card {
+      background: var(--card); border: 1px solid var(--b); border-radius: 10px;
+      padding: 18px 20px; transition: border-color 0.2s, background 0.2s;
+    }
+    .endpoint-card:hover { border-color: rgba(168,85,247,0.25); background: var(--card-h); }
+    .endpoint-top { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .method-pill { font-family: var(--mono); font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 4px; letter-spacing: 0.05em; }
+    .method-get  { background: rgba(74,222,128,0.1); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
+    .method-post { background: rgba(168,85,247,0.1); color: var(--accent); border: 1px solid rgba(168,85,247,0.2); }
+    .endpoint-path { font-family: var(--mono); font-size: 12px; color: var(--t1); }
+    .endpoint-desc { font-size: 12.5px; color: var(--t3); line-height: 1.6; }
+
+    .docs-toc { position: sticky; top: 116px; max-height: calc(100vh - 140px); overflow-y: auto; }
+    .toc-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--t4); margin-bottom: 14px; }
+    .toc-link {
+      display: block; font-size: 12.5px; color: var(--t3); padding: 5px 0 5px 12px;
+      border-left: 1px solid var(--b); transition: color 0.15s, border-color 0.15s; cursor: pointer;
+    }
+    .toc-link:hover { color: var(--t1); }
+    .toc-link.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+
+    .docs-contact-box {
+      border: 1px solid rgba(168,85,247,0.2); background: rgba(168,85,247,0.05);
+      border-radius: 14px; padding: 30px 32px; margin-top: 8px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    }
+    .docs-fab {
+      position: fixed; bottom: 26px; right: 26px; z-index: 150;
+      background: var(--accent); color: #000; font-family: var(--mono); font-size: 11px;
+      font-weight: 700; letter-spacing: 0.04em; padding: 12px 18px; border-radius: 999px;
+      display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+      box-shadow: 0 8px 28px rgba(168,85,247,0.35); transition: background 0.15s, transform 0.15s;
+    }
+    .docs-fab:hover { background: var(--accent2); transform: translateY(-2px); }
+
+    @media (max-width: 1100px) {
+      .docs-shell { grid-template-columns: 220px 1fr; }
+      .docs-toc { display: none; }
+    }
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
       .tech-grid, .process-intro { grid-template-columns: 1fr; }
       .tech-left { border-right: none; border-bottom: 1px solid var(--b); padding: 60px 0; }
       .tech-right { padding: 60px 0; }
-      .features-grid, .steps-grid { grid-template-columns: 1fr; }
-      .products-grid { flex-direction: column; align-items: center; }
+      .products-grid, .features-grid, .steps-grid { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
       .demo-grid { grid-template-columns: 1fr; }
+      .endpoints-grid { grid-template-columns: 1fr; }
+      .docs-shell { grid-template-columns: 1fr; }
+      .docs-sidebar { position: relative; top: 0; max-height: none; margin-bottom: 24px; }
       nav { padding: 0 16px; }
       .nav-links { display: none; }
       .sw { padding: 0 16px; }
@@ -602,7 +665,6 @@
 ══════════════════════════════ -->
 <main id="home" class="page active">
 
-  <!-- NAV -->
   <nav>
     <div class="nav-logo" onclick="showPage('home')">
       <span class="br">[</span>DEALER'S<span class="ac">CHOICE</span><span class="br">]</span>
@@ -615,7 +677,6 @@
     <button class="nav-cta" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Start free trial</button>
   </nav>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-glow"></div>
     <div class="hero-inner">
@@ -630,8 +691,8 @@
       </h1>
 
       <p class="hero-sub reveal d2">
-        Private AI infrastructure for talent teams. Source candidates, automate outreach,
-        and track competitors — without sharing your data with anyone.
+        Private AI infrastructure for talent teams. Source candidates, score them with your
+        own model, and pipe results into your stack — without sharing your data with anyone.
       </p>
 
       <div class="hero-btns reveal d3">
@@ -688,7 +749,6 @@
     </div>
   </section>
 
-  <!-- PARTNERS -->
   <div class="partners-section">
     <p class="partners-hl reveal">Dealer's Choice is engineered and deployed<br>in partnership with ASQSYS.</p>
     <div class="partners-logos reveal d2">
@@ -700,11 +760,9 @@
     </div>
   </div>
 
-  <!-- INTEGRATIONS -->
   <div class="integrations-section">
     <span class="integrations-label reveal">Native Integrations</span>
     <div class="integrations-scroll reveal d2">
-      <!-- First set -->
       <a href="https://100hires.com/" target="_blank" rel="noopener" class="integration-link">
         <span class="integration-wm">100Hires</span>
         <span class="integration-sep-dot"></span>
@@ -730,12 +788,11 @@
         <span class="integration-sep-dot"></span>
         <span class="integration-tag">CRM</span>
       </a>
-      <a href="javascript:void(0);" onclick="showPage('croupier-api')" class="integration-link">
+      <span class="integration-link">
         <span class="integration-wm">Custom</span>
         <span class="integration-sep-dot"></span>
         <span class="integration-tag">API</span>
-      </a>
-      <!-- Duplicate for seamless scroll -->
+      </span>
       <a href="https://100hires.com/" target="_blank" rel="noopener" class="integration-link">
         <span class="integration-wm">100Hires</span>
         <span class="integration-sep-dot"></span>
@@ -761,29 +818,28 @@
         <span class="integration-sep-dot"></span>
         <span class="integration-tag">CRM</span>
       </a>
-      <a href="javascript:void(0);" onclick="showPage('croupier-api')" class="integration-link">
+      <span class="integration-link">
         <span class="integration-wm">Custom</span>
         <span class="integration-sep-dot"></span>
         <span class="integration-tag">API</span>
-      </a>
+      </span>
     </div>
   </div>
 
-  <!-- MARQUEE -->
   <div class="marquee-wrap">
     <div class="marquee-track">
       <span class="marquee-item"><span class="mdot"></span>Private AI Model</span>
       <span class="marquee-item"><span class="mdot g"></span>LinkedIn Sourcing</span>
-      <span class="marquee-item"><span class="mdot"></span>Automated Outreach</span>
-      <span class="marquee-item"><span class="mdot g"></span>Competitor Intelligence</span>
+      <span class="marquee-item"><span class="mdot"></span>Developer API</span>
+      <span class="marquee-item"><span class="mdot g"></span>Webhook Events</span>
       <span class="marquee-item"><span class="mdot"></span>AI Candidate Ranking</span>
       <span class="marquee-item"><span class="mdot g"></span>Zero Data Sharing</span>
       <span class="marquee-item"><span class="mdot"></span>3-Day Free Trial</span>
       <span class="marquee-item"><span class="mdot g"></span>Llama 4 Instruct</span>
       <span class="marquee-item"><span class="mdot"></span>Private AI Model</span>
       <span class="marquee-item"><span class="mdot g"></span>LinkedIn Sourcing</span>
-      <span class="marquee-item"><span class="mdot"></span>Automated Outreach</span>
-      <span class="marquee-item"><span class="mdot g"></span>Competitor Intelligence</span>
+      <span class="marquee-item"><span class="mdot"></span>Developer API</span>
+      <span class="marquee-item"><span class="mdot g"></span>Webhook Events</span>
       <span class="marquee-item"><span class="mdot"></span>AI Candidate Ranking</span>
       <span class="marquee-item"><span class="mdot g"></span>Zero Data Sharing</span>
       <span class="marquee-item"><span class="mdot"></span>3-Day Free Trial</span>
@@ -791,7 +847,6 @@
     </div>
   </div>
 
-  <!-- FEATURES -->
   <section class="features-section">
     <div class="sw">
       <span class="sec-label reveal">Platform Capabilities</span>
@@ -799,15 +854,14 @@
       <div class="features-grid">
         <div class="fcell reveal d1"><div class="fnum">01</div><div class="ftitle">AI Candidate Ranking</div><div class="fdesc">Every profile gets a 0–100 fit score with written reasoning. Hire, Maybe, Pass — decided by a fine-tuned model trained on recruitment outcomes, not generic text similarity.</div><span class="ftag">Private AI Model</span></div>
         <div class="fcell reveal d2"><div class="fnum">02</div><div class="ftitle">LinkedIn Sourcing at Scale</div><div class="fdesc">Search 100,000+ professional profiles by title, skills, location, and experience. Results in under 60 seconds via our authorised data pipeline. No $9k/yr recruiter seat needed.</div><span class="ftag">Authorised Data Access</span></div>
-        <div class="fcell reveal d3"><div class="fnum">03</div><div class="ftitle">REST API Access</div><div class="fdesc">Integrate candidate discovery and scoring directly into your existing ATS, CRM, or internal tools. Full REST API with JSON responses, webhooks, and rate-limited tiers.</div><span class="ftag">Croupier API</span></div>
-        <div class="fcell reveal d4"><div class="fnum">04</div><div class="ftitle">Private AI Scoring</div><div class="fdesc">Every candidate gets a 0–100 fit score with written reasoning from your dedicated fine-tuned Llama 4 Instruct model. Hire, Maybe, Pass — decided privately per account.</div><span class="ftag">Live Product</span></div>
+        <div class="fcell reveal d3"><div class="fnum">03</div><div class="ftitle">Croupier API</div><div class="fdesc">Search, score, and pipe candidates straight into your own stack. REST endpoints for search, scoring, and usage — the same private model behind every Croupier search.</div><span class="ftag">By Request</span></div>
+        <div class="fcell reveal d4"><div class="fnum">04</div><div class="ftitle">Webhooks &amp; Real-Time Events</div><div class="fdesc">Subscribe to search-completed and scoring events and push results directly into your ATS, CRM, or internal tools the moment they're ready.</div><span class="ftag">Croupier API</span></div>
         <div class="fcell reveal d5"><div class="fnum">05</div><div class="ftitle">Search History + Bookmarks</div><div class="fdesc">Every search is saved. Revisit past candidate pools, compare results across roles, and bookmark top candidates. Full CSV export on Growth and Enterprise plans.</div><span class="ftag">Included</span></div>
         <div class="fcell reveal d6"><div class="fnum">06</div><div class="ftitle">Real-Time AI Suggestions</div><div class="fdesc">As you type your job requirements, the AI suggests improvements — standardising job titles, expanding skill abbreviations, and correcting location formats before your search runs.</div><span class="ftag">Live Product</span></div>
       </div>
     </div>
   </section>
 
-  <!-- PRODUCTS -->
   <section id="products" class="products-section">
     <div class="sw">
       <div class="products-hd reveal">
@@ -829,20 +883,19 @@
           </div>
         </div>
         <div class="pcard reveal d2" onclick="showPage('croupier-api')">
-          <div class="pcard-top"><span class="tag tag-live">Live Now</span><span class="pcard-arrow">↗</span></div>
+          <div class="pcard-top"><span class="tag tag-accent">By Request</span><span class="pcard-arrow">↗</span></div>
           <div class="pname">Croupier API</div>
-          <p class="pdesc">Programmatic access to our candidate discovery and ranking engine. Build custom workflows, integrate with your ATS, and automate sourcing at scale with full REST API coverage.</p>
-          <div class="ptags"><span class="ptag">REST API</span><span class="ptag">Webhooks</span><span class="ptag">JSON</span></div>
+          <p class="pdesc">The Croupier, in your own stack. REST endpoints for candidate search, AI scoring, and usage — built to drop straight into your ATS, CRM, or internal tools.</p>
+          <div class="ptags"><span class="ptag">REST API</span><span class="ptag">Webhooks</span><span class="ptag">Private Model</span></div>
           <div class="pfoot">
             <div class="pprice">Custom</div>
-            <span style="font-family:var(--mono);font-size:10px;color:var(--t4);">CONTACT US</span>
+            <span style="font-family:var(--mono);font-size:10px;color:var(--t4);">CONTACT SALES</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TECHNOLOGY -->
   <section id="technology" class="tech-section">
     <div class="sw">
       <div class="tech-grid">
@@ -886,7 +939,6 @@
     </div>
   </section>
 
-  <!-- PROCESS -->
   <section id="process" class="process-section">
     <div class="sw">
       <div class="process-intro">
@@ -902,12 +954,11 @@
         <div class="step reveal d1"><div class="step-num">Step 01</div><div class="step-title">Define Requirements</div><div class="step-body">Enter job title, required skills, experience level, and location. The AI suggests improvements in real time before your search runs.</div></div>
         <div class="step reveal d2"><div class="step-num">Step 02</div><div class="step-title">AI Sources Candidates</div><div class="step-body">Our authorised pipeline surfaces profiles matching your criteria — experience, education, skills, and open-to-work status. Up to 100 candidates in under 60 seconds.</div></div>
         <div class="step reveal d3"><div class="step-num">Step 03</div><div class="step-title">Private AI Scores Every Profile</div><div class="step-body">Each candidate is scored 0–100 by your dedicated fine-tuned Llama 4 Instruct model. Strengths and concerns flagged. Hire, Maybe, Pass assigned — privately.</div></div>
-        <div class="step reveal d4"><div class="step-num">Step 04</div><div class="step-title">Act on Results</div><div class="step-body">View ranked candidates, bookmark favourites, export to CSV, and revisit past searches. Full API access available for custom integrations and automation.</div></div>
+        <div class="step reveal d4"><div class="step-num">Step 04</div><div class="step-title">Act on Results</div><div class="step-body">View ranked candidates, bookmark favourites, export to CSV, and revisit past searches. Or pull the same results straight into your stack via the Croupier API.</div></div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
   <section class="cta-section">
     <h2 class="cta-title reveal">
       RECRUIT<br><span class="gw">SMARTER</span><br>TODAY.
@@ -1030,6 +1081,278 @@
 </div>
 
 <!-- ══════════════════════════════
+     CROUPIER API — DOCS PAGE
+══════════════════════════════ -->
+<div id="croupier-api" class="page">
+  <div class="back-nav">
+    <span class="back-link" onclick="showPage('home')">← Dealer's Choice</span>
+    <span class="bc-sep">/</span>
+    <span class="bc-cur">Croupier API</span>
+  </div>
+
+  <div class="docs-hero">
+    <span class="tag tag-accent" style="margin-bottom:18px; display:inline-block;">Private Beta · By Request</span>
+    <h1 style="font-family:var(--display);font-size:clamp(2.4rem,6vw,4.2rem);font-weight:800;letter-spacing:-0.04em;line-height:0.96;margin:14px 0 16px;">CROUPIER API</h1>
+    <p style="font-size:15px;color:var(--t2);max-width:560px;line-height:1.7;margin-bottom:40px;">
+      The same private, fine-tuned model behind The Croupier — as a REST API. Search candidates, score them, and stream results straight into your ATS, CRM, or internal tools. Access is granted by request while the API is in private beta.
+    </p>
+  </div>
+
+  <div class="docs-shell">
+
+    <!-- SIDEBAR -->
+    <aside class="docs-sidebar" id="docsSidebar">
+      <input type="text" class="docs-search" id="docsSearchInput" placeholder="Search docs..." oninput="filterDocsSidebar(this.value)">
+
+      <div class="docs-group">
+        <div class="docs-group-head" onclick="toggleDocsGroup(this)">
+          <span>Getting Started</span><span class="docs-chev">▾</span>
+        </div>
+        <div class="docs-group-items">
+          <a class="docs-item active" data-target="sec-intro" onclick="docsNavTo(event,'sec-intro')">Introduction</a>
+          <a class="docs-item" data-target="sec-auth" onclick="docsNavTo(event,'sec-auth')">Authentication</a>
+          <a class="docs-item" data-target="sec-quickstart" onclick="docsNavTo(event,'sec-quickstart')">Quickstart</a>
+        </div>
+      </div>
+
+      <div class="docs-group">
+        <div class="docs-group-head" onclick="toggleDocsGroup(this)">
+          <span>Core Concepts</span><span class="docs-chev">▾</span>
+        </div>
+        <div class="docs-group-items">
+          <a class="docs-item" data-target="sec-candidates" onclick="docsNavTo(event,'sec-candidates')">Candidates</a>
+          <a class="docs-item" data-target="sec-scoring" onclick="docsNavTo(event,'sec-scoring')">AI Scoring</a>
+          <a class="docs-item" data-target="sec-webhooks" onclick="docsNavTo(event,'sec-webhooks')">Webhooks</a>
+        </div>
+      </div>
+
+      <div class="docs-group">
+        <div class="docs-group-head" onclick="toggleDocsGroup(this)">
+          <span>Endpoints</span><span class="docs-chev">▾</span>
+        </div>
+        <div class="docs-group-items">
+          <a class="docs-item" data-target="sec-endpoints" onclick="docsNavTo(event,'sec-endpoints')">Reference</a>
+        </div>
+      </div>
+
+      <div class="docs-group">
+        <div class="docs-group-head" onclick="toggleDocsGroup(this)">
+          <span>Guides</span><span class="docs-chev">▾</span>
+        </div>
+        <div class="docs-group-items">
+          <a class="docs-item" data-target="sec-rate-limits" onclick="docsNavTo(event,'sec-rate-limits')">Rate Limits</a>
+          <a class="docs-item" data-target="sec-errors" onclick="docsNavTo(event,'sec-errors')">Error Codes</a>
+        </div>
+      </div>
+
+      <div class="docs-group collapsed">
+        <div class="docs-group-head" onclick="toggleDocsGroup(this)">
+          <span>SDKs &amp; Tools</span><span class="docs-chev">▾</span>
+        </div>
+        <div class="docs-group-items">
+          <a class="docs-item" data-target="sec-access" onclick="docsNavTo(event,'sec-access')">Request Access</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="docs-content" id="docsContent">
+
+      <section class="docs-section" id="sec-intro">
+        <div class="docs-eyebrow"><span class="sec-label" style="margin:0;">Getting Started</span></div>
+        <h2 class="docs-h1">Introduction</h2>
+        <p class="docs-lede">Croupier API gives developers programmatic access to candidate sourcing and AI scoring — the same private, isolated model used by The Croupier, available as a small set of REST endpoints.</p>
+        <div class="docs-actions">
+          <span class="docs-action-btn" onclick="copyDocsMarkdown()">⧉ Copy as Markdown</span>
+          <a class="docs-action-btn" href="mailto:sales@asqsys.com?subject=Croupier API Access">↗ Request Access</a>
+        </div>
+        <p class="docs-p">There is no public sign-up yet. Croupier API is in private beta — every account is provisioned by hand so we can size rate limits and indemnify data handling correctly for your use case. Reach out and we'll get you a key, usually within one business day.</p>
+        <div class="endpoints-grid">
+          <div class="endpoint-card">
+            <div class="endpoint-top"><span class="method-pill method-post">POST</span><span class="endpoint-path">/v1/search</span></div>
+            <div class="endpoint-desc">Run a candidate search against the same pipeline The Croupier uses.</div>
+          </div>
+          <div class="endpoint-card">
+            <div class="endpoint-top"><span class="method-pill method-post">POST</span><span class="endpoint-path">/v1/score</span></div>
+            <div class="endpoint-desc">Score one or more candidate profiles with your private model.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="sec-auth">
+        <h2 class="docs-h2">Authentication</h2>
+        <p class="docs-p">Every request is authenticated with a bearer token tied to your account. Tokens are issued when your API access is approved — there's no self-serve key rotation yet, so contact us if you need a new one.</p>
+        <div class="code-block">
+          <div class="code-bar"><span class="code-lang">bash</span><span class="code-copy" onclick="copyCodeBlock(this)">Copy</span></div>
+          <pre class="code-pre">curl https://api.dealerschoice.dev/v1/search \
+  -H <span class="ck">"Authorization: Bearer CRPR_live_xxxxxxxxxxxx"</span> \
+  -H <span class="ck">"Content-Type: application/json"</span></pre>
+        </div>
+        <p class="docs-p">Keep your token server-side. Requests from a browser or mobile client should go through your own backend, not call the Croupier API directly.</p>
+      </section>
+
+      <section class="docs-section" id="sec-quickstart">
+        <h2 class="docs-h2">Quickstart</h2>
+        <p class="docs-p">Search for candidates and read back a ranked, scored list in one request.</p>
+        <div class="code-block">
+          <div class="code-bar"><span class="code-lang">bash</span><span class="code-copy" onclick="copyCodeBlock(this)">Copy</span></div>
+          <pre class="code-pre">curl -X POST https://api.dealerschoice.dev/v1/search \
+  -H <span class="ck">"Authorization: Bearer CRPR_live_xxxxxxxxxxxx"</span> \
+  -H <span class="ck">"Content-Type: application/json"</span> \
+  -d <span class="cs">'{
+    "role": "Senior Software Engineer",
+    "skills": ["Python", "AWS"],
+    "location": "San Francisco Bay Area",
+    "limit": 25
+  }'</span></pre>
+        </div>
+        <p class="docs-p">The response includes a <code>candidates[]</code> array, each with a 0–100 <code>fit_score</code>, a <code>verdict</code> of <code>hire</code>, <code>maybe</code>, or <code>pass</code>, and a short written <code>reasoning</code> string — identical to what you'd see in The Croupier dashboard.</p>
+        <div class="code-block">
+          <div class="code-bar"><span class="code-lang">json</span><span class="code-copy" onclick="copyCodeBlock(this)">Copy</span></div>
+          <pre class="code-pre">{
+  <span class="ck">"candidates"</span>: [
+    {
+      <span class="ck">"name"</span>: <span class="cs">"Sarah Chen"</span>,
+      <span class="ck">"fit_score"</span>: 92,
+      <span class="ck">"verdict"</span>: <span class="cs">"hire"</span>,
+      <span class="ck">"reasoning"</span>: <span class="cs">"Strong Python + AWS background..."</span>
+    }
+  ],
+  <span class="ck">"search_id"</span>: <span class="cs">"srch_8f2a..."</span> <span class="cc">// use for /v1/score</span>
+}</pre>
+        </div>
+      </section>
+
+      <section class="docs-section" id="sec-candidates">
+        <div class="docs-eyebrow"><span class="sec-label" style="margin:0;">Core Concepts</span></div>
+        <h2 class="docs-h1" style="font-size:1.6rem;">Candidates</h2>
+        <p class="docs-p">A candidate object represents one profile returned from a search. It carries the same fields you'd see in the dashboard — title, company, years of experience, skills — plus the score your private model assigned.</p>
+        <ul style="margin-bottom:8px;">
+          <li class="docs-li"><code>candidate_id</code> — stable identifier, safe to store and reference later.</li>
+          <li class="docs-li"><code>profile</code> — title, company, location, years of experience, skill list.</li>
+          <li class="docs-li"><code>fit_score</code>, <code>verdict</code>, <code>reasoning</code> — the AI scoring output.</li>
+        </ul>
+      </section>
+
+      <section class="docs-section" id="sec-scoring">
+        <h2 class="docs-h2">AI Scoring</h2>
+        <p class="docs-p">Scoring runs on your isolated, fine-tuned model — the same one behind The Croupier. You can score candidates inline as part of <code>/v1/search</code>, or re-score a saved candidate later against new requirements with <code>/v1/score</code>.</p>
+        <p class="docs-p">Every score ships with a short <code>reasoning</code> string explaining the verdict, so nothing in your pipeline is a black box.</p>
+      </section>
+
+      <section class="docs-section" id="sec-webhooks">
+        <h2 class="docs-h2">Webhooks</h2>
+        <p class="docs-p">For long-running searches, register a webhook instead of polling. We'll <code>POST</code> a JSON payload to your endpoint the moment a search or scoring job completes.</p>
+        <div class="code-block">
+          <div class="code-bar"><span class="code-lang">json</span><span class="code-copy" onclick="copyCodeBlock(this)">Copy</span></div>
+          <pre class="code-pre">{
+  <span class="ck">"event"</span>: <span class="cs">"search.completed"</span>,
+  <span class="ck">"search_id"</span>: <span class="cs">"srch_8f2a..."</span>,
+  <span class="ck">"candidate_count"</span>: 25
+}</pre>
+        </div>
+        <p class="docs-p">Configure webhook URLs from your account settings once access is provisioned, or send us the endpoint when you request access and we'll set it up with you.</p>
+      </section>
+
+      <section class="docs-section" id="sec-endpoints">
+        <div class="docs-eyebrow"><span class="sec-label" style="margin:0;">Endpoints</span></div>
+        <h2 class="docs-h1" style="font-size:1.6rem;">Reference</h2>
+        <p class="docs-p">The full surface area of the API. All endpoints are versioned under <code>/v1</code> and return JSON.</p>
+        <div class="endpoints-grid">
+          <div class="endpoint-card">
+            <div class="endpoint-top"><span class="method-pill method-post">POST</span><span class="endpoint-path">/v1/search</span></div>
+            <div class="endpoint-desc">Search and score candidates against a role, skills, and location.</div>
+          </div>
+          <div class="endpoint-card">
+            <div class="endpoint-top"><span class="method-pill method-get">GET</span><span class="endpoint-path">/v1/candidates/:id</span></div>
+            <div class="endpoint-desc">Retrieve a single candidate from a previous search by ID.</div>
+          </div>
+          <div class="endpoint-card">
+            <div class="endpoint-top"><span class="method-pill method-post">POST</span><span class="endpoint-path">/v1/score</span></div>
+            <div class="endpoint-desc">Re-score one or more saved candidates against new requirements.</div>
+          </div>
+          <div class="endpoint-card">
+            <div class="endpoint-top"><span class="method-pill method-get">GET</span><span class="endpoint-path">/v1/usage</span></div>
+            <div class="endpoint-desc">Current billing-period usage against your plan's candidate limit.</div>
+          </div>
+          <div class="endpoint-card">
+            <div class="endpoint-top"><span class="method-pill method-post">POST</span><span class="endpoint-path">/v1/webhooks</span></div>
+            <div class="endpoint-desc">Register or update the webhook endpoint for your account.</div>
+          </div>
+          <div class="endpoint-card">
+            <div class="endpoint-top"><span class="method-pill method-get">GET</span><span class="endpoint-path">/v1/searches/:id</span></div>
+            <div class="endpoint-desc">Fetch the status and results of a previously submitted search.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="sec-rate-limits">
+        <div class="docs-eyebrow"><span class="sec-label" style="margin:0;">Guides</span></div>
+        <h2 class="docs-h1" style="font-size:1.6rem;">Rate Limits</h2>
+        <p class="docs-p">Rate limits are set per account during onboarding, based on the plan and use case you tell us about when requesting access. Every response includes the headers below so you can back off cleanly.</p>
+        <ul>
+          <li class="docs-li"><code>X-RateLimit-Limit</code> — requests allowed in the current window.</li>
+          <li class="docs-li"><code>X-RateLimit-Remaining</code> — requests left in the current window.</li>
+          <li class="docs-li"><code>X-RateLimit-Reset</code> — unix timestamp when the window resets.</li>
+        </ul>
+      </section>
+
+      <section class="docs-section" id="sec-errors">
+        <h2 class="docs-h2">Error Codes</h2>
+        <p class="docs-p">Errors return a standard shape with an HTTP status and a machine-readable <code>code</code> field.</p>
+        <div class="code-block">
+          <div class="code-bar"><span class="code-lang">json</span><span class="code-copy" onclick="copyCodeBlock(this)">Copy</span></div>
+          <pre class="code-pre">{
+  <span class="ck">"error"</span>: {
+    <span class="ck">"code"</span>: <span class="cs">"invalid_request"</span>,
+    <span class="ck">"message"</span>: <span class="cs">"location is required"</span>
+  }
+}</pre>
+        </div>
+        <ul>
+          <li class="docs-li"><code>401 unauthorized</code> — missing or invalid bearer token.</li>
+          <li class="docs-li"><code>429 rate_limited</code> — you've exceeded your account's rate limit.</li>
+          <li class="docs-li"><code>422 invalid_request</code> — a required field is missing or malformed.</li>
+        </ul>
+      </section>
+
+      <section class="docs-section" id="sec-access" style="margin-bottom:24px;">
+        <div class="docs-eyebrow"><span class="sec-label" style="margin:0;">SDKs &amp; Tools</span></div>
+        <h2 class="docs-h1" style="font-size:1.6rem;">Request Access</h2>
+        <p class="docs-p">Croupier API doesn't have a self-serve signup yet — access is granted by request while we're in private beta. Tell us a bit about your use case and we'll get back to you with a key and rate limits suited to your volume.</p>
+        <div class="docs-contact-box">
+          <div>
+            <div class="notice-label" style="color:var(--accent);">Private Beta</div>
+            <div class="notice-text">No public API keys yet — every integration is provisioned directly with our team.</div>
+          </div>
+          <a class="btn-primary" href="mailto:sales@asqsys.com?subject=Croupier API Access Request">Contact Us →</a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- TOC -->
+    <aside class="docs-toc" id="docsToc">
+      <div class="toc-label">On This Page</div>
+      <a class="toc-link active" data-target="sec-intro" onclick="docsNavTo(event,'sec-intro')">Introduction</a>
+      <a class="toc-link" data-target="sec-auth" onclick="docsNavTo(event,'sec-auth')">Authentication</a>
+      <a class="toc-link" data-target="sec-quickstart" onclick="docsNavTo(event,'sec-quickstart')">Quickstart</a>
+      <a class="toc-link" data-target="sec-candidates" onclick="docsNavTo(event,'sec-candidates')">Candidates</a>
+      <a class="toc-link" data-target="sec-scoring" onclick="docsNavTo(event,'sec-scoring')">AI Scoring</a>
+      <a class="toc-link" data-target="sec-webhooks" onclick="docsNavTo(event,'sec-webhooks')">Webhooks</a>
+      <a class="toc-link" data-target="sec-endpoints" onclick="docsNavTo(event,'sec-endpoints')">Endpoint Reference</a>
+      <a class="toc-link" data-target="sec-rate-limits" onclick="docsNavTo(event,'sec-rate-limits')">Rate Limits</a>
+      <a class="toc-link" data-target="sec-errors" onclick="docsNavTo(event,'sec-errors')">Error Codes</a>
+      <a class="toc-link" data-target="sec-access" onclick="docsNavTo(event,'sec-access')">Request Access</a>
+    </aside>
+  </div>
+
+  <div class="docs-fab" onclick="window.location.href='mailto:sales@asqsys.com?subject=Croupier API Access Request'">
+    ✦ Contact Us
+  </div>
+</div>
+
+<!-- ══════════════════════════════
      PRIVACY PAGE
 ══════════════════════════════ -->
 <div id="privacy" class="page">
@@ -1068,212 +1391,6 @@
 </div>
 
 <!-- ══════════════════════════════
-     CROUPIER API DOCS PAGE
-══════════════════════════════ -->
-<div id="croupier-api" class="page">
-  <div class="back-nav">
-    <span class="back-link" onclick="showPage('home')">← Dealer's Choice</span>
-    <span class="bc-sep">/</span>
-    <span class="bc-cur">Croupier API</span>
-  </div>
-
-  <div style="padding:72px 24px 0;max-width:1200px;margin:0 auto;">
-    <span class="tag tag-live" style="margin-bottom:20px;display:inline-block;">Live Now</span>
-    <h1 style="font-family:var(--display);font-size:clamp(2.2rem,6vw,4.5rem);font-weight:800;letter-spacing:-0.04em;line-height:1;margin:12px 0 16px;">Croupier API</h1>
-    <p style="font-size:16px;color:var(--t2);max-width:600px;line-height:1.65;margin-bottom:32px;">Programmatic access to AI-powered candidate discovery and ranking. Integrate with your ATS, build custom workflows, and automate sourcing at scale.</p>
-  </div>
-
-  <div class="docs-layout">
-    <!-- LEFT SIDEBAR -->
-    <aside class="docs-sidebar">
-      <div class="docs-nav-group">
-        <div class="docs-nav-label">Overview</div>
-        <a class="docs-nav-link active" onclick="document.getElementById('api-getting-started').scrollIntoView({behavior:'smooth'})">Getting Started</a>
-        <a class="docs-nav-link" onclick="document.getElementById('api-authentication').scrollIntoView({behavior:'smooth'})">Authentication</a>
-        <a class="docs-nav-link" onclick="document.getElementById('api-rate-limits').scrollIntoView({behavior:'smooth'})">Rate Limits</a>
-      </div>
-      <div class="docs-nav-group">
-        <div class="docs-nav-label">Endpoints</div>
-        <a class="docs-nav-link" onclick="document.getElementById('api-search').scrollIntoView({behavior:'smooth'})">Search Candidates</a>
-        <a class="docs-nav-link" onclick="document.getElementById('api-rank').scrollIntoView({behavior:'smooth'})">Rank Profile</a>
-        <a class="docs-nav-link" onclick="document.getElementById('api-history').scrollIntoView({behavior:'smooth'})">Search History</a>
-        <a class="docs-nav-link" onclick="document.getElementById('api-webhooks').scrollIntoView({behavior:'smooth'})">Webhooks</a>
-      </div>
-      <div class="docs-nav-group">
-        <div class="docs-nav-label">Resources</div>
-        <a class="docs-nav-link" onclick="document.getElementById('api-errors').scrollIntoView({behavior:'smooth'})">Error Codes</a>
-        <a class="docs-nav-link" onclick="document.getElementById('api-sdks').scrollIntoView({behavior:'smooth'})">SDKs</a>
-      </div>
-    </aside>
-
-    <!-- MAIN CONTENT -->
-    <article class="docs-main">
-      <h2 id="api-getting-started">Getting Started</h2>
-      <p>The Croupier API lets you integrate AI-powered candidate discovery directly into your existing tools. Every request is authenticated, rate-limited, and returns structured JSON.</p>
-      <p>To get started, you'll need an API key. API access is a <strong>separate offering</strong> from our web plans and requires a custom agreement. This protects against abuse and ensures your volume is properly supported. Reach out to our team to request access.</p>
-
-      <h2 id="api-authentication">Authentication</h2>
-      <p>All API requests require a Bearer token in the <code>Authorization</code> header. Tokens are scoped to your account and carry the same permissions as your web dashboard.</p>
-      <pre><code>Authorization: Bearer &lt;YOUR_API_TOKEN&gt;</code></pre>
-      <p>Never expose your API token in client-side code or public repositories. Rotate tokens periodically from your account settings.</p>
-
-      <h2 id="api-rate-limits">Rate Limits</h2>
-      <p>Rate limits are negotiated per account based on your expected volume and use case. We do not offer self-serve API access — every API account is reviewed before credentials are issued. This prevents abuse and protects the platform for all users.</p>
-      <ul>
-        <li><strong>Standard:</strong> 100 requests / minute — suitable for small teams and ATS integrations</li>
-        <li><strong>High Volume:</strong> 500 requests / minute — suitable for enterprise workflows and bulk operations</li>
-        <li><strong>Custom:</strong> Tailored limits for large-scale integrations — contact us</li>
-      </ul>
-      <p>Rate limit headers are returned with every response:</p>
-      <pre><code>X-RateLimit-Limit: 100
-X-RateLimit-Remaining: 87
-X-RateLimit-Reset: 1718900000</code></pre>
-
-      <h2 id="api-search">Search Candidates</h2>
-      <div class="endpoint-row">
-        <span class="docs-tag get">GET</span>
-        <span class="endpoint-path">/v1/candidates/search</span>
-      </div>
-      <p>Search 100,000+ professional profiles by job title, skills, location, and experience. Returns a ranked list of candidates with AI fit scores.</p>
-      <h3>Query Parameters</h3>
-      <ul>
-        <li><code>job_title</code> — required. Target role, e.g. "Software Engineer"</li>
-        <li><code>skills</code> — comma-separated required skills</li>
-        <li><code>location</code> — city, region, or "Remote"</li>
-        <li><code>experience</code> — 1-3, 3-5, 5+, or 10+</li>
-        <li><code>limit</code> — max results, default 20, max 100</li>
-      </ul>
-      <h3>Example Request</h3>
-      <pre><code>curl -X GET "https://api.dealerschoice.systems/v1/candidates/search?job_title=Software+Engineer&skills=Python,React&location=San+Francisco&experience=5+&limit=20" \
-  -H "Authorization: Bearer sk_live_..." \
-  -H "Content-Type: application/json"</code></pre>
-      <h3>Example Response</h3>
-      <pre><code>{
-  "candidates": [
-    {
-      "id": "cand_7f8a9b2c",
-      "name": "Sarah Chen",
-      "title": "Senior Software Engineer",
-      "company": "Upstart",
-      "location": "San Francisco Bay Area",
-      "years_experience": 8,
-      "skills": ["Python", "React", "AWS", "Kubernetes"],
-      "ai_score": 96,
-      "verdict": "Hire",
-      "reasoning": "Strong technical match with deep cloud infrastructure experience..."
-    }
-  ],
-  "total": 1,
-  "search_id": "srch_3d2e1a4b"
-}</code></pre>
-
-      <h2 id="api-rank">Rank Profile</h2>
-      <div class="endpoint-row">
-        <span class="docs-tag post">POST</span>
-        <span class="endpoint-path">/v1/candidates/rank</span>
-      </div>
-      <p>Submit a candidate profile and receive an AI-generated fit score with written reasoning. Useful for evaluating applicants from your own pipeline.</p>
-      <h3>Request Body</h3>
-      <pre><code>{
-  "job_title": "Software Engineer",
-  "required_skills": ["Python", "React", "AWS"],
-  "candidate": {
-    "name": "Alex Rivera",
-    "title": "Backend Engineer",
-    "experience_years": 4,
-    "skills": ["Python", "Django", "PostgreSQL", "AWS"],
-    "location": "Remote"
-  }
-}</code></pre>
-      <h3>Response</h3>
-      <pre><code>{
-  "ai_score": 84,
-  "verdict": "Hire",
-  "reasoning": "Strong Python and AWS experience. Missing React but has solid backend fundamentals...",
-  "strengths": ["Python", "AWS"],
-  "concerns": ["Missing React frontend experience"]
-}</code></pre>
-
-      <h2 id="api-history">Search History</h2>
-      <div class="endpoint-row">
-        <span class="docs-tag get">GET</span>
-        <span class="endpoint-path">/v1/searches</span>
-      </div>
-      <p>List all searches performed by your account, with pagination and filtering by date range.</p>
-      <pre><code>curl -X GET "https://api.dealerschoice.systems/v1/searches?limit=50&from=2026-01-01" \
-  -H "Authorization: Bearer sk_live_..."</code></pre>
-
-      <h2 id="api-webhooks">Webhooks</h2>
-      <p>Receive real-time events when candidate searches complete or when new high-scoring candidates are discovered. Configure webhook endpoints from your dashboard.</p>
-      <h3>Event Types</h3>
-      <ul>
-        <li><code>search.completed</code> — triggered when a candidate search finishes</li>
-        <li><code>candidate.ranked</code> — triggered when a candidate scores above your threshold</li>
-        <li><code>subscription.updated</code> — triggered on plan changes</li>
-      </ul>
-      <h3>Webhook Payload</h3>
-      <pre><code>{
-  "event": "search.completed",
-  "timestamp": "2026-06-25T14:32:00Z",
-  "data": {
-    "search_id": "srch_3d2e1a4b",
-    "candidates_found": 42,
-    "top_score": 96
-  }
-}</code></pre>
-
-      <h2 id="api-errors">Error Codes</h2>
-      <p>All errors follow a consistent JSON structure:</p>
-      <pre><code>{
-  "error": {
-    "code": "rate_limit_exceeded",
-    "message": "You have exceeded your rate limit. Retry after 60 seconds.",
-    "status": 429
-  }
-}</code></pre>
-      <ul>
-        <li><code>400</code> — Bad Request — missing or invalid parameters</li>
-        <li><code>401</code> — Unauthorized — invalid or missing API token</li>
-        <li><code>403</code> — Forbidden — API access not enabled for this account</li>
-        <li><code>404</code> — Not Found — candidate or search ID does not exist</li>
-        <li><code>429</code> — Too Many Requests — rate limit exceeded</li>
-        <li><code>500</code> — Internal Server Error — contact support</li>
-      </ul>
-
-      <h2 id="api-sdks">SDKs</h2>
-      <p>Official SDKs are available for popular languages. Community contributions welcome.</p>
-      <ul>
-        <li><strong>Python:</strong> <code>pip install croupier-api</code></li>
-        <li><strong>JavaScript / Node.js:</strong> <code>npm install @dealerschoice/croupier-api</code></li>
-        <li><strong>Ruby:</strong> <code>gem install croupier</code></li>
-      </ul>
-
-      <div class="docs-cta-box">
-        <h3>Ready to integrate?</h3>
-        <p>API access is a separate offering from our web plans. Every API account is reviewed before credentials are issued to prevent abuse and ensure proper support. Our team will set you up with credentials, walk through your use case, and help you go live.</p>
-        <a href="mailto:sales@asqsys.com?subject=Croupier API Access Request" class="btn-primary">Contact Us →</a>
-      </div>
-    </article>
-
-    <!-- RIGHT TOC -->
-    <aside class="docs-toc">
-      <div class="docs-toc-label">On this page</div>
-      <a class="docs-toc-link" onclick="document.getElementById('api-getting-started').scrollIntoView({behavior:'smooth'})">Getting Started</a>
-      <a class="docs-toc-link" onclick="document.getElementById('api-authentication').scrollIntoView({behavior:'smooth'})">Authentication</a>
-      <a class="docs-toc-link" onclick="document.getElementById('api-rate-limits').scrollIntoView({behavior:'smooth'})">Rate Limits</a>
-      <a class="docs-toc-link" onclick="document.getElementById('api-search').scrollIntoView({behavior:'smooth'})">Search Candidates</a>
-      <a class="docs-toc-link l2" onclick="document.getElementById('api-search').scrollIntoView({behavior:'smooth'})">Query Parameters</a>
-      <a class="docs-toc-link l2" onclick="document.getElementById('api-search').scrollIntoView({behavior:'smooth'})">Example Request</a>
-      <a class="docs-toc-link" onclick="document.getElementById('api-rank').scrollIntoView({behavior:'smooth'})">Rank Profile</a>
-      <a class="docs-toc-link" onclick="document.getElementById('api-history').scrollIntoView({behavior:'smooth'})">Search History</a>
-      <a class="docs-toc-link" onclick="document.getElementById('api-webhooks').scrollIntoView({behavior:'smooth'})">Webhooks</a>
-      <a class="docs-toc-link" onclick="document.getElementById('api-errors').scrollIntoView({behavior:'smooth'})">Error Codes</a>
-      <a class="docs-toc-link" onclick="document.getElementById('api-sdks').scrollIntoView({behavior:'smooth'})">SDKs</a>
-    </aside>
-  </div>
-</div>
-
-<!-- ══════════════════════════════
      SCRIPTS
 ══════════════════════════════ -->
 <script>
@@ -1284,8 +1401,8 @@ X-RateLimit-Reset: 1718900000</code></pre>
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     window.scrollTo(0,0);
-    // Re-trigger scroll reveal for new page
     setTimeout(initReveal, 50);
+    if (id === 'croupier-api') setTimeout(initDocsScrollSpy, 60);
   }
 
   /* ── SCROLL REVEAL ── */
@@ -1300,12 +1417,70 @@ X-RateLimit-Reset: 1718900000</code></pre>
     });
   }
   document.addEventListener('DOMContentLoaded', initReveal);
-  // Hero elements visible immediately
   window.addEventListener('load', () => {
     document.querySelectorAll('.hero .reveal').forEach(el => {
       setTimeout(() => el.classList.add('visible'), 100);
     });
   });
+
+  /* ── DOCS: sidebar collapse ── */
+  function toggleDocsGroup(headEl) {
+    headEl.parentElement.classList.toggle('collapsed');
+  }
+
+  /* ── DOCS: sidebar search filter ── */
+  function filterDocsSidebar(query) {
+    const q = query.trim().toLowerCase();
+    document.querySelectorAll('#docsSidebar .docs-item').forEach(item => {
+      const match = !q || item.textContent.toLowerCase().includes(q);
+      item.classList.toggle('hidden-by-search', !match);
+      if (q && match) item.closest('.docs-group')?.classList.remove('collapsed');
+    });
+  }
+
+  /* ── DOCS: nav + scrollspy ── */
+  function docsNavTo(evt, targetId) {
+    evt.preventDefault();
+    const el = document.getElementById(targetId);
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setDocsActive(targetId);
+  }
+  function setDocsActive(targetId) {
+    document.querySelectorAll('#docsSidebar .docs-item').forEach(i => i.classList.toggle('active', i.dataset.target === targetId));
+    document.querySelectorAll('#docsToc .toc-link').forEach(i => i.classList.toggle('active', i.dataset.target === targetId));
+  }
+  let docsSpyObserver;
+  function initDocsScrollSpy() {
+    if (docsSpyObserver) docsSpyObserver.disconnect();
+    const sections = document.querySelectorAll('#docsContent .docs-section');
+    if (!sections.length) return;
+    docsSpyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) setDocsActive(e.target.id); });
+    }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+    sections.forEach(s => docsSpyObserver.observe(s));
+  }
+
+  /* ── DOCS: copy helpers ── */
+  function copyCodeBlock(el) {
+    const pre = el.closest('.code-block').querySelector('.code-pre');
+    const text = pre.textContent;
+    navigator.clipboard?.writeText(text).then(() => {
+      const original = el.textContent;
+      el.textContent = 'Copied!';
+      setTimeout(() => { el.textContent = original; }, 1400);
+    });
+  }
+  function copyDocsMarkdown() {
+    const md = '# Croupier API\n\nThe Croupier, as a REST API. Search, score, and pipe candidates into your own stack using the same private model behind The Croupier dashboard.\n\nAccess is by request during the private beta — contact sales@asqsys.com to get a key.\n\n## Endpoints\n- POST /v1/search\n- GET /v1/candidates/:id\n- POST /v1/score\n- GET /v1/usage\n- POST /v1/webhooks\n- GET /v1/searches/:id\n';
+    navigator.clipboard?.writeText(md);
+    const btns = document.querySelectorAll('.docs-action-btn');
+    if (btns[0]) {
+      const original = btns[0].textContent;
+      btns[0].textContent = '✓ Copied';
+      setTimeout(() => { btns[0].textContent = original; }, 1400);
+    }
+  }
 
   /* ── DEMO ── */
   const profiles = [
@@ -1363,7 +1538,7 @@ X-RateLimit-Reset: 1718900000</code></pre>
 
   /* ── TOKEN ── */
   async function validateTokenOnPage(product) {
-    const el = document.getElementById('croupierToken');
+    const el = document.getElementById(product === 'croupier' ? 'croupierToken' : 'stackToken');
     const token = el ? el.value.trim() : '';
     if (!token) { alert('Please enter your access token.'); return; }
     try {
