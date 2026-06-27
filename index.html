@@ -635,6 +635,12 @@
       font-family: var(--mono); font-size: 9px; text-transform: uppercase;
       letter-spacing: 0.08em; color: var(--t3); margin-top: 4px;
     }
+    .strike { color: #e7a9a9; text-decoration: line-through; text-decoration-color: rgba(231,169,169,0.5); }
+    details { border-bottom: 1px solid var(--b); padding: 16px 0; }
+    summary { cursor: pointer; font-weight: 600; font-size: 14px; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::before { content: '// '; color: var(--accent); }
+    details p { color: var(--t2); font-size: 13.5px; line-height: 1.7; margin-top: 10px; max-width: 640px; }
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
@@ -668,6 +674,7 @@
       <span class="br">[</span>DEALER'S<span class="ac">CHOICE</span><span class="br">]</span>
     </div>
     <div class="nav-links">
+      <a href="javascript:void(0);" onclick="showPage('linkedin-alternative')" class="nav-link">Alternatives</a>
       <a href="#products"    class="nav-link">Products</a>
       <a href="#technology"  class="nav-link">Technology</a>
       <a href="#process"     class="nav-link">Process</a>
@@ -967,61 +974,6 @@
     </div>
   </section>
 
-  <!-- WHY CHOOSE US -->
-  <section class="why-section">
-    <div class="section-bg"></div>
-    <div class="section-glow"></div>
-    <div class="sw">
-      <span class="sec-label reveal">Why Choose Us</span>
-      <h2 class="sec-title reveal d1">LinkedIn Recruiter hasn't changed in a decade.<br>The talent market has.</h2>
-      <div class="pain-grid">
-        <ul class="pain-list reveal d2">
-          <li>Post a job and wait 2 weeks for inbound to trickle in</li>
-          <li>Spend 3 days manually sourcing — Boolean search, scroll, repeat</li>
-          <li>Send 40 InMails and get 4 responses</li>
-          <li>Pay $9,000/yr per seat for the privilege of doing it manually</li>
-        </ul>
-        <div class="pain-callout reveal d3">
-          <p>One search. 60 seconds. A ranked shortlist with reasons — not a list of profiles to read yourself.</p>
-        </div>
-      </div>
-
-      <div style="margin-top:64px;">
-        <span class="sec-label reveal">Head to Head</span>
-        <h2 class="sec-title reveal d1" style="font-size:clamp(24px,3.5vw,36px);">One gives you a search bar. The other gives you a decision.</h2>
-      </div>
-      <div class="compare reveal d2">
-        <div class="them">
-          <h3>LinkedIn Recruiter</h3>
-          <ul>
-            <li>A search bar and Boolean filters</li>
-            <li>150 InMail credits per month</li>
-            <li>No AI ranking — you read every profile yourself</li>
-            <li>No written reasoning on who to contact first</li>
-            <li>ATS sync is a paid add-on, if available at all</li>
-          </ul>
-        </div>
-        <div class="us">
-          <h3>The Croupier</h3>
-          <ul>
-            <li>One search, 45s avg., 100k+ profiles covered</li>
-            <li>Every candidate scored 0–100 by your own private model</li>
-            <li>Written Hire / Maybe / Pass verdict with strengths and concerns</li>
-            <li>Isolated fine-tuned model per account — nothing shared</li>
-            <li>One-click sync to 100Hires, Recruitee, JazzHR, SmartSuite, or Odoo</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="why-metrics-grid reveal d3">
-        <div class="why-mcell"><div class="why-mval">92%</div><div class="why-mlbl">Match Accuracy</div></div>
-        <div class="why-mcell"><div class="why-mval">3×</div><div class="why-mlbl">Faster Than Manual</div></div>
-        <div class="why-mcell"><div class="why-mval">0</div><div class="why-mlbl">Data Leaks</div></div>
-        <div class="why-mcell"><div class="why-mval">$9k</div><div class="why-mlbl">Saved vs Recruiter Seat</div></div>
-      </div>
-    </div>
-  </section>
-
   <!-- CTA -->
   <section class="cta-section">
     <h2 class="cta-title reveal">
@@ -1142,6 +1094,174 @@
       <button class="token-btn" onclick="validateTokenOnPage('croupier')">Unlock</button>
     </div>
   </div>
+</div>
+
+<!-- ══════════════════════════════
+     ALTERNATIVES PAGE
+══════════════════════════════ -->
+<div id="linkedin-alternative" class="page">
+  <div class="back-nav">
+    <span class="back-link" onclick="showPage('home')">← Dealer's Choice</span>
+    <span class="bc-sep">/</span>
+    <span class="bc-cur">Alternatives</span>
+    <span class="bc-sep">/</span>
+    <span class="bc-cur">LinkedIn Recruiter</span>
+  </div>
+
+  <section class="hero" style="min-height:auto; padding-bottom:48px;">
+    <div class="hero-glow"></div>
+    <div class="hero-inner">
+      <span class="tag tag-accent reveal" style="margin-bottom:20px; display:inline-block;">LinkedIn Recruiter Alternative</span>
+      <h1 class="hero-title reveal d1">Stop paying <span class="strike">$9,000/yr</span> for a <span class="gw">search bar.</span></h1>
+      <p class="hero-sub reveal d2">The Croupier searches 100k+ LinkedIn profiles through your own private, fine-tuned AI model and returns a 0–100 score with a written Hire / Maybe / Pass verdict on every candidate — starting at $149/mo.</p>
+      <div class="hero-btns reveal d3">
+        <button class="btn-primary" onclick="showPage('croupier')">Start My Free 3-Day Trial →</button>
+        <a href="mailto:sales@asqsys.com?subject=Demo Request" class="btn-ghost">Book a demo ↗</a>
+      </div>
+      <div class="hero-stats reveal d4">
+        <div><span class="hstat-n">45s</span><span class="hstat-l">Avg. Search Time</span></div>
+        <div class="hstat-sep"></div>
+        <div><span class="hstat-n">100k+</span><span class="hstat-l">Profiles Indexed</span></div>
+        <div class="hstat-sep"></div>
+        <div><span class="hstat-n">92%</span><span class="hstat-l">Match Accuracy</span></div>
+        <div class="hstat-sep"></div>
+        <div><span class="hstat-n">3-Day</span><span class="hstat-l">Free Trial</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: 72px 0;">
+    <div class="sw">
+      <span class="sec-label reveal">The problem</span>
+      <h2 class="sec-title reveal d1">LinkedIn Recruiter hasn't changed in a decade. The talent market has.</h2>
+      <div class="pain-grid">
+        <ul class="pain-list reveal d2">
+          <li>Post a job and wait 2 weeks for inbound to trickle in</li>
+          <li>Spend 3 days manually sourcing — Boolean search, scroll, repeat</li>
+          <li>Send 40 InMails and get 4 responses</li>
+          <li>Pay $9,000/yr per seat for the privilege of doing it manually</li>
+        </ul>
+        <div class="pain-callout reveal d3">
+          <p>One search. 60 seconds. A ranked shortlist with reasons — not a list of profiles to read yourself.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--bg1);border-top:1px solid var(--b);border-bottom:1px solid var(--b); padding: 72px 0;">
+    <div class="sw">
+      <span class="sec-label reveal">Head to head</span>
+      <h2 class="sec-title reveal d1">One gives you a search bar. The other gives you a decision.</h2>
+      <div class="compare reveal d2">
+        <div class="them">
+          <h3>LinkedIn Recruiter</h3>
+          <ul>
+            <li>A search bar and Boolean filters</li>
+            <li>150 InMail credits per month</li>
+            <li>No AI ranking — you read every profile yourself</li>
+            <li>No written reasoning on who to contact first</li>
+            <li>ATS sync is a paid add-on, if available at all</li>
+          </ul>
+        </div>
+        <div class="us">
+          <h3>The Croupier</h3>
+          <ul>
+            <li>One search, 45s avg., 100k+ profiles covered</li>
+            <li>Every candidate scored 0–100 by your own private model</li>
+            <li>Written Hire / Maybe / Pass verdict with strengths and concerns</li>
+            <li>Isolated fine-tuned model per account — nothing shared</li>
+            <li>One-click sync to 100Hires, Recruitee, JazzHR, SmartSuite, or Odoo</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="out-box reveal d3" style="max-width: 480px; margin-top: 30px;">
+        <div class="out-label">Example output</div>
+        <div class="out-score">87/100</div>
+        <div class="out-verdict">Hire</div>
+        <div class="out-body">Strong Python background (6y), AWS certified, led team of 8 engineers. Slightly over-qualified for IC role — may negotiate seniority expectations upward.</div>
+      </div>
+
+      <div class="why-metrics-grid reveal d4">
+        <div class="why-mcell"><div class="why-mval">92%</div><div class="why-mlbl">Match Accuracy</div></div>
+        <div class="why-mcell"><div class="why-mval">3×</div><div class="why-mlbl">Faster Than Manual</div></div>
+        <div class="why-mcell"><div class="why-mval">0</div><div class="why-mlbl">Data Leaks</div></div>
+        <div class="why-mcell"><div class="why-mval">$9k</div><div class="why-mlbl">Saved vs Recruiter Seat</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: 72px 0;">
+    <div class="sw">
+      <span class="sec-label reveal">Plans</span>
+      <h2 class="sec-title reveal d1">Priced for a team, not an enterprise procurement cycle</h2>
+      <div class="pricing-grid reveal d2" style="margin-top: 40px;">
+        <div class="price-card">
+          <div class="price-tier">Starter</div>
+          <div class="price-amt">$149<span>/mo</span></div>
+          <div class="price-sub">1,000 candidates / month</div>
+          <ul class="price-features"><li>Private AI ranking</li><li>Professional profile search</li><li>Search history</li><li>Limited CSV export</li></ul>
+          <button class="price-btn" onclick="openStripeCheckout('price_1T5UQDRvu0Wlomst6OcHgx2m')">Start 3-Day Free Trial</button>
+        </div>
+        <div class="price-card featured">
+          <div class="price-tier">Growth</div>
+          <div class="price-amt">$299<span>/mo</span></div>
+          <div class="price-sub">5,000 candidates / month</div>
+          <ul class="price-features"><li>Advanced private AI ranking</li><li>Search history + bookmarks</li><li>CSV export</li><li>Priority support</li></ul>
+          <button class="price-btn acc" onclick="openStripeCheckout('price_1T5aQfRvu0WlomstC3m4OFns')">Start 3-Day Free Trial</button>
+        </div>
+        <div class="price-card">
+          <div class="price-tier">Enterprise</div>
+          <div class="price-amt">$599<span>/mo</span></div>
+          <div class="price-sub">15,000 candidates / month</div>
+          <ul class="price-features"><li>Premium private AI ranking</li><li>Full history + bookmarks</li><li>CSV export + custom reports</li><li>Dedicated support</li></ul>
+          <button class="price-btn" onclick="openStripeCheckout('price_1T9UO1Rvu0WlomstDwHIdo8B')">Start 3-Day Free Trial</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--bg1);border-top:1px solid var(--b); padding: 72px 0;">
+    <div class="sw" style="max-width:760px;">
+      <span class="sec-label reveal">Before you switch</span>
+      <h2 class="sec-title reveal d1" style="margin-bottom:20px;">Objections</h2>
+      <div class="reveal d2">
+        <details open>
+          <summary>Is this just LinkedIn Recruiter with extra steps?</summary>
+          <p>No — The Croupier doesn't replace your LinkedIn account, it replaces the manual sourcing work you'd otherwise do inside Recruiter. You still see real LinkedIn profiles; you just stop reading every one of them yourself.</p>
+        </details>
+        <details>
+          <summary>Is my data safe?</summary>
+          <p>Dealer's Choice runs a dedicated, fine-tuned Llama 4 Instruct model isolated per account. Your searches, candidates, and job descriptions never leave your secure pipeline or train a shared model.</p>
+        </details>
+        <details>
+          <summary>What if I only hire occasionally?</summary>
+          <p>The Starter plan at $149/mo makes sense if you fill even one role per year. One LinkedIn Recruiter seat costs $9,000 and doesn't include AI ranking.</p>
+        </details>
+        <details>
+          <summary>Does it connect to my ATS?</summary>
+          <p>Yes — 100Hires, Recruitee, JazzHR, SmartSuite, and Odoo. Push a ranked candidate straight into your pipeline.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2 class="cta-title reveal">Your next hire is already<br>on LinkedIn.</h2>
+    <div class="cta-actions reveal d2">
+      <button class="btn-primary" onclick="showPage('croupier')">Start My Free 3-Day Trial →</button>
+      <a href="mailto:sales@asqsys.com?subject=Demo Request" class="btn-ghost">Book a demo ↗</a>
+    </div>
+  </section>
+  
+  <footer>
+    <div class="footer-l">// 2026 Dealer's Choice Systems. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="javascript:void(0);" onclick="showPage('privacy')">Privacy</a>
+      <a href="javascript:void(0);" onclick="showPage('terms')">Terms</a>
+      <a href="mailto:sales@asqsys.com">Contact</a>
+    </div>
+  </footer>
 </div>
 
 <!-- ══════════════════════════════
