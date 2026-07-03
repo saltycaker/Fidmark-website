@@ -86,8 +86,8 @@
     }
     .nav-logo {
       font-family: var(--mono); font-size: 13px; font-weight: 700;
-      letter-spacing: -0.01em; cursor: pointer; white-space: nowrap;
-      display: flex; align-items: center; gap: 1px;
+      letter-spacing: 0.02em; cursor: pointer; white-space: nowrap;
+      display: flex; align-items: center; gap: 9px;
       margin-right: 32px;
     }
     .nav-logo .br { color: var(--t4); }
@@ -671,7 +671,11 @@
   <!-- NAV -->
   <nav>
     <div class="nav-logo" onclick="showPage('home')">
-      <span class="br">[</span>FIDMARK<span class="br">]</span>
+      <svg width="21" height="21" viewBox="0 0 21 21" fill="none" style="flex-shrink:0;">
+        <circle cx="10.5" cy="10.5" r="9.5" stroke="var(--accent)" stroke-width="1.4"/>
+        <path d="M6.3 10.7L9.1 13.6L14.7 7.4" stroke="var(--t1)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>FID<span class="ac">MARK</span></span>
     </div>
     <div class="nav-links">
       <a href="javascript:void(0);" onclick="showPage('why-us')" class="nav-link">Why Us</a>
@@ -703,7 +707,7 @@
 
       <div class="hero-btns reveal d3">
         <button class="btn-primary" onclick="showPage('croupier')">Start free trial →</button>
-        <a href="mailto:sales@asqsys.com?subject=Demo Request" class="btn-ghost">Book a demo ↗</a>
+        <a href="mailto:sales@fidmark.ai?subject=Demo Request" class="btn-ghost">Book a demo ↗</a>
       </div>
 
       <div class="hero-stats reveal d4">
@@ -1035,17 +1039,17 @@
       RECRUIT<br><span class="gw">SMARTER</span><br>TODAY.
     </h2>
     <div class="cta-actions reveal d2">
-      <a class="btn-primary" href="mailto:sales@asqsys.com?subject=Demo Request">Book a Demo →</a>
+      <a class="btn-primary" href="mailto:sales@fidmark.ai?subject=Demo Request">Book a Demo →</a>
       <button class="btn-ghost" onclick="showPage('croupier')">View pricing</button>
     </div>
   </section>
 
   <footer>
-    <div class="footer-l">// 2026 Fidmark Systems. All rights reserved.</div>
+    <div class="footer-l">// 2026 Fidmark. All rights reserved.</div>
     <div class="footer-links">
       <a href="javascript:void(0);" onclick="showPage('privacy')">Privacy</a>
       <a href="javascript:void(0);" onclick="showPage('terms')">Terms</a>
-      <a href="mailto:sales@asqsys.com">Contact</a>
+      <a href="mailto:sales@fidmark.ai">Contact</a>
     </div>
   </footer>
 </main>
@@ -1145,7 +1149,7 @@
     <h3 style="font-family:var(--display);font-size:1.8rem;font-weight:800;letter-spacing:-0.03em;margin:12px 0 8px;">Access Your Dashboard</h3>
     <p style="font-family:var(--mono);font-size:11px;color:var(--t3);margin-bottom:32px;letter-spacing:0.05em;">Enter the access token sent to your email after purchase</p>
     <div class="token-row">
-      <input type="text" id="croupierToken" placeholder="DEALERS-XXXX-XXXX" class="token-input">
+      <input type="text" id="croupierToken" placeholder="FIDMARK-XXXX-XXXX" class="token-input">
       <button class="token-btn" onclick="validateTokenOnPage('croupier')">Unlock</button>
     </div>
   </div>
@@ -1169,7 +1173,7 @@
       <p class="hero-sub reveal d2">The Croupier searches 100k+ LinkedIn profiles through your own private, fine-tuned AI model and returns a 0–100 score with a written Hire / Maybe / Pass verdict on every candidate — starting at $149/mo.</p>
       <div class="hero-btns reveal d3">
         <button class="btn-primary" onclick="showPage('croupier')">Start My Free 3-Day Trial →</button>
-        <a href="mailto:sales@asqsys.com?subject=Demo Request" class="btn-ghost">Book a demo ↗</a>
+        <a href="mailto:sales@fidmark.ai?subject=Demo Request" class="btn-ghost">Book a demo ↗</a>
       </div>
       <div class="hero-stats reveal d4">
         <div><span class="hstat-n">45s</span><span class="hstat-l">Avg. Search Time</span></div>
@@ -1303,16 +1307,16 @@
     <h2 class="cta-title reveal">Your next hire is already<br>on LinkedIn.</h2>
     <div class="cta-actions reveal d2">
       <button class="btn-primary" onclick="showPage('croupier')">Start My Free 3-Day Trial →</button>
-      <a href="mailto:sales@asqsys.com?subject=Demo Request" class="btn-ghost">Book a demo ↗</a>
+      <a href="mailto:sales@fidmark.ai?subject=Demo Request" class="btn-ghost">Book a demo ↗</a>
     </div>
   </section>
   
   <footer>
-    <div class="footer-l">// 2026 Fidmark Systems. All rights reserved.</div>
+    <div class="footer-l">// 2026 Fidmark. All rights reserved.</div>
     <div class="footer-links">
       <a href="javascript:void(0);" onclick="showPage('privacy')">Privacy</a>
       <a href="javascript:void(0);" onclick="showPage('terms')">Terms</a>
-      <a href="mailto:sales@asqsys.com">Contact</a>
+      <a href="mailto:sales@fidmark.ai">Contact</a>
     </div>
   </footer>
 </div>
@@ -1331,7 +1335,7 @@
       <h3 style="color:var(--t1);font-family:var(--display);font-size:18px;font-weight:700;">What We Never Do</h3>
       <p>We never share your search data with third-party AI providers. We never use your candidate data to train shared models. We never sell your information to data brokers or recruiters.</p>
       <h3 style="color:var(--t1);font-family:var(--display);font-size:18px;font-weight:700;">Contact</h3>
-      <p>Questions? <a href="mailto:sales@asqsys.com" style="color:var(--accent);">sales@asqsys.com</a></p>
+      <p>Questions? <a href="mailto:sales@fidmark.ai" style="color:var(--accent);">sales@fidmark.ai</a></p>
     </div>
   </div>
 </div>
@@ -1350,7 +1354,7 @@
       <h3 style="color:var(--t1);font-family:var(--display);font-size:18px;font-weight:700;">Subscriptions</h3>
       <p>Subscriptions renew automatically. A 3-Day free trial is available on all plans. Cancel anytime before the trial ends at no charge. Cancellations take effect at the end of the current billing period.</p>
       <h3 style="color:var(--t1);font-family:var(--display);font-size:18px;font-weight:700;">Contact</h3>
-      <p>Questions? <a href="mailto:sales@asqsys.com" style="color:var(--accent);">sales@asqsys.com</a></p>
+      <p>Questions? <a href="mailto:sales@fidmark.ai" style="color:var(--accent);">sales@fidmark.ai</a></p>
     </div>
   </div>
 </div>
@@ -1432,7 +1436,7 @@ X-RateLimit-Reset: 1718900000</code></pre>
         <li><code>limit</code> — max results, default 20, max 100</li>
       </ul>
       <h3>Example Request</h3>
-      <pre><code>curl -X GET "https://api.dealerschoice.systems/v1/candidates/search?job_title=Software+Engineer&skills=Python,React&location=San+Francisco&experience=5+&limit=20" \
+      <pre><code>curl -X GET "https://api.fidmark.ai/v1/candidates/search?job_title=Software+Engineer&skills=Python,React&location=San+Francisco&experience=5+&limit=20" \
   -H "Authorization: Bearer sk_live_..." \
   -H "Content-Type: application/json"</code></pre>
       <h3>Example Response</h3>
@@ -1488,7 +1492,7 @@ X-RateLimit-Reset: 1718900000</code></pre>
         <span class="endpoint-path">/v1/searches</span>
       </div>
       <p>List all searches performed by your account, with pagination and filtering by date range.</p>
-      <pre><code>curl -X GET "https://api.dealerschoice.systems/v1/searches?limit=50&from=2026-01-01" \
+      <pre><code>curl -X GET "https://api.fidmark.ai/v1/searches?limit=50&from=2026-01-01" \
   -H "Authorization: Bearer sk_live_..."</code></pre>
 
       <h2 id="api-webhooks">Webhooks</h2>
@@ -1532,14 +1536,14 @@ X-RateLimit-Reset: 1718900000</code></pre>
       <p>Official SDKs are available for popular languages. Community contributions welcome.</p>
       <ul>
         <li><strong>Python:</strong> <code>pip install croupier-api</code></li>
-        <li><strong>JavaScript / Node.js:</strong> <code>npm install @dealerschoice/croupier-api</code></li>
+        <li><strong>JavaScript / Node.js:</strong> <code>npm install @fidmark/croupier-api</code></li>
         <li><strong>Ruby:</strong> <code>gem install croupier</code></li>
       </ul>
 
       <div class="docs-cta-box">
         <h3>Ready to integrate?</h3>
         <p>API access is a separate offering from our web plans. Every API account is reviewed before credentials are issued to prevent abuse and ensure proper support. Our team will set you up with credentials, walk through your use case, and help you go live.</p>
-        <a href="mailto:sales@asqsys.com?subject=Croupier API Access Request" class="btn-primary">Contact Us →</a>
+        <a href="mailto:sales@fidmark.ai?subject=Croupier API Access Request" class="btn-primary">Contact Us →</a>
       </div>
     </article>
 
@@ -1659,8 +1663,8 @@ X-RateLimit-Reset: 1718900000</code></pre>
       const r = await fetch(`${WORKER_URL}/api/validate-token`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ token }) });
       const result = await r.json();
       closeLoading();
-      if (result.valid) { localStorage.setItem('dealersToken', token); showDashboard(product, token); }
-      else alert('Invalid token. Check your email or contact sales@asqsys.com');
+      if (result.valid) { localStorage.setItem('fidmarkToken', token); showDashboard(product, token); }
+      else alert('Invalid token. Check your email or contact sales@fidmark.ai');
     } catch(e) { closeLoading(); alert('Error validating. Please try again.'); }
   }
 
@@ -1722,8 +1726,8 @@ X-RateLimit-Reset: 1718900000</code></pre>
       if (d.success) {
         const ca = d.cancels_at ? new Date(d.cancels_at).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}) : 'end of billing period';
         document.getElementById('cancel-area').innerHTML = `<div style="background:rgba(250,204,21,0.06);border:1px solid rgba(250,204,21,0.2);padding:10px 14px;text-align:center;border-radius:8px;"><span style="font-family:var(--mono);font-size:10px;color:var(--yellow);letter-spacing:0.08em;">Cancels ${ca} — full access until then</span></div>`;
-      } else { btn.disabled = false; btn.textContent = 'Cancel Subscription'; alert(d.error||'Cancellation failed. Contact sales@asqsys.com'); }
-    } catch(e) { btn.disabled = false; btn.textContent = 'Cancel Subscription'; alert('Error. Contact sales@asqsys.com'); }
+      } else { btn.disabled = false; btn.textContent = 'Cancel Subscription'; alert(d.error||'Cancellation failed. Contact sales@fidmark.ai'); }
+    } catch(e) { btn.disabled = false; btn.textContent = 'Cancel Subscription'; alert('Error. Contact sales@fidmark.ai'); }
   }
 
   /* ── LOADING ── */
