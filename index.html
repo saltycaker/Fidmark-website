@@ -1157,7 +1157,7 @@
     <h3 style="font-family:var(--display);font-size:1.8rem;font-weight:800;letter-spacing:-0.03em;margin:12px 0 8px;">Access Your Dashboard</h3>
     <p style="font-family:var(--mono);font-size:11px;color:var(--t3);margin-bottom:32px;letter-spacing:0.05em;">Enter the access token sent to your email after purchase</p>
     <div class="token-row">
-      <input type="text" id="croupierToken" placeholder="FIDMARK-XXXX-XXXX" class="token-input">
+      <input type="text" id="croupierToken" placeholder="DEALERS-XXXX-XXXX" class="token-input">
       <button class="token-btn" onclick="validateTokenOnPage('croupier')">Unlock</button>
     </div>
   </div>
@@ -1686,7 +1686,7 @@ X-RateLimit-Reset: 1718900000</code></pre>
       const usage = d.usage || {};
       const pct = Math.min(100, ((usage.candidates_found / usage.limit) * 100)).toFixed(1);
       const barColor = pct >= 90 ? 'var(--red)' : pct >= 75 ? 'var(--yellow)' : 'var(--accent)';
-      const dashUrl = 'https://croupier-site.vercel.app/';
+      const dashUrl = 'https://croupier-site.onrender.com/';
       const isCancelling = d.cancelling || d.status === 'cancelling';
       const cancelsAt = d.cancels_at ? new Date(d.cancels_at).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}) : null;
       const statusBadge = isCancelling
