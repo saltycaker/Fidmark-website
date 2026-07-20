@@ -1686,7 +1686,7 @@ X-RateLimit-Reset: 1718900000</code></pre>
       const usage = d.usage || {};
       const pct = Math.min(100, ((usage.candidates_found / usage.limit) * 100)).toFixed(1);
       const barColor = pct >= 90 ? 'var(--red)' : pct >= 75 ? 'var(--yellow)' : 'var(--accent)';
-      const dashUrl = 'https://croupier-site.onrender.com/';
+      const dashUrl = 'https://croupier-site.vercel.app/';
       const isCancelling = d.cancelling || d.status === 'cancelling';
       const cancelsAt = d.cancels_at ? new Date(d.cancels_at).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}) : null;
       const statusBadge = isCancelling
