@@ -211,6 +211,11 @@
     .tfcell { background: var(--bg2); padding: 12px 20px; }
     .tfv { font-family: var(--mono); font-size: 20px; font-weight: 700; color: var(--accent); }
     .tfl { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--t3); }
+    .term-caption {
+      font-family: var(--mono); font-size: 9px; color: var(--t4);
+      text-align: center; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-top: 12px;
+    }
 
     /* ─── MARQUEE ─── */
     .marquee-wrap {
@@ -709,8 +714,9 @@
       </h1>
 
       <p class="hero-sub reveal d2">
-        Private AI infrastructure for talent teams. Source candidates, automate outreach,
-        and track competitors — without sharing your data with anyone.
+        AI candidate sourcing and scoring for talent teams. Search LinkedIn,
+        rank every profile with a Hire / Maybe / Pass verdict, and push straight
+        to your ATS — without sharing your data with anyone.
       </p>
 
       <div class="hero-btns reveal d3">
@@ -725,8 +731,8 @@
         </div>
         <div class="hstat-sep"></div>
         <div>
-          <span class="hstat-n">1B+</span>
-          <span class="hstat-l">Profiles</span>
+          <span class="hstat-n">0</span>
+          <span class="hstat-l">Data Leaks</span>
         </div>
         <div class="hstat-sep"></div>
         <div>
@@ -735,8 +741,8 @@
         </div>
         <div class="hstat-sep"></div>
         <div>
-          <span class="hstat-n">92%</span>
-          <span class="hstat-l">Match Accuracy</span>
+          <span class="hstat-n">$9k</span>
+          <span class="hstat-l">Saved vs Recruiter Seat</span>
         </div>
       </div>
 
@@ -747,7 +753,7 @@
         </div>
         <div class="tbody">
           <div class="tl"><span class="tprompt">$</span><span class="tcmd">search --role "Sr. Engineer" --skills "Python,AWS" --loc "SF Bay Area"</span></div>
-          <span class="tout tdim">Querying 1B+ profiles...</span>
+          <span class="tout tdim">Querying LinkedIn profiles...</span>
           <span class="tout tok">✓ Found 47 candidates in 38s</span>
           <span class="tout tdim">Running private Llama 4 Instruct model...</span>
           <span class="tout" style="color:var(--accent)">Ranking and scoring candidates...</span>
@@ -760,21 +766,22 @@
           <div class="tl"><span class="tprompt">$</span><span class="tcursor"></span></div>
         </div>
         <div class="tfoot">
-          <div class="tfcell"><div class="tfv">92%</div><div class="tfl">Match Accuracy</div></div>
+          <div class="tfcell"><div class="tfv">&lt;60s</div><div class="tfl">Avg. Search Time</div></div>
           <div class="tfcell"><div class="tfv">0</div><div class="tfl">Data Leaks</div></div>
         </div>
       </div>
+      <div class="term-caption">Illustrative example output — names and companies are not real candidates</div>
     </div>
   </section>
 
   <!-- PARTNERS -->
   <div class="partners-section">
-    <p class="partners-hl reveal">Fidmark is engineered and deployed<br>in partnership with ASQSYS.</p>
+    <p class="partners-hl reveal">Fidmark's infrastructure is engineered and deployed<br>in partnership with ASQSYS.</p>
     <div class="partners-logos reveal d2">
       <a href="https://asqsys.ma/" target="_blank" rel="noopener" class="partner-link">
         <span class="partner-wm">ASQSYS</span>
         <span class="partner-sep-dot"></span>
-        <span class="partner-tld">asqsys.ma</span>
+        <span class="partner-tld">Infrastructure Partner · asqsys.ma</span>
       </a>
     </div>
   </div>
@@ -853,16 +860,16 @@
     <div class="marquee-track">
       <span class="marquee-item"><span class="mdot"></span>Private AI Model</span>
       <span class="marquee-item"><span class="mdot g"></span>LinkedIn Sourcing</span>
-      <span class="marquee-item"><span class="mdot"></span>Automated Outreach</span>
-      <span class="marquee-item"><span class="mdot g"></span>Competitor Intelligence</span>
+      <span class="marquee-item"><span class="mdot"></span>ATS Sync</span>
+      <span class="marquee-item"><span class="mdot g"></span>REST API Access</span>
       <span class="marquee-item"><span class="mdot"></span>AI Candidate Ranking</span>
       <span class="marquee-item"><span class="mdot g"></span>Zero Data Sharing</span>
       <span class="marquee-item"><span class="mdot"></span>3-Day Free Trial</span>
       <span class="marquee-item"><span class="mdot g"></span>Llama 4 Instruct</span>
       <span class="marquee-item"><span class="mdot"></span>Private AI Model</span>
       <span class="marquee-item"><span class="mdot g"></span>LinkedIn Sourcing</span>
-      <span class="marquee-item"><span class="mdot"></span>Automated Outreach</span>
-      <span class="marquee-item"><span class="mdot g"></span>Competitor Intelligence</span>
+      <span class="marquee-item"><span class="mdot"></span>ATS Sync</span>
+      <span class="marquee-item"><span class="mdot g"></span>REST API Access</span>
       <span class="marquee-item"><span class="mdot"></span>AI Candidate Ranking</span>
       <span class="marquee-item"><span class="mdot g"></span>Zero Data Sharing</span>
       <span class="marquee-item"><span class="mdot"></span>3-Day Free Trial</span>
@@ -877,7 +884,7 @@
       <h2 class="sec-title reveal d1">Built for talent teams.</h2>
       <div class="features-grid">
         <div class="fcell reveal d1"><div class="fnum">01</div><div class="ftitle">AI Candidate Ranking</div><div class="fdesc">Every profile gets a 0–100 fit score with written reasoning. Hire, Maybe, Pass — decided by a fine-tuned model trained on recruitment outcomes, not generic text similarity.</div><span class="ftag">Private AI Model</span></div>
-        <div class="fcell reveal d2"><div class="fnum">02</div><div class="ftitle">LinkedIn Sourcing at Scale</div><div class="fdesc">Search 1B+ professional profiles by title, skills, location, and experience. Results in under 60 seconds via our authorised data pipeline. No $9k/yr recruiter seat needed.</div><span class="ftag">Authorised Data Access</span></div>
+        <div class="fcell reveal d2"><div class="fnum">02</div><div class="ftitle">LinkedIn Sourcing at Scale</div><div class="fdesc">Search professional profiles by title, skills, location, and experience. Results in under 60 seconds via our authorised data pipeline. No $9k/yr recruiter seat needed.</div><span class="ftag">Authorised Data Access</span></div>
         <div class="fcell reveal d3"><div class="fnum">03</div><div class="ftitle">REST API Access</div><div class="fdesc">Integrate candidate discovery and scoring directly into your existing ATS, CRM, or internal tools. Full REST API with JSON responses, webhooks, and rate-limited tiers.</div><span class="ftag">Croupier API</span></div>
         <div class="fcell reveal d4"><div class="fnum">04</div><div class="ftitle">Private AI Scoring</div><div class="fdesc">Every candidate gets a 0–100 fit score with written reasoning from your dedicated fine-tuned Llama 4 Instruct model. Hire, Maybe, Pass — decided privately per account.</div><span class="ftag">Live Product</span></div>
         <div class="fcell reveal d5"><div class="fnum">05</div><div class="ftitle">Search History + Bookmarks</div><div class="fdesc">Every search is saved. Revisit past candidate pools, compare results across roles, and bookmark top candidates. Full CSV export on Growth and Enterprise plans.</div><span class="ftag">Included</span></div>
@@ -940,7 +947,7 @@
             <div class="spec-row"><span class="spec-k">Data Retention</span><span class="spec-v">Zero Third-Party Sharing</span></div>
             <div class="spec-row"><span class="spec-k">Ranking Method</span><span class="spec-v">AI Fit Score 0–100</span></div>
             <div class="spec-row"><span class="spec-k">Profile Analysis</span><span class="spec-v">Skills · Experience · Intent</span></div>
-            <div class="spec-row"><span class="spec-k">Data Source</span><span class="spec-v">Licensed LinkedIn Pipeline</span></div>
+            <div class="spec-row"><span class="spec-k">Data Source</span><span class="spec-v">Authorised LinkedIn Pipeline</span></div>
             <div class="spec-row"><span class="spec-k">Latency</span><span class="spec-v">&lt; 60s Per Search</span></div>
           </div>
         </div>
@@ -955,8 +962,8 @@
             <div class="out-body">Strong Python background (6y), AWS certified, led team of 8 engineers. Slightly over-qualified for IC role — may negotiate seniority expectations upward.</div>
           </div>
           <div class="metrics-grid reveal d4">
-            <div class="mcell"><div class="mval">92%</div><div class="mlbl">Match Accuracy</div></div>
-            <div class="mcell"><div class="mval">3×</div><div class="mlbl">Faster Than Manual</div></div>
+            <div class="mcell"><div class="mval">&lt;60s</div><div class="mlbl">Avg. Search Time</div></div>
+            <div class="mcell"><div class="mval">Isolated</div><div class="mlbl">Private Model Per Account</div></div>
             <div class="mcell"><div class="mval">0</div><div class="mlbl">Data Leaks</div></div>
             <div class="mcell"><div class="mval">$9k</div><div class="mlbl">Saved vs Recruiter Seat</div></div>
           </div>
@@ -1023,7 +1030,7 @@
         <div class="us">
           <h3>The Croupier</h3>
           <ul>
-            <li>One search, 45s avg., 1B+ profiles covered</li>
+            <li>One search, 45s avg., across LinkedIn</li>
             <li>Every candidate scored 0–100 by your own private model</li>
             <li>Written Hire / Maybe / Pass verdict with strengths and concerns</li>
             <li>Isolated fine-tuned model per account — nothing shared</li>
@@ -1033,8 +1040,8 @@
       </div>
 
       <div class="why-metrics-grid reveal d3">
-        <div class="why-mcell"><div class="why-mval">92%</div><div class="why-mlbl">Match Accuracy</div></div>
-        <div class="why-mcell"><div class="why-mval">3×</div><div class="why-mlbl">Faster Than Manual</div></div>
+        <div class="why-mcell"><div class="why-mval">&lt;60s</div><div class="why-mlbl">Avg. Search Time</div></div>
+        <div class="why-mcell"><div class="why-mval">Isolated</div><div class="why-mlbl">Private Model Per Account</div></div>
         <div class="why-mcell"><div class="why-mval">0</div><div class="why-mlbl">Data Leaks</div></div>
         <div class="why-mcell"><div class="why-mval">$9k</div><div class="why-mlbl">Saved vs Recruiter Seat</div></div>
       </div>
@@ -1093,7 +1100,7 @@
       <div style="background:var(--card);border:1px solid var(--b);border-radius:14px;padding:28px;">
         <div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px;">Candidate Sourcing</div>
         <div style="font-family:var(--display);font-size:16px;font-weight:700;margin-bottom:10px;">No Recruiter Seat Needed</div>
-        <div style="font-size:13px;color:var(--t2);line-height:1.65;">Access 1B+ professional profiles without a $9,000/year LinkedIn Recruiter seat. Search by role, skills, location, and experience in under 60s.</div>
+        <div style="font-size:13px;color:var(--t2);line-height:1.65;">Access professional profiles without a $9,000/year LinkedIn Recruiter seat. Search by role, skills, location, and experience in under 60s.</div>
       </div>
     </div>
   </div>
@@ -1178,7 +1185,7 @@
     <div class="hero-inner">
       <span class="tag tag-accent reveal" style="margin-bottom:20px; display:inline-block;">LinkedIn Recruiter Alternative</span>
       <h1 class="hero-title reveal d1">Stop paying <span class="strike">$9,000/yr</span> for a <span class="gw">search bar.</span></h1>
-      <p class="hero-sub reveal d2">The Croupier searches 1B+ LinkedIn profiles through your own private, fine-tuned AI model and returns a 0–100 score with a written Hire / Maybe / Pass verdict on every candidate — starting at $149/mo.</p>
+      <p class="hero-sub reveal d2">The Croupier searches LinkedIn profiles through your own private, fine-tuned AI model and returns a 0–100 score with a written Hire / Maybe / Pass verdict on every candidate — starting at $149/mo.</p>
       <div class="hero-btns reveal d3">
         <button class="btn-primary" onclick="showPage('croupier')">Start My Free 3-Day Trial →</button>
         <a href="mailto:sales@asqsys.com?subject=Demo Request" class="btn-ghost">Book a demo ↗</a>
@@ -1186,9 +1193,9 @@
       <div class="hero-stats reveal d4">
         <div><span class="hstat-n">45s</span><span class="hstat-l">Avg. Search Time</span></div>
         <div class="hstat-sep"></div>
-        <div><span class="hstat-n">1B+</span><span class="hstat-l">Profiles</span></div>
+        <div><span class="hstat-n">0</span><span class="hstat-l">Data Leaks</span></div>
         <div class="hstat-sep"></div>
-        <div><span class="hstat-n">92%</span><span class="hstat-l">Match Accuracy</span></div>
+        <div><span class="hstat-n">$9k</span><span class="hstat-l">Saved vs Recruiter Seat</span></div>
         <div class="hstat-sep"></div>
         <div><span class="hstat-n">3-Day</span><span class="hstat-l">Free Trial</span></div>
       </div>
@@ -1231,7 +1238,7 @@
         <div class="us">
           <h3>The Croupier</h3>
           <ul>
-            <li>One search, 45s avg., 1B+ profiles covered</li>
+            <li>One search, 45s avg., across LinkedIn</li>
             <li>Every candidate scored 0–100 by your own private model</li>
             <li>Written Hire / Maybe / Pass verdict with strengths and concerns</li>
             <li>Isolated fine-tuned model per account — nothing shared</li>
@@ -1248,8 +1255,8 @@
       </div>
 
       <div class="why-metrics-grid reveal d4">
-        <div class="why-mcell"><div class="why-mval">92%</div><div class="why-mlbl">Match Accuracy</div></div>
-        <div class="why-mcell"><div class="why-mval">3×</div><div class="why-mlbl">Faster Than Manual</div></div>
+        <div class="why-mcell"><div class="why-mval">&lt;60s</div><div class="why-mlbl">Avg. Search Time</div></div>
+        <div class="why-mcell"><div class="why-mval">Isolated</div><div class="why-mlbl">Private Model Per Account</div></div>
         <div class="why-mcell"><div class="why-mval">0</div><div class="why-mlbl">Data Leaks</div></div>
         <div class="why-mcell"><div class="why-mval">$9k</div><div class="why-mlbl">Saved vs Recruiter Seat</div></div>
       </div>
@@ -1434,7 +1441,7 @@ X-RateLimit-Reset: 1718900000</code></pre>
         <span class="docs-tag get">GET</span>
         <span class="endpoint-path">/v1/candidates/search</span>
       </div>
-      <p>Search 1B+ professional profiles by job title, skills, location, and experience. Returns a ranked list of candidates with AI fit scores.</p>
+      <p>Search professional profiles by job title, skills, location, and experience. Returns a ranked list of candidates with AI fit scores.</p>
       <h3>Query Parameters</h3>
       <ul>
         <li><code>job_title</code> — required. Target role, e.g. "Software Engineer"</li>
