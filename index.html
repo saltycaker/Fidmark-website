@@ -1135,6 +1135,215 @@
     </div>
   </div>
 
+  <!-- PRODUCT TOUR: animated walkthrough of the full flow -->
+  <div style="max-width:1200px;margin:0 auto;padding:0 24px 60px;">
+    <span class="sec-label">Full Walkthrough</span>
+    <h2 style="font-family:var(--display);font-size:2rem;font-weight:800;letter-spacing:-0.03em;margin:12px 0 8px;">From Access Token to Talent Pool</h2>
+    <p style="font-size:14px;color:var(--t2);margin-bottom:32px;max-width:560px;">Six real steps, in order. Illustrative data — names, companies, and candidates are not real.</p>
+
+    <div class="tour-wrap">
+      <div class="tour-nav-row">
+        <button class="tour-arrow" onclick="prevTour()" aria-label="Previous step">‹</button>
+        <div class="tour-window">
+          <div class="tbar">
+            <div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div>
+            <span class="ttitle" id="tourStepLabel">01 / Access Gate</span>
+          </div>
+          <div class="tour-stage" id="tourStage"></div>
+        </div>
+        <button class="tour-arrow" onclick="nextTour()" aria-label="Next step">›</button>
+      </div>
+      <div class="tour-dots" id="tourDots"></div>
+    </div>
+  </div>
+
+  <style>
+    .tour-wrap { display:flex; flex-direction:column; align-items:center; }
+    .tour-nav-row { display:flex; align-items:center; gap:14px; width:100%; max-width:760px; }
+    .tour-arrow {
+      flex-shrink:0; width:36px; height:36px; border-radius:50%; background:var(--card);
+      border:1px solid var(--b2); color:var(--t2); font-size:18px; line-height:1;
+      display:flex; align-items:center; justify-content:center; transition:all 0.15s;
+    }
+    .tour-arrow:hover { color:var(--t1); border-color:var(--accent); background:rgba(168,85,247,0.1); }
+    .tour-window {
+      width:100%; max-width:640px; background:var(--bg0,#050505); background:#050505; border:1px solid var(--b);
+      border-radius:12px; overflow:hidden; box-shadow:0 24px 48px rgba(0,0,0,0.5);
+    }
+    .tour-stage { position:relative; height:520px; overflow:hidden; }
+    .tour-frame {
+      position:absolute; inset:0; padding:20px 22px; opacity:0; transform:translateY(10px);
+      transition:opacity 0.4s var(--ease), transform 0.4s var(--ease); overflow-y:auto;
+    }
+    .tour-frame.active { opacity:1; transform:none; z-index:2; }
+    .tour-dots { display:flex; gap:7px; margin-top:18px; }
+    .tour-dot { width:6px; height:6px; border-radius:50%; background:var(--b2); cursor:pointer; transition:background 0.2s, width 0.2s; }
+    .tour-dot.active { background:var(--accent); width:18px; border-radius:3px; }
+
+    /* faithful UI-chrome elements matching the real product screens */
+    .tf-topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:6px; }
+    .tf-chip { font-family:var(--mono); font-size:9px; text-transform:uppercase; letter-spacing:0.06em; padding:5px 10px; border-radius:6px; background:rgba(255,255,255,0.04); border:1px solid var(--b); color:var(--t2); }
+    .tf-chip.acc { background:var(--accent); color:#000; border-color:var(--accent); font-weight:700; }
+    .tf-title { font-family:var(--display); font-size:19px; font-weight:800; margin-bottom:4px; }
+    .tf-sub { font-size:12px; color:var(--t2); margin-bottom:16px; }
+    .tf-input { width:100%; background:var(--bg2); border:1px solid var(--b); color:var(--t3); font-family:var(--mono); font-size:11px; padding:9px 12px; border-radius:6px; margin-bottom:12px; }
+    .tf-textarea { width:100%; min-height:52px; background:var(--bg2); border:1px solid var(--b); color:var(--t3); font-family:var(--mono); font-size:11px; padding:9px 12px; border-radius:6px; margin-bottom:12px; }
+    .tf-label { font-family:var(--mono); font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:var(--t3); display:block; margin-bottom:5px; }
+    .tf-btn { width:100%; padding:11px; background:var(--accent); color:#000; font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:0.1em; font-weight:700; border-radius:8px; text-align:center; margin-top:6px; }
+    .tf-card { background:var(--bg2); border:1px solid var(--b); border-radius:10px; padding:13px 15px; margin-bottom:8px; }
+    .tf-row { display:flex; gap:8px; }
+    .tf-row > * { flex:1; }
+    .tf-scorecircle { width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:11px; font-weight:700; flex-shrink:0; }
+    .tf-tag { font-family:var(--mono); font-size:8px; padding:2px 7px; border-radius:4px; }
+    .tf-tag.ok { background:rgba(74,222,128,0.1); color:var(--green); border:1px solid rgba(74,222,128,0.2); }
+    .tf-tag.warn { background:rgba(250,204,21,0.1); color:var(--yellow); border:1px solid rgba(250,204,21,0.2); }
+  </style>
+
+  <script>
+    const tourFrames = [
+      { label: '01 / Access Gate', html: `
+        <div style="text-align:center;padding-top:26px;">
+          <div style="font-size:34px;margin-bottom:10px;">🔐</div>
+          <div class="tf-title">The Croupier</div>
+          <div class="tf-sub">Enter your access token to unlock AI-powered LinkedIn candidate discovery.</div>
+          <div style="text-align:left;max-width:320px;margin:0 auto;">
+            <span class="tf-label">Access Token</span>
+            <div class="tf-input" style="letter-spacing:0.1em;">DEALERS-XXXXXX</div>
+            <div class="tf-btn">Unlock Access</div>
+          </div>
+        </div>` },
+      { label: '02 / Search Form', html: `
+        <div class="tf-title" style="font-size:16px;">The Croupier</div>
+        <div class="tf-sub">AI-powered LinkedIn candidate discovery</div>
+        <span class="tf-label">Job Title</span>
+        <div class="tf-input">Senior Backend Engineer</div>
+        <span class="tf-label">Job Description</span>
+        <div class="tf-textarea">Own our payments API, scale it past 10k req/s, mentor two mid-level engineers...</div>
+        <span class="tf-label">Required Skills</span>
+        <div class="tf-input">Python, FastAPI, AWS</div>
+        <div class="tf-row">
+          <div><span class="tf-label">Years Experience</span><div class="tf-input">5</div></div>
+          <div><span class="tf-label">Number of Candidates</span><div class="tf-input">10</div></div>
+        </div>
+        <div class="tf-row">
+          <div><span class="tf-label">Industry</span><div class="tf-input">Fintech</div></div>
+          <div><span class="tf-label">Location</span><div class="tf-input">Austin, TX</div></div>
+        </div>
+        <div class="tf-btn">Find Candidates</div>` },
+      { label: '03 / Searching', html: `
+        <div style="text-align:center;padding-top:130px;">
+          <div class="pill-dot" style="margin:0 auto 18px;"></div>
+          <div style="font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;">Sourcing candidates...</div>
+          <div style="font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:0.1em;margin-top:10px;">Running private AI ranking model</div>
+        </div>` },
+      { label: '04 / Results', html: `
+        <div class="tf-topbar">
+          <span class="tf-chip">← New Search</span>
+          <span class="tf-chip">History</span>
+          <span class="tf-chip">Talent Pool</span>
+          <span class="tf-chip">🔗 Connectors</span>
+          <span class="tf-chip acc">↓ Export CSV</span>
+        </div>
+        <div class="tf-title" style="font-size:16px;">10 Candidates Found</div>
+        <div class="tf-sub">Role: <b style="color:var(--t1);">Senior Backend Engineer</b> · 7/20/2026, 2:31 AM</div>
+        <div class="tf-row" style="margin-bottom:14px;">
+          <div class="tf-card" style="text-align:center;"><div style="font-family:var(--mono);font-size:19px;color:var(--accent);font-weight:700;">10</div><div class="tf-sub" style="margin:0;">Total</div></div>
+          <div class="tf-card" style="text-align:center;"><div style="font-family:var(--mono);font-size:19px;color:var(--accent);font-weight:700;">1</div><div class="tf-sub" style="margin:0;">Open to Work</div></div>
+          <div class="tf-card" style="text-align:center;"><div style="font-family:var(--mono);font-size:19px;color:var(--green);font-weight:700;">6</div><div class="tf-sub" style="margin:0;">AI: Hire</div></div>
+        </div>
+
+        <div class="tf-card" style="padding:16px 17px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <div class="tf-scorecircle" style="width:40px;height:40px;font-size:13px;border:2px solid var(--green);color:var(--green);">97</div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:13.5px;font-weight:700;">1. Alex Rivera <span class="score-pill score-high" style="margin-left:4px;">Hire</span> <span style="color:var(--t4);">ⓘ</span></div>
+              <div style="font-size:10.5px;color:var(--t2);margin-top:4px;line-height:1.5;">Staff Backend Engineer at Fictional Fintech Co | MSc Computer Science @Sample State University | Python | FastAPI | AWS | Distributed Systems | Ex-@DemoCorp @PlaceholderSoft</div>
+              <div style="font-size:9.5px;color:var(--t4);margin-top:3px;">Austin, TX, United States · 7y exp</div>
+            </div>
+          </div>
+          <div style="background:rgba(168,85,247,0.06);border-left:2px solid var(--accent);border-radius:4px;padding:8px 12px;margin:11px 0 10px;">
+            <span style="font-size:11px;font-style:italic;color:var(--t1);">✨ Strong backend engineer with proven fintech-adjacent scaling experience and clean AWS fundamentals.</span>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:11px;">
+            <span class="tf-tag ok" style="padding:4px 9px;">✓ Strong Python background</span>
+            <span class="tf-tag ok" style="padding:4px 9px;">✓ Led backend migrations</span>
+            <span class="tf-tag warn" style="padding:4px 9px;">⚠ Limited fintech-specific exp.</span>
+          </div>
+          <div style="font-size:10.5px;color:var(--t2);line-height:1.6;margin-bottom:11px;">Alex Rivera is a backend engineer who has spent the last three years scaling payment infrastructure at a Series C startup. Strong distributed-systems fundamentals and hands-on AWS...</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Skills</div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:11px;">
+            <span class="tf-tag" style="background:rgba(168,85,247,0.1);color:var(--accent);border:1px solid rgba(168,85,247,0.2);padding:4px 9px;">Python</span>
+            <span class="tf-tag" style="background:rgba(168,85,247,0.1);color:var(--accent);border:1px solid rgba(168,85,247,0.2);padding:4px 9px;">FastAPI</span>
+            <span class="tf-tag" style="background:rgba(168,85,247,0.1);color:var(--accent);border:1px solid rgba(168,85,247,0.2);padding:4px 9px;">AWS</span>
+            <span class="tf-tag" style="background:rgba(168,85,247,0.1);color:var(--accent);border:1px solid rgba(168,85,247,0.2);padding:4px 9px;">Distributed Systems</span>
+          </div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Experience</div>
+          <div style="font-size:10.5px;color:var(--t2);margin-bottom:11px;">
+            <div style="display:flex;justify-content:space-between;padding:3px 0;"><span><b style="color:var(--t1);">Staff Backend Engineer</b>@ Fictional Fintech Co</span><span style="color:var(--t4);">1y 2mo</span></div>
+            <div style="display:flex;justify-content:space-between;padding:3px 0;"><span><b style="color:var(--t1);">Backend Engineer</b>@ DemoCorp</span><span style="color:var(--t4);">2y 4mo</span></div>
+          </div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Education</div>
+          <div style="font-size:10.5px;color:var(--t2);margin-bottom:12px;">🎓 Sample State University — MSc, Computer Science</div>
+          <div class="tf-btn" style="margin-top:0;">View LinkedIn Profile →</div>
+        </div>
+
+        <div class="tf-card"><div style="display:flex;gap:10px;align-items:flex-start;"><div class="tf-scorecircle" style="border:2px solid var(--green);color:var(--green);">92</div><div><div style="font-size:12.5px;font-weight:700;">2. Priya Nandan <span class="score-pill score-high" style="margin-left:4px;">Hire</span></div><div style="font-size:10.5px;color:var(--t3);margin-top:2px;">Staff Engineer @ Sample Labs Inc · Remote · 9y exp</div><div style="display:flex;gap:5px;margin-top:7px;flex-wrap:wrap;"><span class="tf-tag ok">✓ AWS certified</span><span class="tf-tag ok">✓ Team lead exp.</span></div></div></div></div>
+        <div class="tf-card"><div style="display:flex;gap:10px;align-items:flex-start;"><div class="tf-scorecircle" style="border:2px solid var(--green);color:var(--green);">89</div><div><div style="font-size:12.5px;font-weight:700;">3. Sana Kapoor <span class="score-pill score-high" style="margin-left:4px;">Hire</span></div><div style="font-size:10.5px;color:var(--t3);margin-top:2px;">Senior Backend Dev @ Placeholder Systems · Chicago, IL · 6y exp</div><div style="display:flex;gap:5px;margin-top:7px;flex-wrap:wrap;"><span class="tf-tag ok">✓ FastAPI expert</span><span class="tf-tag ok">✓ Open to work</span></div></div></div></div>
+        <div class="tf-card"><div style="display:flex;gap:10px;align-items:flex-start;"><div class="tf-scorecircle" style="border:2px solid var(--green);color:var(--green);">85</div><div><div style="font-size:12.5px;font-weight:700;">4. Tomás Bergström <span class="score-pill score-high" style="margin-left:4px;">Hire</span></div><div style="font-size:10.5px;color:var(--t3);margin-top:2px;">Backend Lead @ Sample Payments Co · Remote · 8y exp</div><div style="display:flex;gap:5px;margin-top:7px;flex-wrap:wrap;"><span class="tf-tag ok">✓ Payments exp.</span><span class="tf-tag ok">✓ Python + AWS</span></div></div></div></div>
+        <div class="tf-card"><div style="display:flex;gap:10px;align-items:flex-start;"><div class="tf-scorecircle" style="border:2px solid var(--green);color:var(--green);">81</div><div><div style="font-size:12.5px;font-weight:700;">5. Wei Chen <span class="score-pill score-high" style="margin-left:4px;">Hire</span></div><div style="font-size:10.5px;color:var(--t3);margin-top:2px;">Software Engineer @ Demo Cloud Inc · Seattle, WA · 5y exp</div><div style="display:flex;gap:5px;margin-top:7px;flex-wrap:wrap;"><span class="tf-tag ok">✓ Strong AWS</span><span class="tf-tag warn">⚠ New to FastAPI</span></div></div></div></div>
+        <div class="tf-card"><div style="display:flex;gap:10px;align-items:flex-start;"><div class="tf-scorecircle" style="border:2px solid var(--green);color:var(--green);">77</div><div><div style="font-size:12.5px;font-weight:700;">6. Farah Haddad <span class="score-pill score-high" style="margin-left:4px;">Hire</span></div><div style="font-size:10.5px;color:var(--t3);margin-top:2px;">Backend Developer @ Sample Fin Corp · Austin, TX · 4y exp</div><div style="display:flex;gap:5px;margin-top:7px;flex-wrap:wrap;"><span class="tf-tag ok">✓ Local candidate</span><span class="tf-tag ok">✓ Fintech background</span></div></div></div></div>
+        <div class="tf-card"><div style="display:flex;gap:10px;align-items:flex-start;"><div class="tf-scorecircle" style="border:2px solid var(--yellow);color:var(--yellow);">68</div><div><div style="font-size:12.5px;font-weight:700;">7. Marcus Webb <span class="score-pill score-mid" style="margin-left:4px;">Maybe</span></div><div style="font-size:10.5px;color:var(--t3);margin-top:2px;">Backend Developer @ Demo Systems LLC · Denver, CO · 3y exp</div><div style="display:flex;gap:5px;margin-top:7px;flex-wrap:wrap;"><span class="tf-tag ok">✓ Python fluent</span><span class="tf-tag warn">⚠ Below exp. bar</span></div></div></div></div>
+        <div class="tf-card"><div style="display:flex;gap:10px;align-items:flex-start;"><div class="tf-scorecircle" style="border:2px solid var(--yellow);color:var(--yellow);">61</div><div><div style="font-size:12.5px;font-weight:700;">8. Dana Okafor <span class="score-pill score-mid" style="margin-left:4px;">Maybe</span></div><div style="font-size:10.5px;color:var(--t3);margin-top:2px;">Software Engineer @ Placeholder Cloud · Austin, TX · 4y exp</div><div style="display:flex;gap:5px;margin-top:7px;flex-wrap:wrap;"><span class="tf-tag ok">✓ Local candidate</span><span class="tf-tag warn">⚠ No FastAPI</span></div></div></div></div>
+        <div class="tf-card"><div style="display:flex;gap:10px;align-items:flex-start;"><div class="tf-scorecircle" style="border:2px solid var(--yellow);color:var(--yellow);">55</div><div><div style="font-size:12.5px;font-weight:700;">9. Ines Duarte <span class="score-pill score-mid" style="margin-left:4px;">Maybe</span></div><div style="font-size:10.5px;color:var(--t3);margin-top:2px;">Junior Backend Dev @ Sample Startup Co · Remote · 2y exp</div><div style="display:flex;gap:5px;margin-top:7px;flex-wrap:wrap;"><span class="tf-tag warn">⚠ Below exp. bar</span><span class="tf-tag warn">⚠ No AWS listed</span></div></div></div></div>
+        <div class="tf-card"><div style="display:flex;gap:10px;align-items:flex-start;"><div class="tf-scorecircle" style="border:2px solid var(--red);color:var(--red);">38</div><div><div style="font-size:12.5px;font-weight:700;">10. Noah Fitzgerald <span class="score-pill score-low" style="margin-left:4px;">Pass</span></div><div style="font-size:10.5px;color:var(--t3);margin-top:2px;">Frontend Developer @ Demo UI Studio · Miami, FL · 3y exp</div><div style="display:flex;gap:5px;margin-top:7px;flex-wrap:wrap;"><span class="tf-tag warn">⚠ No backend exp.</span><span class="tf-tag warn">⚠ Skill mismatch</span></div></div></div></div>` },
+      { label: '05 / Search History', html: `
+        <div class="tf-topbar">
+          <span class="tf-chip">← Return to Results</span>
+          <span class="tf-chip">Talent Pool</span>
+          <span class="tf-chip acc">Refresh</span>
+        </div>
+        <div class="tf-title" style="font-size:16px;">Search History</div>
+        <div class="tf-input" style="color:var(--t4);">Filter by job title or candidate name...</div>
+        <div class="tf-card" style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:13px;font-weight:700;">🔍 Senior Backend Engineer</div><div class="tf-sub" style="margin:2px 0 0;">10 candidates · 6 Hire · Alex Rivera, Priya Nandan</div></div><div style="text-align:right;"><div style="font-family:var(--mono);font-size:9px;color:var(--t3);">23h ago</div></div></div>
+        <div class="tf-card" style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:13px;font-weight:700;">🔍 Rust Developer</div><div class="tf-sub" style="margin:2px 0 0;">10 candidates · 1 OTW · Sam Torres, Jin Park</div></div><div style="font-family:var(--mono);font-size:9px;color:var(--t3);">1d ago</div></div>
+        <div class="tf-card" style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:13px;font-weight:700;">🔍 Data Scientist</div><div class="tf-sub" style="margin:2px 0 0;">12 candidates · 5 Hire · Nina Volkov, Theo Mensah</div></div><div style="font-family:var(--mono);font-size:9px;color:var(--t3);">3d ago</div></div>
+        <div class="tf-card" style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:13px;font-weight:700;">🔍 Senior Frontend Engineer</div><div class="tf-sub" style="margin:2px 0 0;">10 candidates · 4 Hire · Lena Fischer</div></div><div style="font-family:var(--mono);font-size:9px;color:var(--t3);">6d ago</div></div>` },
+      { label: '06 / Talent Pool', html: `
+        <div class="tf-topbar">
+          <span class="tf-chip">← New Search</span>
+          <span class="tf-chip">+ Add Candidate</span>
+          <span class="tf-chip">History</span>
+        </div>
+        <div class="tf-title" style="font-size:16px;">Talent Pool</div>
+        <div class="tf-sub">266 candidates across all sources</div>
+        <div class="tf-row" style="margin-bottom:14px;">
+          <div><span class="tf-label">Role / Campaign</span><div class="tf-input">All roles</div></div>
+          <div><span class="tf-label">Recommendation</span><div class="tf-input">All</div></div>
+        </div>
+        <div class="tf-card" style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:13px;">☐ Senior Machine Learning Engineer</span><span class="tf-chip" style="background:rgba(168,85,247,0.12);color:var(--accent);border-color:rgba(168,85,247,0.25);">7</span></div>
+        <div class="tf-card" style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:13px;">☐ Rust Developer</span><span class="tf-chip" style="background:rgba(168,85,247,0.12);color:var(--accent);border-color:rgba(168,85,247,0.25);">4</span></div>
+        <div class="tf-card" style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:13px;">☐ Senior Typescript Developer</span><span class="tf-chip" style="background:rgba(168,85,247,0.12);color:var(--accent);border-color:rgba(168,85,247,0.25);">5</span></div>
+        <div class="tf-card" style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:13px;">☐ Data Scientist</span><span class="tf-chip" style="background:rgba(168,85,247,0.12);color:var(--accent);border-color:rgba(168,85,247,0.25);">2</span></div>
+        <div class="tf-row" style="margin-top:12px;"><div class="tf-chip" style="text-align:center;background:var(--accent);color:#000;border-color:var(--accent);font-weight:700;">ALL</div><div class="tf-chip" style="text-align:center;">NONE</div></div>` }
+    ];
+
+    let tourIdx = 0, tourTimer = null;
+    function renderTour() {
+      const stage = document.getElementById('tourStage');
+      const dotsWrap = document.getElementById('tourDots');
+      stage.innerHTML = tourFrames.map((f,i) => `<div class="tour-frame${i===tourIdx?' active':''}">${f.html}</div>`).join('');
+      dotsWrap.innerHTML = tourFrames.map((f,i) => `<div class="tour-dot${i===tourIdx?' active':''}" onclick="goTour(${i})"></div>`).join('');
+      document.getElementById('tourStepLabel').textContent = tourFrames[tourIdx].label;
+    }
+    function goTour(i) { tourIdx = i; renderTour(); resetTourTimer(); }
+    function nextTour() { tourIdx = (tourIdx + 1) % tourFrames.length; renderTour(); resetTourTimer(); }
+    function prevTour() { tourIdx = (tourIdx - 1 + tourFrames.length) % tourFrames.length; renderTour(); resetTourTimer(); }
+    function advanceTour() { tourIdx = (tourIdx + 1) % tourFrames.length; renderTour(); }
+    function resetTourTimer() { clearInterval(tourTimer); tourTimer = setInterval(advanceTour, 3800); }
+    renderTour();
+    resetTourTimer();
+  </script>
+
   <div style="max-width:1200px;margin:0 auto;padding:0 24px 80px;">
     <span class="sec-label">Pricing</span>
     <h2 style="font-family:var(--display);font-size:2rem;font-weight:800;letter-spacing:-0.03em;margin:12px 0 40px;">Choose Your Scale</h2>
