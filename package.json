@@ -1,0 +1,30 @@
+{
+  "name": "fidmark-website",
+  "version": "1.0.0",
+  "description": "Fidmark - AI Recruitment Infrastructure",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saltycaker/Fidmark-website.git"
+  },
+  "keywords": [
+    "recruitment",
+    "ai",
+    "fidmark"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saltycaker/Fidmark-website/issues"
+  },
+  "homepage": "https://github.com/saltycaker/Fidmark-website#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1",
+    "express": "^5.2.1"
+  }
+}
