@@ -126,12 +126,24 @@
       width: 900px; height: 700px; pointer-events: none;
       background: radial-gradient(ellipse at 50% 30%, rgba(168,85,247,0.13) 0%, transparent 65%);
     }
+    .hero-split .hero-glow { top: -140px; right: -160px; left: auto; transform: none; }
     .hero-glow-2 {
       position: absolute; bottom: -200px; left: 50%; transform: translateX(-50%);
       width: 600px; height: 400px; pointer-events: none;
       background: radial-gradient(ellipse at 50% 50%, rgba(168,85,247,0.06) 0%, transparent 65%);
     }
     .hero-inner { max-width: 760px; width: 100%; position: relative; z-index: 1; }
+    /* Homepage hero only: side-by-side copy + interactive demo */
+    .hero-split .hero-inner { max-width: 1180px; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; text-align: left; }
+    .hero-copy { text-align: left; }
+    .hero-demo { display: flex; flex-direction: column; align-items: stretch; }
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero-copy { text-align: center; }
+      .hero-demo { align-items: center; }
+      .hero-demo .tour-window { max-width: 520px; }
+    }
     .hero-pill {
       display: inline-flex; align-items: center; gap: 8px;
       border: 1px solid var(--b2); border-radius: 999px;
@@ -146,6 +158,7 @@
       font-weight: 800; line-height: 1; letter-spacing: -0.04em;
       margin-bottom: 20px; color: var(--t1);
     }
+    .hero-split .hero-title { font-size: clamp(40px, 5vw, 72px); }
     .gw {
       background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 50%, #e9d5ff 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -155,7 +168,13 @@
       font-size: 17px; color: var(--t2); line-height: 1.65;
       max-width: 520px; margin: 0 auto 36px;
     }
+    .hero-copy .hero-sub { max-width: 480px; margin: 0 0 36px; }
     .hero-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 52px; }
+    .hero-copy .hero-btns { justify-content: flex-start; }
+    @media (max-width: 900px) {
+      .hero-copy .hero-sub { margin: 0 auto 36px; }
+      .hero-copy .hero-btns { justify-content: center; }
+    }
     .btn-primary {
       font-size: 13px; font-weight: 600; background: var(--accent); color: #000;
       padding: 10px 22px; border-radius: 8px;
@@ -175,9 +194,13 @@
       padding: 20px 0; border-top: 1px solid var(--b); border-bottom: 1px solid var(--b);
       margin-bottom: 52px;
     }
+    .hero-copy .hero-stats { justify-content: flex-start; margin-bottom: 0; }
     .hstat-n { display: block; font-family: var(--mono); font-size: 22px; font-weight: 700; color: var(--t1); letter-spacing: -0.02em; }
     .hstat-l { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--t3); }
     .hstat-sep { width: 1px; height: 28px; background: var(--b); }
+    @media (max-width: 900px) {
+      .hero-copy .hero-stats { justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+    }
 
     /* TERMINAL */
     .hero-terminal {
@@ -656,8 +679,9 @@
     details p { color: var(--t2); font-size: 13.5px; line-height: 1.7; margin-top: 10px; max-width: 640px; }
 
     /* TOUR (product walkthrough) */
-    .tour-wrap { display:flex; flex-direction:column; align-items:center; }
+    .tour-wrap { display:flex; flex-direction:column; align-items:center; width:100%; }
     .tour-nav-row { display:flex; align-items:center; gap:14px; width:100%; max-width:640px; }
+    .tour-controls { display:flex; align-items:center; justify-content:center; gap:14px; margin-top:18px; }
     .tour-arrow {
       flex-shrink:0; width:36px; height:36px; border-radius:50%; background:var(--card);
       border:1px solid var(--b2); color:var(--t2); font-size:18px; line-height:1;
@@ -670,13 +694,37 @@
       border-radius:12px; overflow:hidden; box-shadow:0 24px 48px rgba(0,0,0,0.5);
       text-align: left;
     }
-    .tour-stage { position:relative; height:460px; overflow:hidden; }
+    .hero-demo .tour-window { max-width: 100%; }
+
+    /* Verdict-terminal hero visual (from the standalone landing concept) */
+    .vt-body { padding:20px 22px; font-family:var(--mono); font-size:12px; min-height:280px; }
+    .vt-line { color:var(--t3); margin-bottom:8px; opacity:0; animation:vtReveal .4s ease forwards; }
+    .vt-line .vt-prompt { color:var(--accent); }
+    .vt-line.cmd { color:var(--t1); }
+    .vt-card { margin-top:12px; padding:14px; border:1px solid var(--b); border-radius:8px; background:var(--bg2); opacity:0; animation:vtReveal .4s ease forwards; }
+    .vt-card-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; gap:10px; }
+    .vt-card-name { font-family:var(--sans); font-weight:600; color:var(--t1); font-size:13.5px; }
+    .vt-tag { font-family:var(--mono); font-size:10.5px; padding:3px 8px; border-radius:20px; font-weight:700; white-space:nowrap; }
+    .vt-tag.hire { background:rgba(74,222,128,0.14); color:var(--green); }
+    .vt-tag.maybe { background:rgba(250,204,21,0.14); color:var(--yellow); }
+    .vt-score { font-family:var(--mono); font-size:10.5px; color:var(--t3); margin-bottom:6px; }
+    .vt-reason { font-family:var(--sans); font-size:12px; color:var(--t2); line-height:1.55; }
+    .vt-cursor { display:inline-block; width:7px; height:14px; background:var(--accent); vertical-align:middle; animation:vtBlink 1s step-end infinite; }
+    @keyframes vtReveal { to{ opacity:1; } }
+    @keyframes vtBlink { 50%{ opacity:0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .vt-line, .vt-card { animation:none; opacity:1; }
+      .vt-cursor { animation:none; }
+    }
+    .tour-stage { position:relative; height:430px; overflow:hidden; }
+    @media (max-width: 900px) { .tour-stage { height:460px; } }
     .tour-frame {
       position:absolute; inset:0; padding:20px 22px; opacity:0; transform:translateY(10px);
       transition:opacity 0.7s var(--ease), transform 0.7s var(--ease); overflow-y:auto;
     }
     .tour-frame.active { opacity:1; transform:none; z-index:2; }
-    .tour-dots { display:flex; gap:7px; margin-top:18px; }
+    .tour-dots { display:flex; align-items:center; gap:7px; margin-top:18px; }
+    .tour-controls .tour-dots { margin-top:0; }
     .tour-dot { width:6px; height:6px; border-radius:50%; background:var(--b2); cursor:pointer; transition:background 0.2s, width 0.2s; }
     .tour-dot.active { background:var(--accent); width:18px; border-radius:3px; }
 
@@ -744,56 +792,58 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero hero-split">
     <div class="hero-glow"></div>
     <div class="hero-inner">
+      <div class="hero-grid">
 
-      <div class="hero-pill reveal">
-        <span class="pill-dot"></span>
-        <span class="pill-text">Private AI Model · Live Now</span>
-      </div>
+        <!-- LEFT: copy -->
+        <div class="hero-copy">
+          <div class="hero-pill reveal">
+            <span class="pill-dot"></span>
+            <span class="pill-text">Private AI Model · Live Now</span>
+          </div>
 
-      <h1 class="hero-title reveal d1">
-        Hire <span class="gw">smarter.</span><br>Recruit faster.
-      </h1>
+          <h1 class="hero-title reveal d1">
+            Stop reading résumés.<br>Start reading <span class="gw">verdicts.</span>
+          </h1>
 
-      <p class="hero-sub reveal d2">
-        AI candidate sourcing and scoring for talent teams. Search LinkedIn,
-        rank every profile with a Hire / Maybe / Pass verdict, and push straight
-        to your ATS — without sharing your data with anyone.
-      </p>
+          <p class="hero-sub reveal d2">
+            The Croupier searches LinkedIn through your own private, fine-tuned model and hands
+            back a scored, reasoned Hire / Maybe / Pass on every candidate — in under a minute,
+            without your data touching anyone else's model.
+          </p>
 
-      <div class="hero-btns reveal d3">
-        <button class="btn-primary" onclick="showPage('croupier')">Start free trial →</button>
-        <a href="mailto:sales@asqsys.com?subject=Demo Request" class="btn-ghost">Book a demo ↗</a>
-      </div>
+          <div class="hero-btns reveal d3">
+            <button class="btn-primary" onclick="showPage('croupier')">Start free trial →</button>
+            <a href="mailto:sales@asqsys.com?subject=Demo Request" class="btn-ghost">Book a demo ↗</a>
+          </div>
 
-      <div class="hero-stats reveal d4">
-        <div>
-          <span class="hstat-n">45s</span>
-          <span class="hstat-l">Avg. Search Time</span>
+          <div class="hero-stats reveal d4">
+            <div>
+              <span class="hstat-n">45s</span>
+              <span class="hstat-l">Avg. Search Time</span>
+            </div>
+            <div class="hstat-sep"></div>
+            <div>
+              <span class="hstat-n">0</span>
+              <span class="hstat-l">Data Leaks</span>
+            </div>
+            <div class="hstat-sep"></div>
+            <div>
+              <span class="hstat-n">3-Day</span>
+              <span class="hstat-l">Free Trial</span>
+            </div>
+            <div class="hstat-sep"></div>
+            <div>
+              <span class="hstat-n">$9k</span>
+              <span class="hstat-l">Saved vs Recruiter Seat</span>
+            </div>
+          </div>
         </div>
-        <div class="hstat-sep"></div>
-        <div>
-          <span class="hstat-n">0</span>
-          <span class="hstat-l">Data Leaks</span>
-        </div>
-        <div class="hstat-sep"></div>
-        <div>
-          <span class="hstat-n">3-Day</span>
-          <span class="hstat-l">Free Trial</span>
-        </div>
-        <div class="hstat-sep"></div>
-        <div>
-          <span class="hstat-n">$9k</span>
-          <span class="hstat-l">Saved vs Recruiter Seat</span>
-        </div>
-      </div>
 
-      <!-- PRODUCT TOUR: animated walkthrough of the full flow (moved from Croupier page) -->
-      <div class="tour-wrap reveal d5">
-        <div class="tour-nav-row">
-          <button class="tour-arrow" onclick="prevTour()" aria-label="Previous step">‹</button>
+        <!-- RIGHT: interactive product walkthrough -->
+        <div class="hero-demo reveal d5">
           <div class="tour-window">
             <div class="tbar">
               <div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div>
@@ -801,11 +851,15 @@
             </div>
             <div class="tour-stage" id="tourStage"></div>
           </div>
-          <button class="tour-arrow" onclick="nextTour()" aria-label="Next step">›</button>
+          <div class="tour-controls">
+            <button class="tour-arrow" onclick="prevTour()" aria-label="Previous step">‹</button>
+            <div class="tour-dots" id="tourDots"></div>
+            <button class="tour-arrow" onclick="nextTour()" aria-label="Next step">›</button>
+          </div>
+          <div class="term-caption">Illustrative walkthrough — names, companies, and candidates are not real</div>
         </div>
-        <div class="tour-dots" id="tourDots"></div>
+
       </div>
-      <div class="term-caption">Illustrative walkthrough — names, companies, and candidates are not real</div>
     </div>
   </section>
 
