@@ -33,9 +33,9 @@
       --yellow:   #facc15;
       --red:      #f87171;
       --t1:       #ffffff;
-      --t2:       rgba(255,255,255,0.52);
-      --t3:       rgba(255,255,255,0.28);
-      --t4:       rgba(255,255,255,0.14);
+      --t2:       rgba(255,255,255,0.68);
+      --t3:       rgba(255,255,255,0.46);
+      --t4:       rgba(255,255,255,0.30);
       --mono:     'Space Mono', monospace;
       --sans:     'Inter', sans-serif;
       --display:  'Syne', sans-serif;
@@ -509,6 +509,7 @@
     .price-btn:hover { border-color: var(--accent); color: var(--t1); }
     .price-btn.acc { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
     .price-btn.acc:hover { background: var(--accent2); border-color: var(--accent2); }
+    .price-note { font-family: var(--mono); font-size: 9px; color: var(--t4); text-align: center; margin-top: 10px; letter-spacing: 0.03em; }
 
     /* ACCESS */
     .access-box {
@@ -788,7 +789,7 @@
       <a href="#technology"  class="nav-link">Technology</a>
       <a href="#process"     class="nav-link">Process</a>
     </div>
-    <button class="nav-cta" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Start free trial</button>
+    <button class="nav-cta" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">See plans</button>
   </nav>
 
   <!-- HERO -->
@@ -815,8 +816,8 @@
           </p>
 
           <div class="hero-btns reveal d3">
-            <button class="btn-primary" onclick="showPage('croupier')">Start free trial →</button>
-            <a href="mailto:sales@asqsys.com?subject=Demo Request" class="btn-ghost">Book a demo ↗</a>
+            <button class="btn-primary" onclick="showPage('croupier')">Try it on your next search →</button>
+            <a href="mailto:sales@asqsys.com?subject=Demo Request" class="btn-ghost">Book a 15-min demo ↗</a>
           </div>
 
           <div class="hero-stats reveal d4">
@@ -831,8 +832,8 @@
             </div>
             <div class="hstat-sep"></div>
             <div>
-              <span class="hstat-n">3-Day</span>
-              <span class="hstat-l">Free Trial</span>
+              <span class="hstat-n">Day 4</span>
+              <span class="hstat-l">First Charge</span>
             </div>
             <div class="hstat-sep"></div>
             <div>
@@ -1012,7 +1013,7 @@
       <span class="marquee-item"><span class="mdot g"></span>REST API Access</span>
       <span class="marquee-item"><span class="mdot"></span>AI Candidate Ranking</span>
       <span class="marquee-item"><span class="mdot g"></span>Zero Data Sharing</span>
-      <span class="marquee-item"><span class="mdot"></span>3-Day Free Trial</span>
+      <span class="marquee-item"><span class="mdot"></span>Card Held, Not Charged Until Day 4</span>
       <span class="marquee-item"><span class="mdot g"></span>Llama 4 Instruct</span>
       <span class="marquee-item"><span class="mdot"></span>Private AI Model</span>
       <span class="marquee-item"><span class="mdot g"></span>LinkedIn Sourcing</span>
@@ -1020,7 +1021,7 @@
       <span class="marquee-item"><span class="mdot g"></span>REST API Access</span>
       <span class="marquee-item"><span class="mdot"></span>AI Candidate Ranking</span>
       <span class="marquee-item"><span class="mdot g"></span>Zero Data Sharing</span>
-      <span class="marquee-item"><span class="mdot"></span>3-Day Free Trial</span>
+      <span class="marquee-item"><span class="mdot"></span>Card Held, Not Charged Until Day 4</span>
       <span class="marquee-item"><span class="mdot g"></span>Llama 4 Instruct</span>
     </div>
   </div>
@@ -1147,8 +1148,8 @@
       RECRUIT<br><span class="gw">SMARTER</span><br>TODAY.
     </h2>
     <div class="cta-actions reveal d2">
-      <a class="btn-primary" href="mailto:sales@asqsys.com?subject=Demo Request">Book a Demo →</a>
-      <button class="btn-ghost" onclick="showPage('croupier')">View pricing</button>
+      <button class="btn-primary" onclick="showPage('croupier')">See plans & start today →</button>
+      <a class="btn-ghost" href="mailto:sales@asqsys.com?subject=Demo Request">Book a demo ↗</a>
     </div>
   </section>
 
@@ -1226,28 +1227,32 @@
 
   <div style="max-width:1200px;margin:0 auto;padding:0 24px 80px;">
     <span class="sec-label">Pricing</span>
-    <h2 style="font-family:var(--display);font-size:2rem;font-weight:800;letter-spacing:-0.03em;margin:12px 0 40px;">Choose Your Scale</h2>
+    <h2 style="font-family:var(--display);font-size:2rem;font-weight:800;letter-spacing:-0.03em;margin:12px 0 12px;">Choose Your Scale</h2>
+    <p style="font-size:14px;color:var(--t2);max-width:520px;margin-bottom:32px;">Every plan starts with a 3-day trial. We hold your card — you're not charged until Day 4, and you can cancel anytime before then at no cost.</p>
     <div class="pricing-grid">
       <div class="price-card">
         <div class="price-tier">Starter</div>
         <div class="price-amt">$149<span>/mo</span></div>
         <div class="price-sub">Perfect for small teams</div>
         <ul class="price-features"><li>1,000 Candidates / month</li><li>Private AI Ranking</li><li>Professional Profile Search</li><li>Search History</li><li>Limited CSV Export</li></ul>
-        <button class="price-btn" onclick="openStripeCheckout('price_1T5UQDRvu0Wlomst6OcHgx2m')">Start 3-Day Free Trial</button>
+        <button class="price-btn" onclick="openStripeCheckout('price_1T5UQDRvu0Wlomst6OcHgx2m')">Start — card held, charged Day 4</button>
+        <div class="price-note">Cancel anytime before Day 4, no charge</div>
       </div>
       <div class="price-card featured">
         <div class="price-tier">Growth</div>
         <div class="price-amt">$299<span>/mo</span></div>
         <div class="price-sub">For scaling companies</div>
         <ul class="price-features"><li>5,000 Candidates / month</li><li>Advanced Private AI Ranking</li><li>Professional Profile Search</li><li>Search History + Emails</li><li>CSV Export</li><li>ATS Connectors</li></ul>
-        <button class="price-btn acc" onclick="openStripeCheckout('price_1T5aQfRvu0WlomstC3m4OFns')">Start 3-Day Free Trial</button>
+        <button class="price-btn acc" onclick="openStripeCheckout('price_1T5aQfRvu0WlomstC3m4OFns')">Start — card held, charged Day 4</button>
+        <div class="price-note">Cancel anytime before Day 4, no charge</div>
       </div>
       <div class="price-card">
         <div class="price-tier">Enterprise</div>
         <div class="price-amt">$599<span>/mo</span></div>
         <div class="price-sub">Maximum power</div>
         <ul class="price-features"><li>15,000 Candidates / month</li><li>Premium Private AI Ranking</li><li>Professional Profile Search</li><li>Full History + Talent Pool</li><li>CSV Export + Emails</li><li>ATS + HRIS Connectors</li><li>Customised Product Access</li></ul>
-        <button class="price-btn" onclick="openStripeCheckout('price_1T9UO1Rvu0WlomstDwHIdo8B')">Start 3-Day Free Trial</button>
+        <button class="price-btn" onclick="openStripeCheckout('price_1T9UO1Rvu0WlomstDwHIdo8B')">Start — card held, charged Day 4</button>
+        <div class="price-note">Cancel anytime before Day 4, no charge</div>
       </div>
     </div>
   </div>
@@ -1280,7 +1285,7 @@
       <h1 class="hero-title reveal d1">Stop paying <span class="strike">$9,000/yr</span> for a <span class="gw">search bar.</span></h1>
       <p class="hero-sub reveal d2">The Croupier searches LinkedIn profiles through your own private, fine-tuned AI model and returns a 0–100 score with a written Hire / Maybe / Pass verdict on every candidate — starting at $149/mo.</p>
       <div class="hero-btns reveal d3">
-        <button class="btn-primary" onclick="showPage('croupier')">Start My Free 3-Day Trial →</button>
+        <button class="btn-primary" onclick="showPage('croupier')">See plans — card held til Day 4 →</button>
         <a href="mailto:sales@asqsys.com?subject=Demo Request" class="btn-ghost">Book a demo ↗</a>
       </div>
       <div class="hero-stats reveal d4">
@@ -1290,7 +1295,7 @@
         <div class="hstat-sep"></div>
         <div><span class="hstat-n">$9k</span><span class="hstat-l">Saved vs Recruiter Seat</span></div>
         <div class="hstat-sep"></div>
-        <div><span class="hstat-n">3-Day</span><span class="hstat-l">Free Trial</span></div>
+        <div><span class="hstat-n">Day 4</span><span class="hstat-l">First Charge</span></div>
       </div>
     </div>
   </section>
@@ -1360,27 +1365,28 @@
     <div class="sw">
       <span class="sec-label reveal">Plans</span>
       <h2 class="sec-title reveal d1">Priced for a team, not an enterprise procurement cycle</h2>
+      <p style="font-size:14px;color:var(--t2);max-width:520px;margin-top:14px;">Every plan includes a 3-day trial — we hold your card and don't charge it until Day 4. Cancel before then and you pay nothing.</p>
       <div class="pricing-grid reveal d2" style="margin-top: 40px;">
         <div class="price-card">
           <div class="price-tier">Starter</div>
           <div class="price-amt">$149<span>/mo</span></div>
           <div class="price-sub">1,000 candidates / month</div>
           <ul class="price-features"><li>Private AI ranking</li><li>Professional profile search</li><li>Search history</li><li>Limited CSV export</li></ul>
-          <button class="price-btn" onclick="openStripeCheckout('price_1T5UQDRvu0Wlomst6OcHgx2m')">Start 3-Day Free Trial</button>
+          <button class="price-btn" onclick="openStripeCheckout('price_1T5UQDRvu0Wlomst6OcHgx2m')">Start — card held til Day 4</button>
         </div>
         <div class="price-card featured">
           <div class="price-tier">Growth</div>
           <div class="price-amt">$299<span>/mo</span></div>
           <div class="price-sub">5,000 candidates / month</div>
           <ul class="price-features"><li>Advanced private AI ranking</li><li>Search history + bookmarks</li><li>CSV export</li><li>Priority support</li></ul>
-          <button class="price-btn acc" onclick="openStripeCheckout('price_1T5aQfRvu0WlomstC3m4OFns')">Start 3-Day Free Trial</button>
+          <button class="price-btn acc" onclick="openStripeCheckout('price_1T5aQfRvu0WlomstC3m4OFns')">Start — card held til Day 4</button>
         </div>
         <div class="price-card">
           <div class="price-tier">Enterprise</div>
           <div class="price-amt">$599<span>/mo</span></div>
           <div class="price-sub">15,000 candidates / month</div>
           <ul class="price-features"><li>Premium private AI ranking</li><li>Full history + bookmarks</li><li>CSV export + custom reports</li><li>Dedicated support</li></ul>
-          <button class="price-btn" onclick="openStripeCheckout('price_1T9UO1Rvu0WlomstDwHIdo8B')">Start 3-Day Free Trial</button>
+          <button class="price-btn" onclick="openStripeCheckout('price_1T9UO1Rvu0WlomstDwHIdo8B')">Start — card held til Day 4</button>
         </div>
       </div>
     </div>
@@ -1407,6 +1413,10 @@
           <summary>Does it connect to my ATS?</summary>
           <p>Yes — 100Hires, Recruitee, JazzHR, SmartSuite, and Odoo. Push a ranked candidate straight into your pipeline.</p>
         </details>
+        <details>
+          <summary>How does the trial actually work?</summary>
+          <p>We hold your card when you sign up so you can start searching immediately, but you're not charged until Day 4. Cancel any time before then from your dashboard and you won't pay anything.</p>
+        </details>
       </div>
     </div>
   </section>
@@ -1414,7 +1424,7 @@
   <section class="cta-section">
     <h2 class="cta-title reveal">Your next hire is already<br>on LinkedIn.</h2>
     <div class="cta-actions reveal d2">
-      <button class="btn-primary" onclick="showPage('croupier')">Start My Free 3-Day Trial →</button>
+      <button class="btn-primary" onclick="showPage('croupier')">See plans — card held til Day 4 →</button>
       <a href="mailto:sales@asqsys.com?subject=Demo Request" class="btn-ghost">Book a demo ↗</a>
     </div>
   </section>
@@ -1460,7 +1470,7 @@
       <h3 style="color:var(--t1);font-family:var(--display);font-size:18px;font-weight:700;">Acceptable Use</h3>
       <p>You may use our platform only for legitimate recruitment and talent acquisition purposes. Candidate data sourced through the platform may only be used for professional outreach relevant to open roles.</p>
       <h3 style="color:var(--t1);font-family:var(--display);font-size:18px;font-weight:700;">Subscriptions</h3>
-      <p>Subscriptions renew automatically. A 3-Day free trial is available on all plans. Cancel anytime before the trial ends at no charge. Cancellations take effect at the end of the current billing period.</p>
+      <p>Subscriptions renew automatically. Every plan includes a 3-day trial: your card is held but not charged until Day 4. Cancel anytime before Day 4 at no charge. Cancellations take effect at the end of the current billing period.</p>
       <h3 style="color:var(--t1);font-family:var(--display);font-size:18px;font-weight:700;">Contact</h3>
       <p>Questions? <a href="mailto:sales@asqsys.com" style="color:var(--accent);">sales@asqsys.com</a></p>
     </div>
