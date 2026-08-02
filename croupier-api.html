@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VRHKCJP1ZX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VRHKCJP1ZX', { page_path: '/croupier-api' });
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Croupier API Docs | Fidmark</title>
+  <meta name="description" content="Programmatic access to AI-powered candidate discovery and ranking. Integrate with your ATS, build custom workflows, and automate sourcing at scale.">
+  <link rel="canonical" href="https://fidmark.ai/croupier-api">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" style="flex-shrink:0;">
+      <circle cx="10.5" cy="10.5" r="9.5" stroke="var(--accent)" stroke-width="1.4"/>
+      <path d="M6.3 10.7L9.1 13.6L14.7 7.4" stroke="var(--t1)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span>FID<span class="ac">MARK</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="why-us.html" class="nav-link">Why Us</a>
+    <a href="index.html#products" class="nav-link">Products</a>
+    <a href="index.html#technology" class="nav-link">Technology</a>
+    <a href="index.html#process" class="nav-link">Process</a>
+  </div>
+  <a class="nav-cta" href="croupier.html">See plans</a>
+</nav>
+
+<div id="croupier-api" class="page active">
+  <div class="back-nav">
+    <a class="back-link" href="index.html">← Fidmark</a>
+    <span class="bc-sep">/</span>
+    <span class="bc-cur">Croupier API</span>
+  </div>
+
+  <div style="padding:44px 24px 0;max-width:1200px;margin:0 auto;">
+    <span class="tag tag-live" style="margin-bottom:20px;display:inline-block;">Live Now</span>
+    <h1 style="font-family:var(--display);font-size:clamp(2.2rem,6vw,4.5rem);font-weight:800;letter-spacing:-0.04em;line-height:1;margin:12px 0 16px;">Croupier API</h1>
+    <p style="font-size:16px;color:var(--t2);max-width:600px;line-height:1.65;margin-bottom:32px;">Programmatic access to AI-powered candidate discovery and ranking. Integrate with your ATS, build custom workflows, and automate sourcing at scale.</p>
+  </div>
+
+  <!-- LIVE TERMINAL DEMO -->
+  <div style="max-width:1200px;margin:0 auto;padding:0 24px 60px;">
+    <span class="sec-label">See It Run</span>
+    <h2 style="font-family:var(--display);font-size:2rem;font-weight:800;letter-spacing:-0.03em;margin:12px 0 24px;">Same Engine, Command Line.</h2>
+    <div style="max-width:640px;">
+      <div class="hero-terminal reveal">
+        <div class="tbar">
+          <div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div>
+          <span class="ttitle">croupier — candidate search</span>
+        </div>
+        <div class="tbody">
+          <div class="tl"><span class="tprompt">$</span><span class="tcmd">search --role "Sr. Engineer" --skills "Python,AWS" --loc "SF Bay Area"</span></div>
+          <span class="tout tdim">Querying LinkedIn profiles...</span>
+          <span class="tout tok">✓ Found 47 candidates in 38s</span>
+          <span class="tout tdim">Running private Llama 4 Instruct model...</span>
+          <span class="tout" style="color:var(--accent)">Ranking and scoring candidates...</span>
+          <span class="tout tdim">──────────────────────────────────────</span>
+          <span class="tout"><span class="tok">HIRE </span> Sarah Chen          [92/100] · Upstart</span>
+          <span class="tout"><span class="tok">HIRE </span> James Kim            [88/100] · Persona</span>
+          <span class="tout"><span style="color:var(--yellow)">MAYBE</span> Emily Thompson       [71/100] · Notion</span>
+          <span class="tout"><span style="color:var(--yellow)">MAYBE</span> David Patel          [64/100] · Figma</span>
+          <span class="tout tdim">──────────────────────────────────────</span>
+          <div class="tl"><span class="tprompt">$</span><span class="tcursor"></span></div>
+        </div>
+        <div class="tfoot">
+          <div class="tfcell"><div class="tfv">&lt;60s</div><div class="tfl">Avg. Search Time</div></div>
+          <div class="tfcell"><div class="tfv">0</div><div class="tfl">Data Leaks</div></div>
+        </div>
+      </div>
+      <div class="term-caption">Illustrative example output — names and companies are not real candidates</div>
+    </div>
+  </div>
+
+  <div class="docs-layout">
+    <!-- LEFT SIDEBAR -->
+    <aside class="docs-sidebar">
+      <div class="docs-nav-group">
+        <div class="docs-nav-label">Overview</div>
+        <a class="docs-nav-link active" href="#api-getting-started">Getting Started</a>
+        <a class="docs-nav-link" href="#api-authentication">Authentication</a>
+        <a class="docs-nav-link" href="#api-rate-limits">Rate Limits</a>
+      </div>
+      <div class="docs-nav-group">
+        <div class="docs-nav-label">Endpoints</div>
+        <a class="docs-nav-link" href="#api-search">Search Candidates</a>
+        <a class="docs-nav-link" href="#api-rank">Rank Profile</a>
+        <a class="docs-nav-link" href="#api-history">Search History</a>
+        <a class="docs-nav-link" href="#api-webhooks">Webhooks</a>
+      </div>
+      <div class="docs-nav-group">
+        <div class="docs-nav-label">Resources</div>
+        <a class="docs-nav-link" href="#api-errors">Error Codes</a>
+        <a class="docs-nav-link" href="#api-sdks">SDKs</a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <article class="docs-main">
+      <h2 id="api-getting-started">Getting Started</h2>
+      <p>The Croupier API lets you integrate AI-powered candidate discovery directly into your existing tools. Every request is authenticated, rate-limited, and returns structured JSON.</p>
+      <p>To get started, you'll need an API key. API access is a <strong>separate offering</strong> from our web plans and requires a custom agreement. This protects against abuse and ensures your volume is properly supported. Reach out to our team to request access.</p>
+
+      <h2 id="api-authentication">Authentication</h2>
+      <p>All API requests require a Bearer token in the <code>Authorization</code> header. Tokens are scoped to your account and carry the same permissions as your web dashboard.</p>
+      <pre><code>Authorization: Bearer &lt;YOUR_API_TOKEN&gt;</code></pre>
+      <p>Never expose your API token in client-side code or public repositories. Rotate tokens periodically from your account settings.</p>
+
+      <h2 id="api-rate-limits">Rate Limits</h2>
+      <p>Rate limits are negotiated per account based on your expected volume and use case. We do not offer self-serve API access — every API account is reviewed before credentials are issued. This prevents abuse and protects the platform for all users.</p>
+      <ul>
+        <li><strong>Standard:</strong> 100 requests / minute — suitable for small teams and ATS integrations</li>
+        <li><strong>High Volume:</strong> 500 requests / minute — suitable for enterprise workflows and bulk operations</li>
+        <li><strong>Custom:</strong> Tailored limits for large-scale integrations — contact us</li>
+      </ul>
+      <p>Rate limit headers are returned with every response:</p>
+      <pre><code>X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 87
+X-RateLimit-Reset: 1718900000</code></pre>
+
+      <h2 id="api-search">Search Candidates</h2>
+      <div class="endpoint-row">
+        <span class="docs-tag get">GET</span>
+        <span class="endpoint-path">/v1/candidates/search</span>
+      </div>
+      <p>Search professional profiles by job title, skills, location, and experience. Returns a ranked list of candidates with AI fit scores.</p>
+      <h3>Query Parameters</h3>
+      <ul>
+        <li><code>job_title</code> — required. Target role, e.g. "Software Engineer"</li>
+        <li><code>skills</code> — comma-separated required skills</li>
+        <li><code>location</code> — city, region, or "Remote"</li>
+        <li><code>experience</code> — 1-3, 3-5, 5+, or 10+</li>
+        <li><code>limit</code> — max results, default 20, max 100</li>
+      </ul>
+      <h3>Example Request</h3>
+      <pre><code>curl -X GET "https://api.fidmark.ai/v1/candidates/search?job_title=Software+Engineer&skills=Python,React&location=San+Francisco&experience=5+&limit=20" \
+  -H "Authorization: Bearer sk_live_..." \
+  -H "Content-Type: application/json"</code></pre>
+      <h3>Example Response</h3>
+      <pre><code>{
+  "candidates": [
+    {
+      "id": "cand_7f8a9b2c",
+      "name": "Sarah Chen",
+      "title": "Senior Software Engineer",
+      "company": "Upstart",
+      "location": "San Francisco Bay Area",
+      "years_experience": 8,
+      "skills": ["Python", "React", "AWS", "Kubernetes"],
+      "ai_score": 96,
+      "verdict": "Hire",
+      "reasoning": "Strong technical match with deep cloud infrastructure experience..."
+    }
+  ],
+  "total": 1,
+  "search_id": "srch_3d2e1a4b"
+}</code></pre>
+
+      <h2 id="api-rank">Rank Profile</h2>
+      <div class="endpoint-row">
+        <span class="docs-tag post">POST</span>
+        <span class="endpoint-path">/v1/candidates/rank</span>
+      </div>
+      <p>Submit a candidate profile and receive an AI-generated fit score with written reasoning. Useful for evaluating applicants from your own pipeline.</p>
+      <h3>Request Body</h3>
+      <pre><code>{
+  "job_title": "Software Engineer",
+  "required_skills": ["Python", "React", "AWS"],
+  "candidate": {
+    "name": "Alex Rivera",
+    "title": "Backend Engineer",
+    "experience_years": 4,
+    "skills": ["Python", "Django", "PostgreSQL", "AWS"],
+    "location": "Remote"
+  }
+}</code></pre>
+      <h3>Response</h3>
+      <pre><code>{
+  "ai_score": 84,
+  "verdict": "Hire",
+  "reasoning": "Strong Python and AWS experience. Missing React but has solid backend fundamentals...",
+  "strengths": ["Python", "AWS"],
+  "concerns": ["Missing React frontend experience"]
+}</code></pre>
+
+      <h2 id="api-history">Search History</h2>
+      <div class="endpoint-row">
+        <span class="docs-tag get">GET</span>
+        <span class="endpoint-path">/v1/searches</span>
+      </div>
+      <p>List all searches performed by your account, with pagination and filtering by date range.</p>
+      <pre><code>curl -X GET "https://api.fidmark.ai/v1/searches?limit=50&from=2026-01-01" \
+  -H "Authorization: Bearer sk_live_..."</code></pre>
+
+      <h2 id="api-webhooks">Webhooks</h2>
+      <p>Receive real-time events when candidate searches complete or when new high-scoring candidates are discovered. Configure webhook endpoints from your dashboard.</p>
+      <h3>Event Types</h3>
+      <ul>
+        <li><code>search.completed</code> — triggered when a candidate search finishes</li>
+        <li><code>candidate.ranked</code> — triggered when a candidate scores above your threshold</li>
+        <li><code>subscription.updated</code> — triggered on plan changes</li>
+      </ul>
+      <h3>Webhook Payload</h3>
+      <pre><code>{
+  "event": "search.completed",
+  "timestamp": "2026-06-25T14:32:00Z",
+  "data": {
+    "search_id": "srch_3d2e1a4b",
+    "candidates_found": 42,
+    "top_score": 96
+  }
+}</code></pre>
+
+      <h2 id="api-errors">Error Codes</h2>
+      <p>All errors follow a consistent JSON structure:</p>
+      <pre><code>{
+  "error": {
+    "code": "rate_limit_exceeded",
+    "message": "You have exceeded your rate limit. Retry after 60 seconds.",
+    "status": 429
+  }
+}</code></pre>
+      <ul>
+        <li><code>400</code> — Bad Request — missing or invalid parameters</li>
+        <li><code>401</code> — Unauthorized — invalid or missing API token</li>
+        <li><code>403</code> — Forbidden — API access not enabled for this account</li>
+        <li><code>404</code> — Not Found — candidate or search ID does not exist</li>
+        <li><code>429</code> — Too Many Requests — rate limit exceeded</li>
+        <li><code>500</code> — Internal Server Error — contact support</li>
+      </ul>
+
+      <h2 id="api-sdks">SDKs</h2>
+      <p>Official SDKs are available for popular languages. Community contributions welcome.</p>
+      <ul>
+        <li><strong>Python:</strong> <code>pip install croupier-api</code></li>
+        <li><strong>JavaScript / Node.js:</strong> <code>npm install @fidmark/croupier-api</code></li>
+        <li><strong>Ruby:</strong> <code>gem install croupier</code></li>
+      </ul>
+
+      <div class="docs-cta-box">
+        <h3>Ready to integrate?</h3>
+        <p>API access is a separate offering from our web plans. Every API account is reviewed before credentials are issued to prevent abuse and ensure proper support. Our team will set you up with credentials, walk through your use case, and help you go live.</p>
+        <a href="mailto:sales@asqsys.com?subject=Croupier API Access Request" class="btn-primary">Contact Us →</a>
+      </div>
+    </article>
+
+    <!-- RIGHT TOC -->
+    <aside class="docs-toc">
+      <div class="docs-toc-label">On this page</div>
+      <a class="docs-toc-link" href="#api-getting-started">Getting Started</a>
+      <a class="docs-toc-link" href="#api-authentication">Authentication</a>
+      <a class="docs-toc-link" href="#api-rate-limits">Rate Limits</a>
+      <a class="docs-toc-link" href="#api-search">Search Candidates</a>
+      <a class="docs-toc-link l2" href="#api-search">Query Parameters</a>
+      <a class="docs-toc-link l2" href="#api-search">Example Request</a>
+      <a class="docs-toc-link" href="#api-rank">Rank Profile</a>
+      <a class="docs-toc-link" href="#api-history">Search History</a>
+      <a class="docs-toc-link" href="#api-webhooks">Webhooks</a>
+      <a class="docs-toc-link" href="#api-errors">Error Codes</a>
+      <a class="docs-toc-link" href="#api-sdks">SDKs</a>
+    </aside>
+  </div>
+
+  <footer>
+    <div class="footer-l">// 2026 Fidmark. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:sales@asqsys.com">Contact</a>
+    </div>
+  </footer>
+</div>
+
+<script src="assets/main.js"></script>
+
+<!-- Vercel Web Analytics -->
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
+</body>
+</html>
