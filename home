@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VRHKCJP1ZX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VRHKCJP1ZX');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#F7F5F0">
+  <title>Fidmark — The Croupier: Your hiring team and AI scouts, in the same room.</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='17' fill='%2309090B' stroke='%23a855f7' stroke-width='3'/%3E%3Cpath d='M11 20.5 L17.5 27 L29 13.5' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<canvas id="waveCanvas"></canvas>
+
+<!-- ══════════════════════════════════════
+     FLOATING PILL NAVBAR
+══════════════════════════════════════ -->
+<div class="nav-wrapper">
+  <nav class="nav-pill-bar">
+    <a href="index.html" class="nav-brand" style="text-decoration:none;">
+      <div class="brand-logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="4.5 12 9.5 17 19.5 7"></polyline>
+        </svg>
+      </div>
+      <span class="nav-brand-text">fidmark</span>
+      <span class="nav-tool-tag">The Croupier</span>
+    </a>
+    <div class="nav-links">
+      <a href="why-us.html" class="nav-link">Why Us</a>
+      <a href="croupier.html" class="nav-link">The Croupier</a>
+      <a href="index.html#bento-features" class="nav-link">Capabilities</a>
+      <a href="index.html#ats-section" class="nav-link">ATS Sync</a>
+      <a href="index.html#asqsys-partner" class="nav-link">Infrastructure</a>
+      <a href="index.html#comparison-matrix" class="nav-link">Comparison</a>
+    </div>
+    <a href="croupier.html" class="nav-btn-black">Dashboard</a>
+  </nav>
+</div>
+
+<main id="home" class="page active">
+
+  <!-- HERO SECTION -->
+  <section class="hero-stage">
+    <div class="hero-card">
+
+      <div class="hero-logo-wrap">
+        <div class="fidmark-hero-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4.2 12.2 9.5 17.5 19.8 6.8"></polyline>
+          </svg>
+        </div>
+      </div>
+
+      <div class="hero-brand-badge">
+        <span>Fidmark Platform</span>
+        <span style="color:var(--ink-tertiary);">·</span>
+        <span>The Croupier Engine</span>
+      </div>
+
+      <h1 class="hero-headline">
+        Your hiring team and The Croupier,<br><em>in the same room.</em>
+      </h1>
+
+      <p class="hero-description">
+        <strong>The Croupier</strong> is candidate sourcing where dedicated AI agents evaluate talent pools. Ask for a role in plain English, and your private model searches LinkedIn, ranks profiles, and deals back a scored verdict.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="croupier.html" class="btn-pill-primary">
+          Launch The Croupier
+        </a>
+        <a href="mailto:sales@asqsys.com?subject=Fidmark Demo" class="btn-pill-outline">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Watch 2-min demo
+        </a>
+      </div>
+
+      <div class="hero-disclaimer">
+        Every plan includes a 3-day trial. Your card is held and charged on Day 4. <a href="croupier.html#pricing-section">See pricing</a>.
+      </div>
+    </div>
+
+    <div class="learn-more-pill" onclick="document.getElementById('bento-features').scrollIntoView({behavior:'smooth'})">
+      <span>Explore platform</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       HILOS-STYLE COLORFUL PASTEL BENTO GRID
+  ══════════════════════════════════════ -->
+  <section class="content-container" id="bento-features">
+    <span class="section-eyebrow">Platform Capabilities</span>
+    <h2 class="section-title">Built for modern talent teams.<br>Engineered for certainty.</h2>
+    <p class="section-lead">
+      Everything you need to replace tedious résumé scrolling with autonomous candidate discovery, structured reasoning, and native ATS synchronization.
+    </p>
+
+    <div class="bento-grid">
+
+      <!-- Box 1: Tall Left Soft Sky Blue -->
+      <div class="bento-box tall-left">
+        <div class="bento-art">
+          <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#18181B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div>
+          <div class="bento-title">Agents as team members</div>
+          <div class="bento-desc">The Croupier scouts have names, presence, and dedicated reasoning. Mention role criteria like you would to any recruiter.</div>
+        </div>
+      </div>
+
+      <!-- Box 2: Wide Top Butter Yellow (custom rounded dropdown) -->
+      <div class="bento-box wide-top">
+        <div class="bento-art" style="margin-bottom:0; flex-shrink:0;">
+          <div style="position:relative; width:170px; height:90px;">
+            <div class="custom-dropdown" style="position:absolute; left:10px; top:22px; width:150px;">
+              <div
+                class="dropdown-trigger"
+                style="
+                  display:flex;
+                  align-items:center;
+                  justify-content:space-between;
+                  width:100%;
+                  height:42px;
+                  border-radius:12px;
+                  border:1.5px solid #000000;
+                  background:#FFFFFF;
+                  padding:0 10px;
+                  box-sizing:border-box;
+                  cursor:pointer;
+                  font-family:'JetBrains Mono', monospace;
+                  font-size:11px;
+                  font-weight:400;
+                  color:#18181B;
+                  user-select:none;
+                "
+                onclick="toggleDropdown(this)"
+              >
+                <span class="dropdown-value" style="padding:0 6px;">Staff Engineer</span>
+                <svg
+                  width="16" height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#000000"
+                  stroke-width="1.25"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  style="flex-shrink:0;"
+                >
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                </svg>
+              </div>
+
+              <div
+                class="dropdown-options"
+                style="
+                  display:none;
+                  position:absolute;
+                  left:0; right:0;
+                  top:46px;
+                  border-radius:12px;
+                  border:1.5px solid #000000;
+                  background:#FFFFFF;
+                  overflow:hidden;
+                  z-index:10;
+                  box-shadow:0 4px 16px rgba(0,0,0,0.08);
+                "
+              >
+                <div class="dropdown-option" style="padding:8px 10px; font-family:'JetBrains Mono', monospace; font-size:11px; color:#18181B; cursor:pointer;" onclick="selectOption(this, 'Staff Engineer')">Staff Engineer</div>
+                <div class="dropdown-option" style="padding:8px 10px; font-family:'JetBrains Mono', monospace; font-size:11px; color:#18181B; cursor:pointer;" onclick="selectOption(this, 'Senior Engineer')">Senior Engineer</div>
+                <div class="dropdown-option" style="padding:8px 10px; font-family:'JetBrains Mono', monospace; font-size:11px; color:#18181B; cursor:pointer;" onclick="selectOption(this, 'Engineering Manager')">Engineering Manager</div>
+                <div class="dropdown-option" style="padding:8px 10px; font-family:'JetBrains Mono', monospace; font-size:11px; color:#18181B; cursor:pointer;" onclick="selectOption(this, 'Product Manager')">Product Manager</div>
+                <div class="dropdown-option" style="padding:8px 10px; font-family:'JetBrains Mono', monospace; font-size:11px; color:#18181B; cursor:pointer;" onclick="selectOption(this, 'Designer')">Designer</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="bento-title">Bring your own roles, or continuous sourcing</div>
+          <div class="bento-desc">One-off niche engineer discovery, continuous high-volume pipeline screening, or private LLM ranking hosted on your infrastructure.</div>
+        </div>
+      </div>
+
+      <!-- Box 3: Center Millennial Pink -->
+      <div class="bento-box pink">
+        <div class="bento-art">
+          <svg width="160" height="46" viewBox="0 0 160 46" fill="none" stroke="#18181B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="4" width="46" height="34" rx="8" fill="#DCFCE7"/>
+            <text x="28" y="25" stroke="none" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" fill="#15803D" text-anchor="middle">Hire</text>
+
+            <rect x="57" y="4" width="46" height="34" rx="8" fill="#FEF3C7"/>
+            <text x="80" y="25" stroke="none" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" fill="#B45309" text-anchor="middle">Maybe</text>
+
+            <rect x="109" y="4" width="46" height="34" rx="8" fill="#FFE4E6"/>
+            <text x="132" y="25" stroke="none" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" fill="#BE123C" text-anchor="middle">Pass</text>
+          </svg>
+        </div>
+        <div>
+          <div class="bento-title">Profiles & verdicts unfurl</div>
+          <div class="bento-desc">Fit scores, skill overlaps, and verified seniority render directly with structured reasoning.</div>
+        </div>
+      </div>
+
+      <!-- Box 4: Tall Right Peach/Coral -->
+      <div class="bento-box tall-right">
+        <div class="bento-art" style="display:flex; align-items:center; justify-content:center; height:100px;">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#18181B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="7.5" cy="15.5" r="5.5"/>
+            <path d="m21 2-9.6 9.6"/>
+            <path d="m15.5 7.5 3 3L22 7l-3-3"/>
+          </svg>
+        </div>
+        <div>
+          <div class="bento-title">A human approves every contact</div>
+          <div class="bento-desc">The Croupier proposes verdicts. Your recruiters hold the keys. The audit log shows who approved which candidate.</div>
+        </div>
+      </div>
+
+      <!-- Box 5: Bottom Left Butter Yellow -->
+      <div class="bento-box yellow-sm">
+        <div class="bento-art">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#18181B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+            <path d="M3 3v5h5"/>
+            <path d="M12 7v5l4 2"/>
+          </svg>
+        </div>
+        <div>
+          <div class="bento-title">Queryable memory</div>
+          <div class="bento-desc">Past searches, shortlist notes, and historical evaluations stay persistent. The model learns your hiring bar.</div>
+        </div>
+      </div>
+
+      <!-- Box 6: Bottom Center Soft Blue -->
+      <div class="bento-box blue-sm">
+        <div class="bento-art">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#18181B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="16" y="16" width="6" height="6" rx="1"/>
+            <rect x="2" y="16" width="6" height="6" rx="1"/>
+            <rect x="9" y="2" width="6" height="6" rx="1"/>
+            <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/>
+            <path d="M12 12V8"/>
+          </svg>
+        </div>
+        <div>
+          <div class="bento-title">Model- & ATS-neutral</div>
+          <div class="bento-desc">Zero platform lock-in. Seamlessly sync to 100Hires, Recruitee, JazzHR, SmartSuite, Odoo, or REST API.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       EVALUATION RUBRIC MATRIX
+  ══════════════════════════════════════ -->
+  <section class="content-container" style="padding-top: 20px;">
+    <span class="section-eyebrow">Scoring Intelligence</span>
+    <h2 class="section-title">How The Croupier evaluates candidates.</h2>
+    <p class="section-lead">
+      Unlike generic scrapers that do naive keyword matching, our fine-tuned Llama 4 model inspects four deterministic dimensions before dealing a verdict.
+    </p>
+
+    <div class="rubric-grid">
+      <div class="rubric-card" style="background:var(--bento-blue);">
+        <span class="rubric-tag" style="background:#FFFFFF;">Dimension 01</span>
+        <div class="rubric-title">Technical Breadth & Stack Match</div>
+        <div class="rubric-desc">Evaluates production depth in required technologies, distinguishing between peripheral exposure and hands-on architecture ownership.</div>
+      </div>
+
+      <div class="rubric-card" style="background:var(--bento-yellow);">
+        <span class="rubric-tag" style="background:#FFFFFF;">Dimension 02</span>
+        <div class="rubric-title">Career Velocity & Trajectory</div>
+        <div class="rubric-desc">Measures promotion cadence, scope expansion across employers, and whether the candidate consistently operates at or above target leveling.</div>
+      </div>
+
+      <div class="rubric-card" style="background:var(--bento-pink);">
+        <span class="rubric-tag" style="background:#FFFFFF;">Dimension 03</span>
+        <div class="rubric-title">Systems & Organizational Scale</div>
+        <div class="rubric-desc">Calibrates past employer complexity, transaction throughput, and team leadership footprint against your company's stage.</div>
+      </div>
+
+      <div class="rubric-card" style="background:var(--bento-coral);">
+        <span class="rubric-tag" style="background:#FFFFFF;">Dimension 04</span>
+        <div class="rubric-title">Flight Risk & Intent Signals</div>
+        <div class="rubric-desc">Detects open-to-work flags, tenure stability, and seniority friction to prioritize candidates who are most likely to respond and sign.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       NATIVE ATS INTEGRATIONS SECTION
+  ══════════════════════════════════════ -->
+  <section class="content-container" id="ats-section" style="padding-top: 40px;">
+    <span class="section-eyebrow">Native Integrations</span>
+    <h2 class="section-title">Two-way sync with your hiring stack.</h2>
+    <p class="section-lead">Push ranked candidates, verified contact signals, and structured reasoning summaries directly into your existing candidate stages in one click.</p>
+
+    <div class="ats-grid">
+      <!-- 100Hires -->
+      <div class="ats-card">
+        <div class="ats-logo-box" style="background:var(--bento-blue);">
+          <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+            <rect x="2" y="6" width="28" height="20" rx="5" fill="#18181B"/>
+            <text x="16" y="20" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="-0.04em">100</text>
+          </svg>
+        </div>
+        <div class="ats-name">100Hires</div>
+        <div class="ats-type">ATS Integration</div>
+      </div>
+
+      <!-- Recruitee -->
+      <div class="ats-card">
+        <div class="ats-logo-box" style="background:#FFFFFF; border:1.5px solid var(--border-ink);">
+          <svg width="28" height="28" viewBox="0 0 56 56" fill="none">
+            <rect width="56" height="56" rx="12" fill="#ECE0F5"/>
+            <path d="M20.0879 26.0928C23.3309 26.0928 25.9551 28.7189 25.9551 31.9644V39.6198C25.9551 42.8405 23.3557 45.4666 20.1127 45.4666H14.2207V31.9644C14.2207 28.7189 16.8448 26.1175 20.0879 26.1175V26.0928Z" fill="#5A1CB7"/>
+            <path d="M20.0879 22.9955C16.8448 22.9955 14.2207 20.3693 14.2207 17.1486C14.2207 13.9031 16.8448 11.3018 20.0879 11.3018C23.3309 11.3018 25.9551 13.9279 25.9551 17.1486C25.9551 20.3941 23.3309 22.9955 20.0879 22.9955Z" fill="#E23393"/>
+            <path d="M42.1706 45.4419H36.3034C33.0851 45.4419 30.4609 42.8405 30.4609 39.595V31.9396C30.4609 28.6941 33.0851 26.0928 36.3281 26.0928C39.5712 26.0928 42.1953 28.7189 42.1953 31.9396V45.4419H42.1706Z" fill="#5A1CB7"/>
+            <path d="M36.3281 11.2773C39.5712 11.2773 42.1706 13.9035 42.1706 17.1242C42.1706 20.3697 39.5464 22.9958 36.3281 22.9958C33.0851 22.9958 30.4609 20.3697 30.4609 17.1242C30.4609 13.8787 33.0851 11.2773 36.3281 11.2773Z" fill="#5A1CB7"/>
+          </svg>
+        </div>
+        <div class="ats-name">Recruitee</div>
+        <div class="ats-type">ATS Integration</div>
+      </div>
+
+      <!-- JazzHR -->
+      <div class="ats-card">
+        <div class="ats-logo-box" style="background:var(--bento-pink);">
+          <svg width="24" height="24" viewBox="0 0 28 40" fill="none">
+            <path d="M0 39.288V30.576H6.4147C11.2257 30.576 16.1923 26.28 16.1923 19.092V0H26.1854V22.104C25.3955 32.532 17.6524 39.288 6.4147 39.288H0Z" fill="#8F3DB8"/>
+          </svg>
+        </div>
+        <div class="ats-name">JazzHR</div>
+        <div class="ats-type">ATS Integration</div>
+      </div>
+
+      <!-- SmartSuite -->
+      <div class="ats-card">
+        <div class="ats-logo-box" style="background:#FFFFFF; border:1.5px solid var(--border-ink);">
+          <svg width="24" height="24" viewBox="0 0 24 26" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M-6.10352e-05 9.83463L14.8963 9.83494C18.6127 9.83494 21.6978 12.2725 22.2927 15.8199L7.39629 15.8194C3.67994 15.8194 0.594908 13.3819 -6.10352e-05 9.83463Z" fill="#FF5757"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M-6.10352e-05 24.8196L14.8963 24.8193C18.6127 24.8193 21.6978 22.3885 22.2927 18.8411L7.39629 18.8416C3.67994 18.8416 0.594908 21.2723 -6.10352e-05 24.8196Z" fill="#3A86FF"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M-6.10352e-05 6.81603L14.8963 6.81572C18.6127 6.81572 21.6978 4.36635 22.2927 0.818939L7.39629 0.819495C3.67994 0.819495 0.594908 3.26874 -6.10352e-05 6.81603Z" fill="#FFB938"/>
+          </svg>
+        </div>
+        <div class="ats-name">SmartSuite</div>
+        <div class="ats-type">Work Management</div>
+      </div>
+
+      <!-- Odoo -->
+      <div class="ats-card">
+        <div class="ats-logo-box" style="background:var(--bento-coral);">
+          <svg width="24" height="24" viewBox="0 0 200 200" fill="none">
+            <path d="M100,196a75,75,0,1,1,75-75A75,75,0,0,1,100,196Zm0-31a44,44,0,1,0-44-44A44,44,0,0,0,100,165Z" fill="#714B67"/>
+          </svg>
+        </div>
+        <div class="ats-name">Odoo</div>
+        <div class="ats-type">HRMS Platform</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       4-STEP WORKFLOW TIMELINE
+  ══════════════════════════════════════ -->
+  <section class="content-container" style="padding-top: 40px;">
+    <span class="section-eyebrow">Operational Workflow</span>
+    <h2 class="section-title">From prompt to interview in minutes.</h2>
+    <p class="section-lead">How your team collaborates with The Croupier on every active search requisition.</p>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-badge">1</div>
+        <div class="step-heading">Define Requirements</div>
+        <div class="step-body">Specify target title, critical competencies, experience depth, and location in plain English. The agent auto-suggests synonym expansions.</div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-badge">2</div>
+        <div class="step-heading">Autonomous Sourcing</div>
+        <div class="step-body">The Croupier queries authorized LinkedIn candidate graphs, pulling 50+ matching profiles in under 60 seconds.</div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-badge">3</div>
+        <div class="step-heading">Private AI Verdicts</div>
+        <div class="step-body">Every profile is scored 0–100 by your isolated Llama 4 model. Key strengths, seniority caveats, and Hire/Maybe/Pass verdicts are assigned.</div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-badge">4</div>
+        <div class="step-heading">Approve & Push to ATS</div>
+        <div class="step-body">Your recruiters review ranked dossiers, click Approve, and candidates are synced to your ATS with verified email contacts.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       ASQSYS PARTNERSHIP SHOWCASE
+  ══════════════════════════════════════ -->
+  <section class="content-container" id="asqsys-partner" style="padding-top: 40px;">
+    <div class="partner-banner">
+      <div>
+        <span class="section-eyebrow" style="background:var(--bento-blue);">Enterprise Infrastructure</span>
+        <h3 style="font-family:var(--font-serif); font-size:32px; font-weight:600; line-height:1.2; margin-bottom:14px;">
+          Engineered & deployed in partnership with ASQSYS.
+        </h3>
+        <p style="font-size:14.5px; color:var(--ink-secondary); line-height:1.7;">
+          Fidmark's dedicated private models run on isolated, sovereign compute infrastructure provisioned by ASQSYS (<a href="https://asqsys.ma/" target="_blank" rel="noopener" style="text-decoration:underline; font-weight:600;">asqsys.ma</a>). Your search data, internal leveling requirements, and candidate ratings never cross tenant boundaries or train third-party public models.
+        </p>
+
+        <div class="partner-metric-row">
+          <div class="pmetric-card">
+            <div class="pmetric-val">100%</div>
+            <div class="pmetric-lbl">Isolated VPC Per Tenant</div>
+          </div>
+          <div class="pmetric-card">
+            <div class="pmetric-val">0</div>
+            <div class="pmetric-lbl">Data Shared with OpenAI / Google</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:var(--bg-card-alt); border:1.5px solid var(--border-ink); border-radius:18px; padding:28px;">
+        <div style="font-family:var(--font-mono); font-size:10px; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-tertiary); margin-bottom:12px;">Deployment Architecture</div>
+        <div style="display:flex; flex-direction:column; gap:12px; font-size:13px; font-family:var(--font-mono);">
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-soft); padding-bottom:8px;">
+            <span>Model Backend:</span>
+            <strong>Custom Fine-Tuned Llama 4</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-soft); padding-bottom:8px;">
+            <span>Data Pipeline:</span>
+            <strong>Authorized LinkedIn Graph</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-soft); padding-bottom:8px;">
+            <span>Latency:</span>
+            <strong>&lt; 60 Seconds / Search</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span>Encryption:</span>
+            <strong>TLS 1.3 / AES-256 at Rest</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS: THE ROOM STREAM -->
+  <section class="content-container" id="how-it-works" style="padding-top: 40px;">
+    <span class="section-eyebrow">Meet the Loop</span>
+    <h2 class="section-title">One room. Real verdicts.<br>Humans approve.</h2>
+    <p class="section-lead">
+      You ask in plain words. <strong>The Croupier</strong> pulls verified profiles, runs your dedicated fine-tuned model, and reports back with a fit score, key reasons, and caveats.
+    </p>
+
+    <div class="agent-room-card">
+      <div class="room-header">
+        <div class="room-title">
+          <span># hiring-sr-infrastructure</span>
+        </div>
+        <span class="room-status">The Croupier · Active</span>
+      </div>
+
+      <div class="room-stream">
+        <!-- Recruiter Message -->
+        <div class="msg-row">
+          <div class="avatar">EB</div>
+          <div class="msg-content">
+            <div class="msg-meta"><span class="msg-author">Elena (Head of Talent)</span> <span>9:41 AM</span></div>
+            <div class="msg-bubble">
+              Can we find 3 Staff or Senior Backend Engineers in SF with deep AWS and Kubernetes experience who led a team?
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Agent Message -->
+        <div class="msg-row">
+          <div class="avatar agent-av">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4.5 12 9.5 17 19.5 7"></polyline>
+            </svg>
+          </div>
+          <div class="msg-content">
+            <div class="msg-meta"><span class="msg-author">The Croupier (Agent)</span> <span>9:42 AM</span></div>
+            <div class="msg-bubble">
+              On it. Querying authorized LinkedIn pipeline and running your Fidmark private model. Evaluated 42 profiles in 38 seconds. Top candidate ready for review:
+            </div>
+
+            <div class="eval-card">
+              <div class="eval-top">
+                <div>
+                  <div class="eval-name">Sarah Chen</div>
+                  <div class="eval-role">Senior Staff Infrastructure · Upstart · 8y exp</div>
+                </div>
+                <div class="eval-score-badge">
+                  <span class="badge-pill badge-hire">Hire · 94/100</span>
+                </div>
+              </div>
+
+              <div class="eval-reason">
+                <strong>Model Reasoning:</strong> Production Kubernetes scaling experience across 40+ microservices. AWS Certified Solutions Architect. Led a distributed team of 8 engineers.
+              </div>
+
+              <div class="eval-actions">
+                <button class="btn-sm-ink" onclick="showToast('Candidate Sarah Chen pushed to connected ATS!')">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Approve to ATS
+                </button>
+                <a href="croupier.html" class="btn-sm-outline">View full dossier</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       COMPREHENSIVE COMPARISON MATRIX
+  ══════════════════════════════════════ -->
+  <section class="content-container" id="comparison-matrix" style="padding-top: 40px;">
+    <span class="section-eyebrow">Competitive Analysis</span>
+    <h2 class="section-title">Why high-performing teams switch to Fidmark.</h2>
+    <p class="section-lead">A head-to-head breakdown of modern candidate intelligence versus legacy tools.</p>
+
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>Capability</th>
+          <th class="matrix-highlight">The Croupier</th>
+          <th>LinkedIn Recruiter</th>
+          <th>Traditional Agencies</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Search Latency</strong></td>
+          <td class="matrix-highlight">&lt; 60 seconds / role</td>
+          <td>2–3 days manual review</td>
+          <td>2–4 weeks</td>
+        </tr>
+        <tr>
+          <td><strong>Scoring & Reasoning</strong></td>
+          <td class="matrix-highlight">Deterministic 0–100 + Written rationale</td>
+          <td>None (manual Boolean reading)</td>
+          <td>Subjective recruiter opinion</td>
+        </tr>
+        <tr>
+          <td><strong>Data Privacy</strong></td>
+          <td class="matrix-highlight">Isolated private model per account</td>
+          <td>Shared multi-tenant platform</td>
+          <td>Varies / unencrypted email</td>
+        </tr>
+        <tr>
+          <td><strong>ATS Connectivity</strong></td>
+          <td class="matrix-highlight">Native 1-click sync (100Hires, Recruitee, etc.)</td>
+          <td>Paid enterprise add-on</td>
+          <td>Manual CV forwarding</td>
+        </tr>
+        <tr>
+          <td><strong>Annual Cost</strong></td>
+          <td class="matrix-highlight">From $149 / month ($1,788/yr)</td>
+          <td>$9,000 / seat / year</td>
+          <td>20–25% of first year salary ($30k+)</td>
+        </tr>
+        <tr>
+          <td><strong>Contract Flexibility</strong></td>
+          <td class="matrix-highlight">Month-to-month with 3-day card held trial</td>
+          <td>Annual lock-in commitment</td>
+          <td>Per-placement contingency</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FAQ ACCORDION SECTION
+  ══════════════════════════════════════ -->
+  <section class="content-container" style="padding-top: 40px;">
+    <span class="section-eyebrow">Frequently Asked Questions</span>
+    <h2 class="section-title">Answers to common questions.</h2>
+
+    <div class="faq-stack">
+      <div class="faq-item">
+        <details>
+          <summary class="faq-question">How does The Croupier differ from LinkedIn Recruiter?</summary>
+          <div class="faq-answer">LinkedIn Recruiter is a manual search bar that returns hundreds of unranked profiles for you to read line by line. The Croupier uses your dedicated fine-tuned AI model to evaluate candidate profiles automatically, returning a scored shortlist with written Hire / Maybe / Pass verdicts in under 60 seconds.</div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary class="faq-question">How does the 3-day trial work?</summary>
+          <div class="faq-answer">When you start a subscription, your card is held and verified via Stripe, but it is not charged until Day 4. You get full platform access immediately. If you decide to cancel anytime before Day 4, you pay zero.</div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary class="faq-question">Is my candidate search data kept confidential?</summary>
+          <div class="faq-answer">Yes. Through our sovereign infrastructure partnership with ASQSYS, each customer runs an isolated private model. Your role criteria, search history, and talent notes never train public models or get shared across tenants.</div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary class="faq-question">Which ATS platforms can I export candidates into?</summary>
+          <div class="faq-answer">The Croupier integrates natively with 100Hires, Recruitee, JazzHR, SmartSuite, and Odoo. We also provide full CSV data exports and a REST API for custom internal tracking systems.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA HERO FOOTER -->
+  <section class="content-container" style="text-align: center; padding-top: 60px;">
+    <h2 class="section-title" style="font-size: clamp(34px, 5vw, 52px);">Recruit smarter, today.</h2>
+    <p class="section-lead" style="margin: 0 auto 30px;">Your next hire is already out there. Stop reading résumés and start reading verdicts with The Croupier.</p>
+    <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+      <a href="croupier.html#pricing-section" class="btn-pill-primary">
+        See plans & start trial
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+      <a href="mailto:sales@asqsys.com?subject=Enterprise Inquiry" class="btn-pill-outline">Book a 15-min demo</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© 2026 Fidmark. Infrastructure in partnership with ASQSYS.</div>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="mailto:sales@asqsys.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<script src="common.js"></script>
+<script>
+  function toggleDropdown(trigger) {
+    const dropdown = trigger.closest('.custom-dropdown');
+    const options = dropdown.querySelector('.dropdown-options');
+    const isHidden = options.style.display === 'none' || options.style.display === '';
+    document.querySelectorAll('.custom-dropdown .dropdown-options').forEach(el => {
+      el.style.display = 'none';
+    });
+    options.style.display = isHidden ? 'block' : 'none';
+  }
+
+  function selectOption(optionEl, value) {
+    const dropdown = optionEl.closest('.custom-dropdown');
+    const trigger = dropdown.querySelector('.dropdown-trigger');
+    const valueSpan = trigger.querySelector('.dropdown-value');
+    valueSpan.textContent = value;
+    dropdown.querySelector('.dropdown-options').style.display = 'none';
+  }
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.custom-dropdown')) {
+      document.querySelectorAll('.custom-dropdown .dropdown-options').forEach(el => {
+        el.style.display = 'none';
+      });
+    }
+  });
+</script>
+
+<script defer src="/_vercel/insights/script.js"></script>
+
+</body>
+</html>
