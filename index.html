@@ -294,7 +294,7 @@
     /* ─── ATS INTEGRATIONS SECTION ─── */
     .ats-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
       gap: 14px;
       margin-top: 40px;
     }
@@ -821,7 +821,6 @@
       .hero-card { padding: 48px 24px 40px; }
       .bento-grid { grid-template-columns: 1fr; }
       .bento-box.tall-left, .bento-box.wide-top, .bento-box.tall-right { grid-column: span 1; grid-row: span 1; }
-      .ats-grid { grid-template-columns: repeat(2, 1fr); }
       .rubric-grid, .steps-grid { grid-template-columns: 1fr 1fr; }
       .partner-banner { grid-template-columns: 1fr; padding: 30px; }
       .pricing-wrap, .sandbox-grid, .compare-grid { grid-template-columns: 1fr; }
@@ -906,8 +905,8 @@
           Launch The Croupier
         </button>
         <a href="mailto:sales@asqsys.com?subject=Fidmark Demo" class="btn-pill-outline">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          Watch 2-min demo
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+          Book a live demo
         </a>
       </div>
 
@@ -1168,7 +1167,7 @@
         </div>
         <div>
           <div class="bento-title">Model- & ATS-neutral</div>
-          <div class="bento-desc">Zero platform lock-in. Seamlessly sync to 100Hires, Recruitee, JazzHR, SmartSuite, Odoo, or REST API.</div>
+          <div class="bento-desc">Zero platform lock-in. Native sync to 100Hires, Recruitee, JazzHR, SmartSuite, Odoo, Loxo, and Manatal or push anywhere with a custom webhook.</div>
         </div>
       </div>
 
@@ -1182,7 +1181,7 @@
     <span class="section-eyebrow">Scoring Intelligence</span>
     <h2 class="section-title">How The Croupier evaluates candidates.</h2>
     <p class="section-lead">
-      Unlike generic scrapers that do naive keyword matching, our fine-tuned Llama 4 model inspects four deterministic dimensions before dealing a verdict.
+      Unlike generic scrapers that do naive keyword matching, The Croupier's evaluation engine inspects four dimensions before dealing a verdict — and writes out its reasoning so your recruiters can check its work.
     </p>
 
     <div class="rubric-grid">
@@ -1212,13 +1211,13 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════
+<!-- ══════════════════════════════════════
        NATIVE ATS INTEGRATIONS SECTION
   ══════════════════════════════════════ -->
   <section class="content-container" id="ats-section" style="padding-top: 40px;">
     <span class="section-eyebrow">Native Integrations</span>
     <h2 class="section-title">Two-way sync with your hiring stack.</h2>
-    <p class="section-lead">Push ranked candidates, verified contact signals, and structured reasoning summaries directly into your existing candidate stages in one click.</p>
+    <p class="section-lead">Push ranked candidates, verified contact signals, and structured reasoning summaries directly into your existing candidate stages in one click. Don't see your ATS? Push anywhere with a custom webhook.</p>
 
     <div class="ats-grid">
       <!-- 100Hires -->
@@ -1232,6 +1231,7 @@
         <div class="ats-name">100Hires</div>
         <div class="ats-type">ATS Integration</div>
       </div>
+
 
       <!-- Recruitee -->
       <div class="ats-card">
@@ -1248,6 +1248,7 @@
         <div class="ats-type">ATS Integration</div>
       </div>
 
+
       <!-- JazzHR -->
       <div class="ats-card">
         <div class="ats-logo-box" style="background:var(--bento-pink);">
@@ -1258,6 +1259,7 @@
         <div class="ats-name">JazzHR</div>
         <div class="ats-type">ATS Integration</div>
       </div>
+
 
       <!-- SmartSuite -->
       <div class="ats-card">
@@ -1272,6 +1274,7 @@
         <div class="ats-type">Work Management</div>
       </div>
 
+
       <!-- Odoo -->
       <div class="ats-card">
         <div class="ats-logo-box" style="background:var(--bento-coral);">
@@ -1282,9 +1285,34 @@
         <div class="ats-name">Odoo</div>
         <div class="ats-type">HRMS Platform</div>
       </div>
+
+
+      <!-- Loxo -->
+      <div class="ats-card">
+        <div class="ats-logo-box" style="background:#18181B;">
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+            <path d="M8 6 L8 26 L22 26" stroke="#FFFFFF" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <circle cx="24" cy="8" r="4" fill="#FFFFFF"/>
+          </svg>
+        </div>
+        <div class="ats-name">Loxo</div>
+        <div class="ats-type">ATS Integration</div>
+      </div>
+
+
+      <!-- Manatal -->
+      <div class="ats-card">
+        <div class="ats-logo-box" style="background:var(--bento-green);">
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+            <rect x="4" y="4" width="24" height="24" rx="7" fill="#18181B"/>
+            <path d="M9 22V10l7 7 7-7v12" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="ats-name">Manatal</div>
+        <div class="ats-type">ATS Integration</div>
+      </div>
     </div>
   </section>
-
   <!-- ══════════════════════════════════════
        4-STEP WORKFLOW TIMELINE
   ══════════════════════════════════════ -->
@@ -1308,14 +1336,29 @@
 
       <div class="step-card">
         <div class="step-badge">3</div>
-        <div class="step-heading">Private AI Verdicts</div>
-        <div class="step-body">Every profile is scored 0–100 by your isolated Llama 4 model. Key strengths, seniority caveats, and Hire/Maybe/Pass verdicts are assigned.</div>
+        <div class="step-heading">Structured AI Verdicts</div>
+        <div class="step-body">Every profile is scored 0–100 by The Croupier's evaluation engine, checked against your role criteria one candidate at a time. Key strengths, seniority caveats, and Hire/Maybe/Pass verdicts are assigned with written reasoning.</div>
       </div>
 
       <div class="step-card">
         <div class="step-badge">4</div>
         <div class="step-heading">Approve & Push to ATS</div>
         <div class="step-body">Your recruiters review ranked dossiers, click Approve, and candidates are synced to your ATS with verified email contacts.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FOUNDER CREDIBILITY PANEL
+  ══════════════════════════════════════ -->
+  <section class="content-container" style="padding-top: 40px;">
+    <div style="background:var(--bg-card); border:1.5px solid var(--border-ink); border-radius:var(--radius-card); padding:40px 44px; box-shadow:var(--shadow-paper); display:flex; gap:28px; align-items:flex-start;">
+      <div style="width:52px; height:52px; border-radius:50%; background:#09090B; border:2.5px solid #a855f7; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4.5 12 9.5 17 19.5 7"></polyline></svg>
+      </div>
+      <div>
+        <div style="font-family:var(--font-serif); font-size:20px; font-weight:600; margin-bottom:8px;">Why we built The Croupier</div>
+        <p style="font-size:14.5px; color:var(--ink-secondary); line-height:1.7;">We kept watching recruiters read the same profile three different ways before deciding anything. The Croupier doesn't replace that judgment — it does the first read for you, in plain language, so your team spends its time on the shortlist instead of the scroll. We're a small, hands-on team, and if something in your pipeline breaks, you'll hear back from someone who built it.</p>
       </div>
     </div>
   </section>
@@ -1331,39 +1374,39 @@
           Engineered & deployed in partnership with ASQSYS.
         </h3>
         <p style="font-size:14.5px; color:var(--ink-secondary); line-height:1.7;">
-          Fidmark’s dedicated private models run on isolated, sovereign compute infrastructure provisioned by ASQSYS (<a href="https://asqsys.ma/" target="_blank" rel="noopener" style="text-decoration:underline; font-weight:600;">asqsys.ma</a>). Your search data, internal leveling requirements, and candidate ratings never cross tenant boundaries or train third-party public models.
+          The Croupier's sourcing and evaluation pipeline is built and hosted in partnership with ASQSYS (<a href="https://asqsys.ma/" target="_blank" rel="noopener" style="text-decoration:underline; font-weight:600;">asqsys.ma</a>). Every account's searches, role criteria, and candidate ratings are scoped to that account — nothing is pooled or visible across customers.
         </p>
 
         <div class="partner-metric-row">
           <div class="pmetric-card">
-            <div class="pmetric-val">100%</div>
-            <div class="pmetric-lbl">Isolated VPC Per Tenant</div>
+            <div class="pmetric-val">&lt;60s</div>
+            <div class="pmetric-lbl">Typical Search-to-Verdict Time</div>
           </div>
           <div class="pmetric-card">
-            <div class="pmetric-val">0</div>
-            <div class="pmetric-lbl">Data Shared with OpenAI / Google</div>
+            <div class="pmetric-val">Per-account</div>
+            <div class="pmetric-lbl">Data Scoping, No Cross-Tenant Sharing</div>
           </div>
         </div>
       </div>
 
       <div style="background:var(--bg-card-alt); border:1.5px solid var(--border-ink); border-radius:18px; padding:28px;">
-        <div style="font-family:var(--font-mono); font-size:10px; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-tertiary); margin-bottom:12px;">Deployment Architecture</div>
+        <div style="font-family:var(--font-mono); font-size:10px; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-tertiary); margin-bottom:12px;">How a search runs</div>
         <div style="display:flex; flex-direction:column; gap:12px; font-size:13px; font-family:var(--font-mono);">
           <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-soft); padding-bottom:8px;">
-            <span>Model Backend:</span>
-            <strong>Custom Fine-Tuned Llama 4</strong>
+            <span>Sourcing:</span>
+            <strong>Live LinkedIn candidate search</strong>
           </div>
           <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-soft); padding-bottom:8px;">
-            <span>Data Pipeline:</span>
-            <strong>Authorized LinkedIn Graph</strong>
+            <span>Evaluation:</span>
+            <strong>Chunked, retry-safe scoring</strong>
           </div>
           <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-soft); padding-bottom:8px;">
-            <span>Latency:</span>
-            <strong>&lt; 60 Seconds / Search</strong>
+            <span>Contact info:</span>
+            <strong>Verified email enrichment</strong>
           </div>
           <div style="display:flex; justify-content:space-between;">
-            <span>Encryption:</span>
-            <strong>TLS 1.3 / AES-256 at Rest</strong>
+            <span>Transport:</span>
+            <strong>TLS-encrypted end to end</strong>
           </div>
         </div>
       </div>
@@ -1475,7 +1518,7 @@
         </tr>
         <tr>
           <td><strong>Data Privacy</strong></td>
-          <td class="matrix-highlight">Isolated private model per account</td>
+          <td class="matrix-highlight">Per-account data scoping, no cross-tenant sharing</td>
           <td>Shared multi-tenant platform</td>
           <td>Varies / unencrypted email</td>
         </tr>
@@ -1512,7 +1555,7 @@
       <div class="faq-item">
         <details>
           <summary class="faq-question">How does The Croupier differ from LinkedIn Recruiter?</summary>
-          <div class="faq-answer">LinkedIn Recruiter is a manual search bar that returns hundreds of unranked profiles for you to read line by line. The Croupier uses your dedicated fine-tuned AI model to evaluate candidate profiles automatically, returning a scored shortlist with written Hire / Maybe / Pass verdicts in under 60 seconds.</div>
+          <div class="faq-answer">LinkedIn Recruiter is a manual search bar that returns hundreds of unranked profiles for you to read line by line. The Croupier evaluates candidate profiles against your stated criteria automatically, returning a scored shortlist with written Hire / Maybe / Pass verdicts in under 60 seconds.</div>
         </details>
       </div>
 
@@ -1526,14 +1569,14 @@
       <div class="faq-item">
         <details>
           <summary class="faq-question">Is my candidate search data kept confidential?</summary>
-          <div class="faq-answer">Yes. Through our sovereign infrastructure partnership with ASQSYS, each customer runs an isolated private model. Your role criteria, search history, and talent notes never train public models or get shared across tenants.</div>
+          <div class="faq-answer">Yes. Your role criteria, search history, and talent notes are scoped to your account and never visible to other customers. We don't sell or share your candidate data with third parties.</div>
         </details>
       </div>
 
       <div class="faq-item">
         <details>
           <summary class="faq-question">Which ATS platforms can I export candidates into?</summary>
-          <div class="faq-answer">The Croupier integrates natively with 100Hires, Recruitee, JazzHR, SmartSuite, and Odoo. We also provide full CSV data exports and a REST API for custom internal tracking systems.</div>
+          <div class="faq-answer">The Croupier integrates natively with 100Hires, Recruitee, JazzHR, SmartSuite, Odoo, Loxo, and Manatal. For anything else, use a custom outbound webhook or export a clean CSV.</div>
         </details>
       </div>
     </div>
@@ -1571,7 +1614,7 @@
   <div class="content-container" style="padding-top: 100px;">
     <span class="section-eyebrow">Interactive Workstation</span>
     <h1 class="section-title">The Croupier Console</h1>
-    <p class="section-lead">Define role criteria, test the scoring engine against candidate profiles, and choose your scale.</p>
+    <p class="section-lead">Define role criteria, preview how the scoring engine reasons about candidate profiles, and choose your scale. This preview uses sample profiles — start a trial to run The Croupier against live LinkedIn search.</p>
 
     <!-- Sandbox Card -->
     <div class="sandbox-card">
@@ -1659,8 +1702,8 @@
           <div class="price-desc">High-volume talent teams</div>
           <ul class="price-features">
             <li>15,000 Candidates / month</li>
-            <li>Custom LLM Heuristic Fine-Tuning</li>
-            <li>Full History + Talent Pool</li>
+            <li>Custom Evaluation Criteria & Leveling Guidance</li>
+            <li>Full History + Cross-Campaign Talent Pool</li>
             <li>ATS + HRIS Two-Way Sync</li>
             <li>Dedicated Technical Support</li>
           </ul>
@@ -1752,13 +1795,13 @@
             <span class="comp-icon hire">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </span>
-            <span>Isolated private model per account — zero search data shared with public LLMs</span>
+            <span>Your searches and talent notes stay scoped to your account, never pooled with other customers</span>
           </li>
           <li>
             <span class="comp-icon hire">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </span>
-            <span>Objective Hire, Maybe, or Pass verdicts assigned by your custom leveling rubric</span>
+            <span>Objective Hire, Maybe, or Pass verdicts with written reasoning your team can check and challenge</span>
           </li>
           <li>
             <span class="comp-icon hire">
@@ -1791,9 +1834,9 @@
     <h1 class="section-title">Privacy Policy</h1>
     <p class="section-lead" style="margin-bottom: 24px;">Your data privacy is built into Fidmark's core architecture.</p>
     <div style="font-size: 14.5px; color: var(--ink-secondary); line-height: 1.8; display: flex; flex-direction: column; gap: 18px;">
-      <p>Fidmark operates dedicated, isolated AI model instances per account for The Croupier. Your job requirements, internal candidate notes, search queries, and hiring scores never leave your environment.</p>
+      <p>Your job requirements, internal candidate notes, search queries, and hiring scores are stored under your account and are never visible to, or pooled with, other Fidmark customers.</p>
       <h3 style="color: var(--ink-primary); font-family: var(--font-serif); font-size: 18px;">What We Never Do</h3>
-      <p>We never share your search data with third-party foundational AI providers. We never train public models on your private hiring data. We never sell your candidate databases.</p>
+      <p>We never sell your candidate data or search history. We never share it with other customers. All traffic to and from The Croupier is encrypted in transit.</p>
     </div>
   </div>
 </div>
