@@ -307,7 +307,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      /* top-aligned so every logo and name sits on the same line,
+         regardless of whether the type label wraps to one or two lines */
+      justify-content: flex-start;
       gap: 12px;
       transition: transform 0.15s, box-shadow 0.15s, background-color 0.15s;
     }
@@ -1280,8 +1282,9 @@
       <!-- Odoo -->
       <div class="ats-card">
         <div class="ats-logo-box" style="background:var(--bento-coral);">
+          <!-- Ring is centered on (100,100) so it sits dead-center in the 200x200 viewBox -->
           <svg width="24" height="24" viewBox="0 0 200 200" fill="none">
-            <path d="M100,196a75,75,0,1,1,75-75A75,75,0,0,1,100,196Zm0-31a44,44,0,1,0-44-44A44,44,0,0,0,100,165Z" fill="#714B67"/>
+            <path d="M100,175a75,75,0,1,1,75-75A75,75,0,0,1,100,175Zm0-31a44,44,0,1,0-44-44A44,44,0,0,0,100,144Z" fill="#714B67"/>
           </svg>
         </div>
         <div class="ats-name">Odoo</div>
