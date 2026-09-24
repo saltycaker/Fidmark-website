@@ -820,6 +820,35 @@
     .footer-links { display: flex; gap: 20px; }
     .footer-links a:hover { color: var(--ink-primary); }
 
+    /* ─── STICKY TRIAL BAR (persistent CTA on the Croupier page) ─── */
+    .sticky-trial-bar {
+      position: sticky;
+      top: 76px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      background: var(--ink-primary);
+      color: #FFFFFF;
+      border: 1.5px solid var(--border-ink);
+      border-radius: var(--radius-pill);
+      padding: 10px 10px 10px 20px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-float);
+    }
+    .sticky-trial-bar span {
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+    .sticky-trial-bar .btn-pill-primary {
+      background: #FFFFFF; color: var(--ink-primary); border-color: #FFFFFF;
+    }
+    .sticky-trial-bar .btn-pill-primary:hover {
+      background: var(--bg-card-alt); box-shadow: none;
+    }
+
     /* ─── RESPONSIVE ─── */
     @media (max-width: 960px) {
       .hero-card { padding: 48px 24px 40px; }
@@ -830,6 +859,7 @@
       .pricing-wrap, .sandbox-grid, .compare-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
       .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+      .sticky-trial-bar { justify-content: center; text-align: center; }
     }
     @media (max-width: 600px) {
       .rubric-grid, .steps-grid { grid-template-columns: 1fr; }
@@ -867,7 +897,7 @@
       <a href="#asqsys-partner" class="nav-link">Infrastructure</a>
       <a href="#comparison-matrix" class="nav-link">Comparison</a>
     </div>
-    <button class="nav-btn-black" onclick="showPage('croupier')">Dashboard</button>
+    <button class="nav-btn-black" onclick="goToPricing()">Dashboard</button>
   </nav>
 </div>
 
@@ -905,8 +935,8 @@
       </p>
 
       <div class="hero-cta-group">
-        <button class="btn-pill-primary" onclick="showPage('croupier')">
-          Launch The Croupier
+        <button class="btn-pill-primary" onclick="goToPricing()">
+          Start your 3-day trial
         </button>
         <a href="mailto:sales@asqsys.com?subject=Fidmark Demo" class="btn-pill-outline">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
@@ -915,7 +945,7 @@
       </div>
 
       <div class="hero-disclaimer">
-        Every plan includes a 3-day trial. Your card is held and charged on Day 4. <a href="javascript:void(0);" onclick="showPage('croupier')">See pricing</a>.
+        Free trial, no card required — up to 1,000 candidates or 3 days, whichever comes first. <a href="javascript:void(0);" onclick="goToPricing()">See pricing</a>.
       </div>
     </div>
 
@@ -1481,7 +1511,7 @@
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   Approve to ATS
                 </button>
-                <button class="btn-sm-outline" onclick="showPage('croupier')">View full dossier</button>
+                <button class="btn-sm-outline" onclick="goToPricing()">View full dossier</button>
               </div>
             </div>
           </div>
@@ -1541,7 +1571,7 @@
         </tr>
         <tr>
           <td><strong>Contract Flexibility</strong></td>
-          <td class="matrix-highlight">Month-to-month with 3-day card held trial</td>
+          <td class="matrix-highlight">Month-to-month, free trial, no card required</td>
           <td>Annual lock-in commitment</td>
           <td>Per-placement contingency</td>
         </tr>
@@ -1566,8 +1596,8 @@
 
       <div class="faq-item">
         <details>
-          <summary class="faq-question">How does the 3-day trial work?</summary>
-          <div class="faq-answer">When you start a subscription, your card is held and verified via Stripe, but it is not charged until Day 4. You get full platform access immediately. If you decide to cancel anytime before Day 4, you pay zero.</div>
+          <summary class="faq-question">How does the free trial work?</summary>
+          <div class="faq-answer">No card required. Enter your work email and we'll send you an access token instantly. Your trial runs until you've evaluated 1,000 candidates or 3 days have passed, whichever comes first — then your account locks until you upgrade to a paid plan, which does require billing details via Stripe.</div>
         </details>
       </div>
 
@@ -1599,7 +1629,7 @@
     <h2 class="section-title" style="font-size: clamp(34px, 5vw, 52px);">Recruit smarter, today.</h2>
     <p class="section-lead" style="margin: 0 auto 30px;">Your next hire is already out there. Stop reading résumés and start reading verdicts with The Croupier.</p>
     <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
-      <button class="btn-pill-primary" onclick="showPage('croupier')">
+      <button class="btn-pill-primary" onclick="goToPricing()">
         See plans & start trial
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       </button>
@@ -1627,6 +1657,15 @@
     <span class="section-eyebrow">Interactive Workstation</span>
     <h1 class="section-title">The Croupier Console</h1>
     <p class="section-lead">Define role criteria, preview how the scoring engine reasons about candidate profiles, and choose your scale. This preview uses sample profiles — start a trial to run The Croupier against live LinkedIn search.</p>
+
+    <!-- Persistent trial CTA so the sandbox below is never a dead end -->
+    <div class="sticky-trial-bar">
+      <span>Ready to run this on real candidates?</span>
+      <button class="btn-pill-primary" onclick="document.getElementById('pricing-section').scrollIntoView({behavior:'smooth'})">
+        Jump to pricing & start trial
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+    </div>
 
     <!-- Sandbox Card -->
     <div class="sandbox-card">
@@ -1667,7 +1706,7 @@
     <div style="margin-top: 90px;" id="pricing-section">
       <span class="section-eyebrow">Transparent Pricing</span>
       <h2 class="section-title">Priced for teams, not enterprise procurement cycles.</h2>
-      <p class="section-lead">Every plan starts with a 3-day verification trial. Your card is held and not charged until Day 4.</p>
+      <p class="section-lead">Every plan starts with a free trial — no card required. Up to 1,000 candidates or 3 days, whichever comes first.</p>
 
       <div class="pricing-wrap">
         <!-- Starter -->
@@ -1682,10 +1721,10 @@
             <li>Search History</li>
             <li>Limited CSV Export</li>
           </ul>
-          <button class="btn-price outline" onclick="openStripeCheckout('price_1T5UQDRvu0Wlomst6OcHgx2m')">
-            Start 3-Day Trial
+          <button class="btn-price outline" onclick="startFreeTrial('starter')">
+            Start Free Trial
           </button>
-          <div class="price-footnote">Card held · Charged Day 4</div>
+          <div class="price-footnote">No card required · <a href="javascript:void(0);" onclick="openStripeCheckout('price_1T5UQDRvu0Wlomst6OcHgx2m')" style="text-decoration:underline;">skip trial, subscribe now</a></div>
         </div>
 
         <!-- Growth -->
@@ -1701,10 +1740,10 @@
             <li>Full CSV Data Export</li>
             <li>Native ATS Connectors</li>
           </ul>
-          <button class="btn-price solid" onclick="openStripeCheckout('price_1T5aQfRvu0WlomstC3m4OFns')">
-            Start 3-Day Trial
+          <button class="btn-price solid" onclick="startFreeTrial('growth')">
+            Start Free Trial
           </button>
-          <div class="price-footnote">Card held · Charged Day 4</div>
+          <div class="price-footnote">No card required · <a href="javascript:void(0);" onclick="openStripeCheckout('price_1T5aQfRvu0WlomstC3m4OFns')" style="text-decoration:underline;">skip trial, subscribe now</a></div>
         </div>
 
         <!-- Scale -->
@@ -1719,10 +1758,10 @@
             <li>ATS + HRIS Two-Way Sync</li>
             <li>Dedicated Technical Support</li>
           </ul>
-          <button class="btn-price outline" onclick="openStripeCheckout('price_1T9UO1Rvu0WlomstDwHIdo8B')">
-            Start 3-Day Trial
+          <button class="btn-price solid" onclick="startFreeTrial('growth')">
+            Start Free Trial
           </button>
-          <div class="price-footnote">Card held · Charged Day 4</div>
+          <div class="price-footnote">No card required · <a href="javascript:void(0);" onclick="openStripeCheckout('price_1T9UO1Rvu0WlomstDwHIdo8B')" style="text-decoration:underline;">skip trial, subscribe now</a></div>
         </div>
 
         <!-- Enterprise -->
@@ -1887,7 +1926,7 @@
 
       <div>
         <h3 style="color: var(--ink-primary); font-family: var(--font-serif); font-size: 19px; font-weight: 600; margin-bottom: 6px;">Subscriptions</h3>
-        <p>Subscriptions renew automatically. Every plan includes a 3-day trial: your card is held but not charged until Day 4. Cancel anytime before Day 4 at no charge. Cancellations take effect at the end of the current billing period.</p>
+        <p>Subscriptions renew automatically. Every plan starts with a free trial — no card required — that runs until 1,000 candidates are evaluated or 3 days pass, whichever comes first. Your account locks at that point until you subscribe to a paid plan, which requires billing details via Stripe. Cancellations on a paid subscription take effect at the end of the current billing period.</p>
       </div>
 
       <div>
@@ -1966,6 +2005,16 @@
       target.classList.add('active');
       window.scrollTo(0, 0);
     }
+  }
+
+  /* Navigate to the Croupier page and land straight on pricing —
+     used by every "start trial" entry point on the site so a visitor
+     is never dropped onto the sandbox demo as a dead end. */
+  function goToPricing() {
+    showPage('croupier');
+    requestAnimationFrame(() => {
+      document.getElementById('pricing-section')?.scrollIntoView({ behavior: 'auto', block: 'start' });
+    });
   }
 
   /* ── TOAST FEEDBACK ENGINE ── */
@@ -2074,6 +2123,78 @@
     }, 800);
   }
 
+  /* ── FREE TRIAL SIGNUP (no card) ──
+     Small email-capture modal → POSTs to the Worker's /api/start-trial →
+     on success, drops the visitor straight into the same dashboard modal
+     used for token unlock, skipping a separate validate-token round trip
+     since we already know the token is fresh and valid. */
+  function startFreeTrial(plan) {
+    const modal = document.createElement('div');
+    modal.id = 'trial-modal';
+    modal.style.cssText = 'position:fixed;inset:0;background:rgba(24,24,27,0.55);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);';
+    modal.innerHTML = `
+      <div style="background:#FFFFFF;border:1.5px solid #18181B;max-width:400px;width:100%;padding:32px;border-radius:24px;box-shadow:var(--shadow-float);">
+        <span class="section-eyebrow">Free Trial · No Card Required</span>
+        <h2 style="font-family:var(--font-serif);font-size:22px;font-weight:600;margin:8px 0 6px;">Start your free trial</h2>
+        <p style="font-size:13px;color:var(--ink-secondary);margin-bottom:18px;">Up to 1,000 candidates or 3 days, whichever comes first. We'll email your access token.</p>
+        <label class="form-label">Work Email</label>
+        <input type="email" id="trialEmailInput" class="form-input" placeholder="you@company.com" style="margin-bottom:16px;">
+        <div id="trialModalError" style="display:none;color:#BE123C;font-size:12.5px;margin-bottom:12px;"></div>
+        <button class="btn-pill-primary" style="width:100%;justify-content:center;margin-bottom:10px;" onclick="submitFreeTrial('${plan}')">
+          Get my free trial token
+        </button>
+        <button class="btn-pill-outline" style="width:100%;justify-content:center;" onclick="document.getElementById('trial-modal').remove()">
+          Cancel
+        </button>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    document.getElementById('trialEmailInput')?.focus();
+  }
+
+  async function submitFreeTrial(plan) {
+    const input = document.getElementById('trialEmailInput');
+    const errEl = document.getElementById('trialModalError');
+    const email = input ? input.value.trim() : '';
+
+    if (!email || !email.includes('@')) {
+      errEl.textContent = 'Please enter a valid email address.';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    document.getElementById('trial-modal')?.remove();
+    showLoading('Starting your free trial...');
+    try {
+      const r = await fetch(`${WORKER_URL}/api/start-trial`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, plan })
+      });
+      const d = await r.json();
+      closeLoading();
+      if (d.success && d.token) {
+        localStorage.setItem('fidmarkToken', d.token);
+        showToast('Trial started! Check your email for your token.');
+        showDashboard(plan, d.token);
+      } else {
+        alert(d.error || 'Could not start your trial. Please try again or contact sales@asqsys.com');
+      }
+    } catch (e) {
+      closeLoading();
+      alert('Error starting trial. Please contact sales@asqsys.com');
+    }
+  }
+
+  // Maps our internal plan keys to their Stripe price IDs — used both by
+  // the "skip trial, subscribe now" links on pricing cards and by the
+  // dashboard's "Upgrade now" button once a free trial is running.
+  const PLAN_TO_PRICE_ID = {
+    starter: 'price_1T5UQDRvu0Wlomst6OcHgx2m',
+    growth: 'price_1T5aQfRvu0WlomstC3m4OFns',
+    enterprise: 'price_1T9UO1Rvu0WlomstDwHIdo8B'
+  };
+
   /* ── STRIPE CHECKOUT ── */
   async function openStripeCheckout(product) {
     try {
@@ -2111,7 +2232,7 @@
         localStorage.setItem('fidmarkToken', token);
         showDashboard(product, token);
       } else {
-        alert('Invalid access token. Please check format (DEALERS/TRIAL-XXXXXX)');
+        alert(result.message || 'Invalid access token. Please check format (DEALERS/TRIAL-XXXXXX)');
       }
     } catch(e) {
       closeLoading();
@@ -2140,6 +2261,12 @@
            </div>`
         : '';
 
+      const trialNotice = d.no_card
+        ? `<div style="background:#E0F2FE;border:1.5px solid #18181B;border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:12.5px;color:#075985;">
+             Free trial — ${(usage.candidates_found||0).toLocaleString()}/${(usage.limit||1000).toLocaleString()} candidates used${d.trial_ends_at ? `, ends ${new Date(d.trial_ends_at).toLocaleDateString()}` : ''}. Whichever hits first locks the account until you upgrade.
+           </div>`
+        : '';
+
       const modal = document.createElement('div');
       modal.id = 'dashboard-modal';
       modal.style.cssText = 'position:fixed;inset:0;background:rgba(24,24,27,0.55);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);';
@@ -2149,6 +2276,7 @@
           <h2 style="font-family:var(--font-serif);font-size:24px;font-weight:600;margin:8px 0 20px;">The Croupier Console</h2>
 
           ${cancelNotice}
+          ${trialNotice}
 
           <div style="background:var(--bg-paper);border:1.5px solid #18181B;border-radius:12px;padding:16px;margin-bottom:20px;">
             <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:6px;">
