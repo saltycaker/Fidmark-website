@@ -2009,13 +2009,35 @@
 
   /* Navigate to the Croupier page and land straight on pricing —
      used by every "start trial" entry point on the site so a visitor
-     is never dropped onto the sandbox demo as a dead end. */
+     is never dropped onto the sandbox demo as a dead end. Also updates
+     the URL hash to #pricing so this state is bookmarkable/shareable
+     and so a deep link (see handleDeepLink below) can jump straight
+     here on first load — e.g. from an email or ad campaign CTA. */
   function goToPricing() {
     showPage('croupier');
+    if (window.location.hash !== '#pricing') {
+      history.replaceState(null, '', '#pricing');
+    }
     requestAnimationFrame(() => {
       document.getElementById('pricing-section')?.scrollIntoView({ behavior: 'auto', block: 'start' });
     });
   }
+
+  /* ── DEEP-LINK SUPPORT ──
+     Lets an external link (outbound email, ad, etc.) send a visitor
+     straight to pricing instead of the homepage, removing the extra
+     click that was costing conversions. Point campaign CTAs at:
+       https://fidmark.vercel.app/#pricing   or   .../#trial
+     Both land here directly on page load. */
+  function handleDeepLink() {
+    const hash = window.location.hash.replace('#', '').toLowerCase();
+    if (hash === 'pricing' || hash === 'trial' || hash === 'start-trial') {
+      goToPricing();
+    }
+  }
+  handleDeepLink();
+  // Also handle back/forward navigation and links clicked after load
+  window.addEventListener('hashchange', handleDeepLink);
 
   /* ── TOAST FEEDBACK ENGINE ── */
   function showToast(msg) {
