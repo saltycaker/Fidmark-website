@@ -2125,9 +2125,10 @@
 
   /* ── FREE TRIAL SIGNUP (no card) ──
      Small email-capture modal → POSTs to the Worker's /api/start-trial →
-     on success, drops the visitor straight into the same dashboard modal
-     used for token unlock, skipping a separate validate-token round trip
-     since we already know the token is fresh and valid. */
+     on success, shows a "check your email" confirmation instead of
+     dropping the visitor straight into the dashboard. The token was
+     just emailed to them, so this confirms where to find it rather than
+     silently unlocking the console with a token they haven't seen. */
   function startFreeTrial(plan) {
     const modal = document.createElement('div');
     modal.id = 'trial-modal';
@@ -2175,8 +2176,7 @@
       closeLoading();
       if (d.success && d.token) {
         localStorage.setItem('fidmarkToken', d.token);
-        showToast('Trial started! Check your email for your token.');
-        showDashboard(plan, d.token);
+        showCheckEmailModal(email);
       } else {
         alert(d.error || 'Could not start your trial. Please try again or contact sales@asqsys.com');
       }
@@ -2184,6 +2184,31 @@
       closeLoading();
       alert('Error starting trial. Please contact sales@asqsys.com');
     }
+  }
+
+  /* ── CHECK-YOUR-EMAIL CONFIRMATION ──
+     Shown right after a successful /api/start-trial call. Tells the
+     visitor their token is on its way to their inbox and how to use it
+     once it arrives, instead of silently logging them into the console
+     with a token they never actually saw. */
+  function showCheckEmailModal(email) {
+    const modal = document.createElement('div');
+    modal.id = 'check-email-modal';
+    modal.style.cssText = 'position:fixed;inset:0;background:rgba(24,24,27,0.55);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);';
+    modal.innerHTML = `
+      <div style="background:#FFFFFF;border:1.5px solid #18181B;max-width:400px;width:100%;padding:32px;border-radius:24px;box-shadow:var(--shadow-float);text-align:center;">
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--accent-green-bg);border:1.5px solid #18181B;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+        </div>
+        <span class="section-eyebrow">Check Your Inbox</span>
+        <h2 style="font-family:var(--font-serif);font-size:22px;font-weight:600;margin:8px 0 6px;">We've sent your access token</h2>
+        <p style="font-size:13.5px;color:var(--ink-secondary);margin-bottom:22px;">Your free trial token is on its way to <strong>${email}</strong>. Open the email, copy your token, and paste it into the "Unlock The Croupier Console" box below to get started.</p>
+        <button class="btn-pill-primary" style="width:100%;justify-content:center;" onclick="document.getElementById('check-email-modal').remove(); document.getElementById('croupierToken')?.focus();">
+          Got it
+        </button>
+      </div>
+    `;
+    document.body.appendChild(modal);
   }
 
   // Maps our internal plan keys to their Stripe price IDs — used both by
