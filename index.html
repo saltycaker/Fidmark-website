@@ -899,13 +899,14 @@
     #slack-section { padding-bottom: 28px; }
     #slack-trust { padding-top: 0; padding-bottom: 40px; }
     #slack-trust > .slack-trust-card:first-child { margin-top: 0 !important; }
+    .slack-cta-row .btn-pill-outline { padding: 10px 22px; }
+    .safeguard-list { margin-top: 16px; }
+
     /* Slack's official button image sits a few px low next to the pill button.
        Tune --slack-nudge (negative = up) if it ever needs adjusting. */
     .hero-cta-group { --slack-nudge: -3px; }
     .hero-cta-group .add-to-slack-link { display: inline-flex; align-items: center; position: relative; top: var(--slack-nudge); }
     .hero-cta-group .add-to-slack-link img { display: block; }
-    .slack-cta-row .btn-pill-outline { padding: 10px 22px; }
-    .safeguard-list { margin-top: 16px; }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 960px) {
@@ -1450,6 +1451,9 @@
         <div class="slack-microcopy">
           Free trial: up to 1,000 candidates or 3 days, no card required. You choose which Slack workspace to install into and can remove the app at any time.
         </div>
+        <div class="slack-microcopy" style="margin-top:8px;">
+          AI-generated scores and summaries can be inaccurate. A person should review every candidate, and nothing is pushed to your ATS until a recruiter approves it.
+        </div>
       </div>
 
       <div>
@@ -1777,7 +1781,7 @@
         </tr>
         <tr>
           <td><strong>Scoring & Reasoning</strong></td>
-          <td class="matrix-highlight">Deterministic 0–100 + Written rationale</td>
+          <td class="matrix-highlight">Consistent 0–100 score + written rationale</td>
           <td>None (manual Boolean reading)</td>
           <td>Subjective recruiter opinion</td>
         </tr>
@@ -2115,7 +2119,7 @@
             <span class="comp-icon hire">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </span>
-            <span>Objective Hire, Maybe, or Pass verdicts with written reasoning your team can check and challenge</span>
+            <span>Clear Hire, Maybe, or Pass verdicts with written reasoning your team can check and challenge</span>
           </li>
           <li>
             <span class="comp-icon hire">
@@ -2283,6 +2287,8 @@
     const hash = window.location.hash.replace('#', '').toLowerCase();
     if (hash === 'pricing' || hash === 'trial' || hash === 'start-trial') {
       goToPricing();
+    } else if (hash === 'privacy' || hash === 'terms') {
+      showPage(hash);
     } else if (hash === 'slack') {
       showPage('home');
       requestAnimationFrame(() => {
