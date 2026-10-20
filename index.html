@@ -849,6 +849,64 @@
       background: var(--bg-card-alt); box-shadow: none;
     }
 
+    /* ─── SLACK INSTALL SECTION ─── */
+    .slack-hero-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-ink);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-paper);
+      padding: 44px;
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .slack-cta-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 26px; }
+    .add-to-slack-link { display: inline-block; line-height: 0; transition: transform 0.15s; }
+    .add-to-slack-link:hover { transform: translateY(-1.5px); }
+    .slack-microcopy { font-size: 12.5px; color: var(--ink-tertiary); margin-top: 12px; line-height: 1.55; }
+    .slack-trust-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px;
+    }
+    .slack-trust-card {
+      border: 1.5px solid var(--border-ink); border-radius: var(--radius-sm);
+      padding: 26px 28px; background: var(--bg-card);
+    }
+    .slack-trust-card h4 { font-family: var(--font-serif); font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .slack-trust-card p, .slack-trust-card li { font-size: 13px; color: var(--ink-secondary); line-height: 1.6; }
+    .slack-trust-card ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .slack-perm-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 13px; }
+    .slack-perm-table td { padding: 10px 0; border-bottom: 1px solid var(--border-soft); vertical-align: top; color: var(--ink-secondary); }
+    .slack-perm-table td:first-child { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-primary); padding-right: 18px; white-space: nowrap; }
+    .slack-perm-table tr:last-child td { border-bottom: none; }
+    .slack-sample-tag {
+      font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--ink-tertiary); text-align: right; padding: 6px 4px 0;
+    }
+
+    /* ─── SLACK SAFEGUARDS ─── */
+    .safeguard-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 28px; margin-top: 18px; }
+    .safeguard-list li { display: flex; gap: 10px; font-size: 13.5px; color: var(--ink-secondary); line-height: 1.55; }
+    .safeguard-list li::before {
+      content: ''; flex-shrink: 0; width: 16px; height: 16px; margin-top: 3px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2315803D' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    .slack-hero-card + .slack-trust-grid { margin-top: 24px; }
+    .slack-trust-card h4 + p, .slack-trust-card h4 + ul { margin-top: 2px; }
+    .slack-trust-card p + p { margin-top: 10px; }
+    #slack-section { padding-bottom: 28px; }
+    #slack-trust { padding-top: 0; padding-bottom: 40px; }
+    #slack-trust > .slack-trust-card:first-child { margin-top: 0 !important; }
+    /* Slack's official button image sits a few px low next to the pill button.
+       Tune --slack-nudge (negative = up) if it ever needs adjusting. */
+    .hero-cta-group { --slack-nudge: -3px; }
+    .hero-cta-group .add-to-slack-link { display: inline-flex; align-items: center; position: relative; top: var(--slack-nudge); }
+    .hero-cta-group .add-to-slack-link img { display: block; }
+    .slack-cta-row .btn-pill-outline { padding: 10px 22px; }
+    .safeguard-list { margin-top: 16px; }
+
     /* ─── RESPONSIVE ─── */
     @media (max-width: 960px) {
       .hero-card { padding: 48px 24px 40px; }
@@ -860,6 +918,10 @@
       .nav-links { display: none; }
       .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
       .sticky-trial-bar { justify-content: center; text-align: center; }
+      .slack-hero-card { grid-template-columns: 1fr; padding: 28px; }
+      .slack-trust-grid { grid-template-columns: 1fr; }
+      .safeguard-list { grid-template-columns: 1fr; }
+      .slack-trust-card { padding: 22px; }
     }
     @media (max-width: 600px) {
       .rubric-grid, .steps-grid { grid-template-columns: 1fr; }
@@ -894,6 +956,7 @@
       <a href="javascript:void(0);" onclick="showPage('croupier')" class="nav-link">The Croupier</a>
       <a href="#bento-features" class="nav-link">Capabilities</a>
       <a href="#ats-section" class="nav-link">ATS Sync</a>
+      <a href="#slack-section" class="nav-link" onclick="showPage('home')">Slack</a>
       <a href="#asqsys-partner" class="nav-link">Infrastructure</a>
       <a href="#comparison-matrix" class="nav-link">Comparison</a>
     </div>
@@ -909,7 +972,7 @@
   <!-- HERO SECTION -->
   <section class="hero-stage">
     <div class="hero-card">
-      
+
       <!-- Fidmark Main Black & White Logo with Bold Checkmark -->
       <div class="hero-logo-wrap">
         <div class="fidmark-hero-logo">
@@ -938,14 +1001,19 @@
         <button class="btn-pill-primary" onclick="goToPricing()">
           Start your 3-day trial
         </button>
-        <a href="mailto:sales@asqsys.com?subject=Fidmark Demo" class="btn-pill-outline">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
-          Book a live demo
+        <a class="add-to-slack-link" href="https://croupier-slack-bot.onrender.com/slack/install" data-slack-cta="hero-button">
+          <img alt="Add to Slack" height="40" width="139"
+               src="https://platform.slack-edge.com/img/add_to_slack.png"
+               srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x">
         </a>
       </div>
 
       <div class="hero-disclaimer">
         Free trial, no card required — up to 1,000 candidates or 3 days, whichever comes first. <a href="javascript:void(0);" onclick="goToPricing()">See pricing</a>.
+      </div>
+      <div class="hero-disclaimer" style="margin-top:14px;">
+        Prefer to work in Slack?
+        <a href="https://croupier-slack-bot.onrender.com/slack/install" data-slack-cta="hero">Add The Croupier to Slack</a>
       </div>
     </div>
 
@@ -966,7 +1034,7 @@
     </p>
 
     <div class="bento-grid">
-      
+
       <!-- Box 1: Tall Left Soft Sky Blue -->
       <div class="bento-box tall-left">
         <div class="bento-art">
@@ -1348,6 +1416,168 @@
       </div>
     </div>
   </section>
+
+  <!-- ══════════════════════════════════════
+       SLACK APP — INSTALL SECTION
+  ══════════════════════════════════════ -->
+  <section class="content-container" id="slack-section" style="padding-top: 40px;">
+    <span class="section-eyebrow">Slack App</span>
+    <h2 class="section-title">Source candidates without leaving Slack.</h2>
+    <p class="section-lead">
+      Ask for a role in plain English, right where your hiring team already talks. The Croupier replies with a scored shortlist, and your recruiters approve candidates into your ATS from the same thread.
+    </p>
+
+    <div class="slack-hero-card">
+      <div>
+        <div style="font-family:var(--font-serif); font-size:26px; font-weight:600; line-height:1.2; margin-bottom:12px;">
+          Add it in about two minutes.
+        </div>
+        <ol style="padding-left:20px; font-size:14px; color:var(--ink-secondary); line-height:1.8;">
+          <li><strong>Add to Slack.</strong> A workspace admin approves the install.</li>
+          <li><strong>Get your free trial token.</strong> No card required.</li>
+          <li>Run <code style="font-family:var(--font-mono); font-size:12px; background:var(--bg-card-alt); padding:2px 6px; border-radius:4px;">/croupier connect</code> with your token.</li>
+          <li>Ask: <em>"find 3 senior backend engineers in SF."</em></li>
+        </ol>
+
+        <div class="slack-cta-row">
+          <a class="add-to-slack-link" href="https://croupier-slack-bot.onrender.com/slack/install" data-slack-cta="section">
+            <img alt="Add to Slack" height="40" width="139"
+                 src="https://platform.slack-edge.com/img/add_to_slack.png"
+                 srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x">
+          </a>
+          <button class="btn-pill-outline" onclick="goToPricing()">Get free trial token</button>
+        </div>
+        <div class="slack-microcopy">
+          Free trial: up to 1,000 candidates or 3 days, no card required. You choose which Slack workspace to install into and can remove the app at any time.
+        </div>
+      </div>
+
+      <div>
+        <div class="agent-room-card" style="margin-top:0; border-radius:20px;">
+          <div class="room-header"><div class="room-title"><span># hiring</span></div><span class="room-status">The Croupier · App</span></div>
+          <div class="room-stream" style="padding:20px 18px; gap:16px;">
+            <div class="msg-row">
+              <div class="avatar">EB</div>
+              <div class="msg-content">
+                <div class="msg-meta"><span class="msg-author">Elena</span></div>
+                <div class="msg-bubble" style="font-size:13.5px;">@The Croupier find 3 senior backend engineers in SF with Kubernetes experience</div>
+              </div>
+            </div>
+            <div class="msg-row">
+              <div class="avatar agent-av">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4.5 12 9.5 17 19.5 7"></polyline></svg>
+              </div>
+              <div class="msg-content">
+                <div class="msg-meta"><span class="msg-author">The Croupier</span></div>
+                <div class="msg-bubble" style="font-size:13.5px;">Searching and ranking candidates…</div>
+                <div class="eval-card" style="padding:14px; margin-top:8px;">
+                  <div class="eval-top" style="margin-bottom:6px;">
+                    <div><div class="eval-name" style="font-size:16px;">Sample Candidate</div><div class="eval-role">Senior Infrastructure · 8y exp</div></div>
+                    <span class="badge-pill badge-hire">Hire · 94/100</span>
+                  </div>
+                  <div class="eval-actions" style="margin-top:8px;">
+                    <span class="btn-sm-ink" style="pointer-events:none;">Approve to ATS</span>
+                    <span style="font-size:11.5px; color:var(--ink-tertiary);">5-second undo</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slack-sample-tag">Illustrative example</div>
+      </div>
+    </div>
+
+    <!-- TRUST: plain-language controls -->
+    <div class="slack-trust-grid">
+      <div class="slack-trust-card">
+        <h4>Admins stay in control</h4>
+        <ul>
+          <li>Only Slack workspace admins or owners can connect or disconnect your Fidmark account.</li>
+          <li>Removing the app from Slack deletes its stored access for your workspace.</li>
+          <li>Disconnecting invalidates the workspace's Fidmark token.</li>
+        </ul>
+      </div>
+      <div class="slack-trust-card">
+        <h4>Humans approve every push</h4>
+        <ul>
+          <li>Nothing goes to your ATS until a recruiter clicks Approve.</li>
+          <li>Every approval has a 5-second undo window.</li>
+          <li>Candidate dossier links are private to the requester and expire after 72 hours.</li>
+        </ul>
+      </div>
+      <div class="slack-trust-card">
+        <h4>Scoped to your account</h4>
+        <ul>
+          <li>Searches and ratings are tied to your Fidmark account, never pooled with other customers.</li>
+          <li>Each Slack workspace gets its own access token.</li>
+          <li>The install runs through Slack's official OAuth screen, and its one-time codes can be used only once.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TRUST: exact permissions, plain language -->
+    <div class="slack-trust-card" style="margin-top:16px;">
+      <h4>Exactly what the app can access, and why</h4>
+      <p>We ask only for what the features need. The app does not request permission to read the message history of your channels.</p>
+      <table class="slack-perm-table">
+        <tr><td>app_mentions:read</td><td>See messages where someone @mentions The Croupier, so it can answer them.</td></tr>
+        <tr><td>im:history, im:read</td><td>Read direct messages sent to The Croupier, so you can search in a private chat.</td></tr>
+        <tr><td>chat:write</td><td>Post search results and replies.</td></tr>
+        <tr><td>commands</td><td>Provide the <code>/croupier</code> slash command.</td></tr>
+        <tr><td>users:read</td><td>Check whether the person connecting or disconnecting is a workspace admin.</td></tr>
+        <tr><td>channels:read, groups:read, mpim:read</td><td>Tell public channels from private ones, so private dossier links are never posted into a shared channel.</td></tr>
+      </table>
+      <p style="margin-top:14px;">Text you send to The Croupier is processed by an AI model only to turn your request into a candidate search. Questions about the app? <a href="mailto:sales@asqsys.com?subject=Slack%20App" style="text-decoration:underline; font-weight:600;">sales@asqsys.com</a> · <a href="javascript:void(0);" onclick="showPage('privacy')" style="text-decoration:underline; font-weight:600;">Privacy policy</a></p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SLACK APP — TRUST & SECURITY
+  ══════════════════════════════════════ -->
+  <section class="content-container" id="slack-trust">
+
+    <div class="slack-trust-card" style="margin-top:16px;">
+      <h4>Safeguards built into every interaction</h4>
+      <ul class="safeguard-list">
+        <li><span><strong>Official Slack OAuth.</strong> Installation runs through Slack's own authorization screen, and the one-time codes it issues can be used only once.</span></li>
+        <li><span><strong>Admin-verified connection.</strong> The Fidmark token is checked for ownership and authorized for your workspace before it is linked.</span></li>
+        <li><span><strong>Masked tokens.</strong> Confirmations show only the last four characters of your token.</span></li>
+        <li><span><strong>Private by default.</strong> Candidate dossier links are issued to the requester, scoped to their account, and expire after 72 hours.</span></li>
+        <li><span><strong>Shared channels fail safe.</strong> If the app can't tell whether a channel is private, it treats it as shared and withholds private links.</span></li>
+        <li><span><strong>Results stay with the requester.</strong> Follow-ups like "why is #2 a Maybe" only draw on searches you ran in that channel.</span></li>
+        <li><span><strong>Human approval, with undo.</strong> Nothing is pushed to your ATS until someone clicks Approve, and a 5-second undo window follows.</span></li>
+        <li><span><strong>Checks before it acts.</strong> It confirms an ATS is actually connected, and asks which one if several are, before pushing anything.</span></li>
+        <li><span><strong>Minimal permissions.</strong> The app does not ask to read your channels' message history. See the full permission list above.</span></li>
+        <li><span><strong>Clean exit.</strong> If Slack revokes tokens or the app is uninstalled, the stored installation is removed automatically.</span></li>
+      </ul>
+    </div>
+
+    <div class="slack-trust-grid">
+      <div class="slack-trust-card">
+        <h4>Security review?</h4>
+        <p>Evaluating The Croupier for your company? Email us and we'll answer your security and data-handling questions directly.</p>
+        <p style="margin-top:10px;"><a href="mailto:sales@asqsys.com?subject=Security%20questions%20-%20Slack%20app" style="text-decoration:underline; font-weight:600;">Ask a security question</a></p>
+      </div>
+      <div class="slack-trust-card">
+        <h4>Found a vulnerability?</h4>
+        <p>We welcome responsible disclosure. Report it and a human will respond.</p>
+        <p style="margin-top:10px;"><a href="mailto:sales@asqsys.com?subject=Security%20report" style="text-decoration:underline; font-weight:600;">Report a security issue</a></p>
+      </div>
+      <div class="slack-trust-card">
+        <h4>Start with no risk</h4>
+        <p>Free trial, no card required. Try it in a test channel first, and remove it from Slack whenever you like.</p>
+        <div class="slack-cta-row" style="margin-top:12px;">
+          <a class="add-to-slack-link" href="https://croupier-slack-bot.onrender.com/slack/install" data-slack-cta="trust">
+            <img alt="Add to Slack" height="40" width="139"
+                 src="https://platform.slack-edge.com/img/add_to_slack.png"
+                 srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x">
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ══════════════════════════════════════
        4-STEP WORKFLOW TIMELINE
   ══════════════════════════════════════ -->
@@ -1597,7 +1827,7 @@
       <div class="faq-item">
         <details>
           <summary class="faq-question">How does the free trial work?</summary>
-          <div class="faq-answer">No card required. Enter your work email and we'll send you an access token instantly. Your trial runs until you've evaluated 1,000 candidates or 3 days have passed, whichever comes first — then your account locks until you upgrade to a paid plan, which does require billing details via Stripe.</div>
+          <div class="faq-answer">No card required. Enter your email and we'll send you an access token instantly. Your trial runs until you've evaluated 1,000 candidates or 3 days have passed, whichever comes first — then your account locks until you upgrade to a paid plan, which does require billing details via Stripe.</div>
         </details>
       </div>
 
@@ -1612,6 +1842,20 @@
         <details>
           <summary class="faq-question">Which ATS platforms can I export candidates into?</summary>
           <div class="faq-answer">The Croupier integrates natively with 100Hires, Recruitee, JazzHR, SmartSuite, Odoo, Loxo, and Manatal. For anything else, use a custom outbound webhook or export a clean CSV.</div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary class="faq-question">How do I add The Croupier to Slack?</summary>
+          <div class="faq-answer">Click "Add to Slack", pick your workspace, and approve the install (a workspace admin may need to do this). Then run <code>/croupier connect</code> with your Fidmark access token, which you get free with the trial, no card required. After that, @mention The Croupier or use <code>/croupier search</code> to find candidates.</div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary class="faq-question">Can The Croupier read all my Slack messages?</summary>
+          <div class="faq-answer">No. It only sees messages that @mention it and direct messages sent to it. It does not request permission to read the history of your channels. The full permission list, with a reason for each, is in the Slack section above.</div>
         </details>
       </div>
 
@@ -1641,6 +1885,7 @@
     <div class="footer-inner">
       <div>© 2026 Fidmark. Infrastructure in partnership with ASQSYS.</div>
       <div class="footer-links">
+        <a href="https://croupier-slack-bot.onrender.com/slack/install" data-slack-cta="footer">Add to Slack</a>
         <a href="javascript:void(0);" onclick="showPage('privacy')">Privacy</a>
         <a href="javascript:void(0);" onclick="showPage('terms')">Terms</a>
         <a href="mailto:sales@asqsys.com">Contact</a>
@@ -1876,7 +2121,7 @@
             <span class="comp-icon hire">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </span>
-            <span>Flexible plans start at $149/mo with a 3-day card-held verification trial</span>
+            <span>Flexible plans start at $149/mo, with a free 3-day trial and no card required</span>
           </li>
         </ul>
       </div>
@@ -1906,6 +2151,9 @@
       <p>Your job requirements, internal candidate notes, search queries, and hiring scores are stored under your account and are never visible to, or pooled with, other Fidmark customers.</p>
       <h3 style="color: var(--ink-primary); font-family: var(--font-serif); font-size: 18px;">What We Never Do</h3>
       <p>We never sell your candidate data or search history. We never share it with other customers. All traffic to and from The Croupier is encrypted in transit.</p>
+      <h3 style="color: var(--ink-primary); font-family: var(--font-serif); font-size: 18px;">Slack App</h3>
+      <p>If you install The Croupier in Slack, we receive only the messages that @mention the app and direct messages sent to it, plus the slash commands you run. We use them to understand your search request and reply in Slack. The text of a request is processed by an AI model to turn it into a candidate search.</p>
+      <p>We store one access token per Slack workspace so the app can post replies. When you remove the app from Slack, that token is deleted. Workspace admins can disconnect their Fidmark account at any time with <code>/croupier disconnect</code>. To ask about or request deletion of your data, contact <a href="mailto:sales@asqsys.com" style="color: var(--ink-primary); text-decoration: underline; font-weight: 600;">sales@asqsys.com</a>.</p>
     </div>
   </div>
 </div>
@@ -1917,7 +2165,7 @@
   <div class="content-container" style="padding-top: 100px; max-width: 680px;">
     <h1 class="section-title">Terms of Service</h1>
     <p class="section-lead" style="margin-bottom: 24px;">By using Fidmark services, you agree to these terms.</p>
-    
+
     <div style="font-size: 14.5px; color: var(--ink-secondary); line-height: 1.8; display: flex; flex-direction: column; gap: 20px;">
       <div>
         <h3 style="color: var(--ink-primary); font-family: var(--font-serif); font-size: 19px; font-weight: 600; margin-bottom: 6px;">Acceptable Use</h3>
@@ -2025,19 +2273,35 @@
 
   /* ── DEEP-LINK SUPPORT ──
      Lets an external link (outbound email, ad, etc.) send a visitor
-     straight to pricing instead of the homepage, removing the extra
-     click that was costing conversions. Point campaign CTAs at:
-       https://fidmark.vercel.app/#pricing   or   .../#trial
-     Both land here directly on page load. */
+     straight to pricing or the Slack section instead of the homepage,
+     removing the extra click that was costing conversions. Point
+     campaign CTAs at:
+       https://fidmark.vercel.app/#pricing   (or #trial)
+       https://fidmark.vercel.app/#slack
+     These land here directly on page load. */
   function handleDeepLink() {
     const hash = window.location.hash.replace('#', '').toLowerCase();
     if (hash === 'pricing' || hash === 'trial' || hash === 'start-trial') {
       goToPricing();
+    } else if (hash === 'slack') {
+      showPage('home');
+      requestAnimationFrame(() => {
+        document.getElementById('slack-section')?.scrollIntoView({ behavior: 'auto', block: 'start' });
+      });
     }
   }
   handleDeepLink();
   // Also handle back/forward navigation and links clicked after load
   window.addEventListener('hashchange', handleDeepLink);
+
+  /* ── ADD TO SLACK CONVERSION TRACKING ── */
+  document.addEventListener('click', function (e) {
+    const link = e.target.closest('[data-slack-cta]');
+    if (!link) return;
+    if (typeof gtag === 'function') {
+      gtag('event', 'add_to_slack_click', { cta_location: link.dataset.slackCta });
+    }
+  });
 
   /* ── TOAST FEEDBACK ENGINE ── */
   function showToast(msg) {
@@ -2160,7 +2424,7 @@
         <span class="section-eyebrow">Free Trial · No Card Required</span>
         <h2 style="font-family:var(--font-serif);font-size:22px;font-weight:600;margin:8px 0 6px;">Start your free trial</h2>
         <p style="font-size:13px;color:var(--ink-secondary);margin-bottom:18px;">Up to 1,000 candidates or 3 days, whichever comes first. We'll email your access token.</p>
-        <label class="form-label">Work Email</label>
+        <label class="form-label">Email</label>
         <input type="email" id="trialEmailInput" class="form-input" placeholder="you@company.com" style="margin-bottom:16px;">
         <div id="trialModalError" style="display:none;color:#BE123C;font-size:12.5px;margin-bottom:12px;"></div>
         <button class="btn-pill-primary" style="width:100%;justify-content:center;margin-bottom:10px;" onclick="submitFreeTrial('${plan}')">
